@@ -3,9 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ReactNode } from "react";
 
-const geistSans = localFont({
-  src: "assets/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+const josefinSans = localFont({
+  src: "assets/fonts/JosefinSans.ttf",
+  variable: "--font-josefin-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
@@ -15,14 +15,14 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Micka & Cécile 💍",
+  title: "Micka & Cécile ",
   description: "15.11.2025",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode}>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${josefinSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>

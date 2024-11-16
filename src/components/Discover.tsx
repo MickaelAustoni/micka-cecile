@@ -2,10 +2,35 @@
 
 import { useSearchParams } from 'next/navigation'
 import Typewriter from "@/components/Typewriter";
-import { motion } from 'motion/react';
+import { motion, Variants } from 'motion/react';
 import { cubicBezier } from "motion";
+import { useState } from "react";
+
+
+
+const buttonVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    transform: "translateY(20px)"
+  },
+  visible: {
+    opacity: 1,
+    transform: "translateY(0)",
+    transition: {
+      opacity: {
+        duration: 1,
+      },
+      transform: {
+        ease: cubicBezier(.18,1.07,.47,1.06),
+        duration: 1.5,
+      }
+    }
+  }
+};
 
 export default function Discover() {
+  const [animationTitleIsFinished, setAnimationTitleIsFinished] = useState(false);
+  const [animationSubtitleIsFinished, setAnimationSubtitleIsFinished] = useState(false);
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
 
@@ -17,31 +42,14 @@ export default function Discover() {
   return (
     <div
       className="h-screen flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)]">
-      <div className="text-center ">
-        <Typewriter>Bonjour {name},</Typewriter>
-        <Typewriter delay={1.6}>On dirait qu’un secret tout doux se cache ici...</Typewriter>
+      <div className="flex flex-col text-center">
+        <Typewriter onAnimationComplete={() =>setAnimationTitleIsFinished(true)}>Bonjour {name},</Typewriter>
+        <Typewriter start={animationTitleIsFinished} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici...</Typewriter>
       </div>
       <motion.button
-        className="border px-6 py-3" onClick={handleClick}
-        initial={{
-          opacity: 0,
-          transform: "translateY(20px)"
-        }}
-        animate={{
-          opacity: 1,
-          transform: "translateY(0)",
-          transition: {
-            opacity: {
-              delay: 5.2,
-              duration: 1,
-            },
-            transform: {
-              delay: 5.2,
-              ease: cubicBezier(.18,1.07,.47,1.06),
-              duration: 1.5,
-            }
-          }
-        }}>Découvrir
+        className="tracking-[0.4em] border px-6 py-3 font-extrabold uppercase font-[family-name:var(--font-josefin-sans)]" onClick={handleClick}
+        variants={buttonVariants}
+        animate={animationSubtitleIsFinished ?  "visible": "hidden"}>Découvrir
       </motion.button>
     </div>
   );

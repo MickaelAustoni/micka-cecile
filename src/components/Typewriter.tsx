@@ -1,12 +1,14 @@
-import { motion, Variants } from "framer-motion";
+import { motion, Variants } from 'motion/react';
 import { Children, PropsWithChildren } from "react";
 
 interface TypewriterProps extends PropsWithChildren {
   delay?: number;
   staggerChildren?: number;
+  onAnimationComplete?: () => void;
+  start?: boolean;
 }
 
-const sentenceVariants : Variants= {
+const sentenceVariants : Variants = {
   hidden: {
     opacity: 0,
   },
@@ -30,14 +32,16 @@ const letterVariants: Variants = {
 };
 
 
-export default function Typewriter({children, delay = 0, staggerChildren = 0.05}: TypewriterProps) {
+export default function Typewriter({children, onAnimationComplete, start, delay = 0, staggerChildren = 0.05}: TypewriterProps) {
   const arrayOfLetters = Children.toArray(children).join("").split("");
 
   return (
-    <motion.p
+    <motion.span
+      key={String(start)}
       variants={sentenceVariants}
       initial="hidden"
-      animate="visible"
+      animate={start === undefined ? "visible" : start ? "visible" : "hidden"}
+      onAnimationComplete={onAnimationComplete}
       transition={{
         delay,
         staggerChildren,
@@ -49,6 +53,6 @@ export default function Typewriter({children, delay = 0, staggerChildren = 0.05}
           {char}
         </motion.span>
       ))}
-    </motion.p>
+    </motion.span>
   );
 }
