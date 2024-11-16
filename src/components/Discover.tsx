@@ -48,6 +48,7 @@ export default function Discover() {
       </div>
       <motion.button
         className="tracking-[0.4em] border px-6 py-3 font-extrabold uppercase font-[family-name:var(--font-josefin-sans)]" onClick={handleClick}
+        initial={"hidden"}
         variants={buttonVariants}
         animate={animationSubtitleIsFinished ?  "visible": "hidden"}>Découvrir
       </motion.button>
