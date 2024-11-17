@@ -2,9 +2,35 @@
 
 import { useSearchParams } from 'next/navigation'
 import Typewriter from "@/components/Typewriter";
-import { motion, Variants } from 'motion/react';
+import { motion, Variants, AnimatePresence } from 'motion/react';
 import { cubicBezier } from "motion";
 import { useRef, useState } from "react";
+
+interface DiscoverProps {
+  onClickDiscover?: () => void;
+}
+
+const pageVariants: Variants = {
+  base: {
+    backgroundColor: "#6d7569",
+  },
+  next: {
+    backgroundColor: "rgba(0, 0, 0, 0)",
+    transition: {
+      duration: 5,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+const wrapperTextVariants: Variants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1
+  }
+};
 
 const buttonVariants: Variants = {
   hidden: {
@@ -19,45 +45,57 @@ const buttonVariants: Variants = {
         duration: 1,
       },
       transform: {
-        ease: cubicBezier(.18,1.07,.47,1.06),
+        ease: cubicBezier(.18, 1.07, .47, 1.06),
         duration: 1.5,
       }
     }
   }
 };
 
-
-
-export default function Discover() {
+export default function Discover({ onClickDiscover }: DiscoverProps) {
   const [animationTitleIsFinished, setAnimationTitleIsFinished] = useState(false);
   const [animationSubtitleIsFinished, setAnimationSubtitleIsFinished] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const [finished, setFinished] = useState(false);
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleClick = () => {
     void audioRef?.current?.play();
+    setClicked(true);
+    onClickDiscover?.();
   };
 
   return (
     <>
-      <div
-        className="h-screen flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)]">
-        <div className="flex flex-col text-center">
-          <Typewriter onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour {name},</Typewriter>
-          <Typewriter start={animationTitleIsFinished} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On
-            dirait qu’un secret tout doux se cache ici...</Typewriter>
-        </div>
-        <motion.button
-          className="tracking-[0.4em] border px-6 py-3 pb-2 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
-          onClick={handleClick}
-          initial={"hidden"}
-          variants={buttonVariants}
-          animate={animationSubtitleIsFinished ? "visible" : "hidden"}>
-          <span>Découvrir</span>
-        </motion.button>
-      </div>
-      <audio ref={audioRef} src="/assets/audio/music.mp3" controls={false} preload={"auto"} />
+      <AnimatePresence>
+        {!finished && <motion.div
+          className="inset-0 absolute z-50 flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)]"
+          initial="base"
+          animate={clicked && "next"}
+          variants={pageVariants}
+          onAnimationComplete={() => setFinished(true)}
+        >
+          <motion.div className="flex flex-col text-center" variants={wrapperTextVariants} initial={"visible"}
+                      animate={clicked ? "hidden" : "visible"}>
+            <Typewriter
+              onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${name}` : ""},</Typewriter>
+            <Typewriter start={animationTitleIsFinished}
+                        onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On
+              dirait qu’un secret tout doux se cache ici...</Typewriter>
+          </motion.div>
+          <motion.button
+            className="tracking-[0.4em] border px-6 py-3 pb-2 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
+            onClick={handleClick}
+            initial={"hidden"}
+            variants={buttonVariants}
+            animate={animationSubtitleIsFinished && !clicked ? "visible" : "hidden"}>
+            <span>Découvrir</span>
+          </motion.button>
+        </motion.div>}
+      </AnimatePresence>
+      <audio ref={audioRef} src="/assets/audio/music.mp3" controls={false} preload={"auto"}/>
     </>
   );
 }
