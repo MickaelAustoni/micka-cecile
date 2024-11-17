@@ -57,7 +57,7 @@ export default function Discover() {
           <span>Découvrir</span>
         </motion.button>
       </div>
-      <audio ref={audioRef} src="/assets/music.mp3" controls={false} preload={"auto"} />
+      <audio ref={audioRef} src="/assets/audio/music.mp3" controls={false} preload={"auto"} />
     </>
   );
 }
