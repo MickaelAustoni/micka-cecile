@@ -3,17 +3,20 @@ import { Children, PropsWithChildren } from "react";
 
 interface TypewriterProps extends PropsWithChildren {
   delay?: number;
+  delayHidden?: number;
   staggerChildren?: number;
   onAnimationComplete?: () => void;
-  start?: boolean;
+  variant?: "visible" | "hidden";
 }
 
 const sentenceVariants : Variants = {
   hidden: {
     opacity: 0,
+    height: 0,
   },
   visible: {
     opacity: 1,
+    height: "auto"
   }
 };
 
@@ -31,19 +34,17 @@ const letterVariants: Variants = {
   }
 };
 
-
-export default function Typewriter({children, onAnimationComplete, start, delay = 0, staggerChildren = 0.05}: TypewriterProps) {
+export default function Typewriter({children, onAnimationComplete, variant = "visible", delay = 0, delayHidden = 0, staggerChildren = 0.04}: TypewriterProps) {
   const arrayOfLetters = Children.toArray(children).join("").split("");
 
   return (
     <motion.span
-      key={String(start)}
       variants={sentenceVariants}
       initial="hidden"
-      animate={start === undefined ? "visible" : start ? "visible" : "hidden"}
+      animate={variant}
       onAnimationComplete={onAnimationComplete}
       transition={{
-        delay,
+        delay : variant === "visible" ? delay : delayHidden,
         staggerChildren,
         when: "beforeChildren",
       }}

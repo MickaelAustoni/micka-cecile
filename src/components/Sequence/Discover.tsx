@@ -1,7 +1,7 @@
 "use client"
 
 import { useSearchParams } from 'next/navigation'
-import Typewriter from "@/components/Typewriter";
+import Typewriter from "@/components/DataDisplay/Typewriter";
 import { motion, Variants, AnimatePresence } from 'motion/react';
 import { useRef, useState } from "react";
 
@@ -72,13 +72,9 @@ export default function Discover({ onClickDiscover }: DiscoverProps) {
           variants={pageVariants}
           onAnimationComplete={() => setFinished(true)}
         >
-          <motion.div className="flex flex-col text-center" variants={wrapperTextVariants} initial={"visible"}
-                      animate={clicked ? "hidden" : "visible"}>
-            <Typewriter
-              onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${name}` : ""},</Typewriter>
-            <Typewriter start={animationTitleIsFinished}
-                        onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On
-              dirait qu’un secret tout doux se cache ici...</Typewriter>
+          <motion.div className="flex flex-col text-center" variants={wrapperTextVariants} initial={"visible"} animate={clicked ? "hidden" : "visible"}>
+            <Typewriter onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${name}` : ""},</Typewriter>
+            <Typewriter variant={animationTitleIsFinished ? "visible" : "hidden"} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici...</Typewriter>
           </motion.div>
           <motion.button
             className="tracking-[0.4em] border px-6 py-3 pb-2 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
