@@ -41,7 +41,7 @@ export default function Story({ play = false }: StoryProps) {
             delay={2}
             delayHidden={2}
           >
-            Aujourd’hui, il est temps de sceller notre amour.
+            Aujourd’hui, il est temps de sceller nos destins.
           </Typewriter>
         </div>
       </div>
