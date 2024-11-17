@@ -3,7 +3,6 @@
 import { useSearchParams } from 'next/navigation'
 import Typewriter from "@/components/Typewriter";
 import { motion, Variants, AnimatePresence } from 'motion/react';
-import { cubicBezier } from "motion";
 import { useRef, useState } from "react";
 
 interface DiscoverProps {
@@ -43,10 +42,6 @@ const buttonVariants: Variants = {
     transition: {
       opacity: {
         duration: 1,
-      },
-      transform: {
-        ease: cubicBezier(.18, 1.07, .47, 1.06),
-        duration: 1.5,
       }
     }
   }
