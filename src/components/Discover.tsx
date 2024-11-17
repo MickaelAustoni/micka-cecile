@@ -5,7 +5,6 @@ import Typewriter from "@/components/Typewriter";
 import { motion, Variants } from 'motion/react';
 import { cubicBezier } from "motion";
 import { useRef, useState } from "react";
-import Head from "next/head";
 
 const buttonVariants: Variants = {
   hidden: {
@@ -36,20 +35,12 @@ export default function Discover() {
   const name = searchParams.get("name");
   const audioRef = useRef<HTMLAudioElement>(null);
 
-
   const handleClick = () => {
     void audioRef?.current?.play();
   };
 
   return (
     <>
-      <Head>
-        <link
-          rel="preload"
-          href="/assets/music.mp3"
-          as="audio"
-        />
-      </Head>
       <div
         className="h-screen flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)]">
         <div className="flex flex-col text-center">
@@ -58,11 +49,12 @@ export default function Discover() {
             dirait qu’un secret tout doux se cache ici...</Typewriter>
         </div>
         <motion.button
-          className="tracking-[0.4em] border px-6 py-3 font-extrabold uppercase font-[family-name:var(--font-josefin-sans)]"
+          className="tracking-[0.4em] border px-6 py-3 pb-2 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
           onClick={handleClick}
           initial={"hidden"}
           variants={buttonVariants}
-          animate={animationSubtitleIsFinished ? "visible" : "hidden"}>Découvrir
+          animate={animationSubtitleIsFinished ? "visible" : "hidden"}>
+          <span>Découvrir</span>
         </motion.button>
       </div>
       <audio ref={audioRef} src="/assets/music.mp3" controls={false} preload={"auto"} />
