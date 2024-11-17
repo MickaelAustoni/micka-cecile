@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
 import { ReactNode } from "react";
+import "@/assets/globals.css";
 
 const josefinSans = localFont({
-  src: "assets/fonts/JosefinSans.ttf",
+  src: "../assets/fonts/JosefinSans.ttf",
   variable: "--font-josefin-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "assets/fonts/GeistMonoVF.woff",
+  src: "../assets/fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });

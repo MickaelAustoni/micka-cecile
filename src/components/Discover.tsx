@@ -4,9 +4,8 @@ import { useSearchParams } from 'next/navigation'
 import Typewriter from "@/components/Typewriter";
 import { motion, Variants } from 'motion/react';
 import { cubicBezier } from "motion";
-import { useState } from "react";
-
-
+import { useRef, useState } from "react";
+import Head from "next/head";
 
 const buttonVariants: Variants = {
   hidden: {
@@ -28,30 +27,45 @@ const buttonVariants: Variants = {
   }
 };
 
+
+
 export default function Discover() {
   const [animationTitleIsFinished, setAnimationTitleIsFinished] = useState(false);
   const [animationSubtitleIsFinished, setAnimationSubtitleIsFinished] = useState(false);
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
+  const audioRef = useRef<HTMLAudioElement>(null);
+
 
   const handleClick = () => {
-    const audio = new Audio("/assets/music.mp3");
-    void audio.play();
+    void audioRef?.current?.play();
   };
 
   return (
-    <div
-      className="h-screen flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)]">
-      <div className="flex flex-col text-center">
-        <Typewriter onAnimationComplete={() =>setAnimationTitleIsFinished(true)}>Bonjour {name},</Typewriter>
-        <Typewriter start={animationTitleIsFinished} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici...</Typewriter>
+    <>
+      <Head>
+        <link
+          rel="preload"
+          href="/assets/music.mp3"
+          as="audio"
+        />
+      </Head>
+      <div
+        className="h-screen flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)]">
+        <div className="flex flex-col text-center">
+          <Typewriter onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour {name},</Typewriter>
+          <Typewriter start={animationTitleIsFinished} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On
+            dirait qu’un secret tout doux se cache ici...</Typewriter>
+        </div>
+        <motion.button
+          className="tracking-[0.4em] border px-6 py-3 font-extrabold uppercase font-[family-name:var(--font-josefin-sans)]"
+          onClick={handleClick}
+          initial={"hidden"}
+          variants={buttonVariants}
+          animate={animationSubtitleIsFinished ? "visible" : "hidden"}>Découvrir
+        </motion.button>
       </div>
-      <motion.button
-        className="tracking-[0.4em] border px-6 py-3 font-extrabold uppercase font-[family-name:var(--font-josefin-sans)]" onClick={handleClick}
-        initial={"hidden"}
-        variants={buttonVariants}
-        animate={animationSubtitleIsFinished ?  "visible": "hidden"}>Découvrir
-      </motion.button>
-    </div>
+      <audio ref={audioRef} src="/assets/music.mp3" controls={false} preload={"auto"} />
+    </>
   );
 }
