@@ -74,7 +74,7 @@ export default function Discover({ onClickDiscover }: DiscoverProps) {
         >
           <motion.div className="flex flex-col text-center" variants={wrapperTextVariants} initial={"visible"} animate={clicked ? "hidden" : "visible"}>
             <Typewriter onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${name}` : ""},</Typewriter>
-            <Typewriter variant={animationTitleIsFinished ? "visible" : "hidden"} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici...</Typewriter>
+            <Typewriter variant={animationTitleIsFinished ? "visible" : "hidden"} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici ...</Typewriter>
           </motion.div>
           <motion.button
             className="tracking-[0.4em] border px-6 py-3 pb-2 font-light uppercase font-[family-name:var(--font-josefin-sans)]"

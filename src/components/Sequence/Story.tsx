@@ -27,7 +27,7 @@ export default function Story({ play = false }: StoryProps) {
             delay={2}
             delayHidden={2}
             onAnimationComplete={() => setParagraph1IsFinished(true)}>
-              Il y a 7 ans, nos chemins se sont croisés par hasard...
+              Il y a 7 ans, nos chemins se sont croisés par hasard ...
           </Typewriter>
           <Typewriter
             variant={paragraph1IsFinished && !paragraph2IsFinished ?  "visible" : "hidden"}
@@ -41,7 +41,7 @@ export default function Story({ play = false }: StoryProps) {
             delay={2}
             delayHidden={2}
           >
-            Aujourd’hui, il est temps d’honorer notre promesse d’éternité.
+            Aujourd’hui, il est temps de sceller notre promesse d’éternité.
           </Typewriter>
         </div>
       </div>
