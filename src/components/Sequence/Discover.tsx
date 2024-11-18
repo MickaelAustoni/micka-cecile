@@ -50,6 +50,7 @@ const buttonVariants: Variants = {
 export default function Discover({ onClickDiscover }: DiscoverProps) {
   const [animationTitleIsFinished, setAnimationTitleIsFinished] = useState(false);
   const [animationSubtitleIsFinished, setAnimationSubtitleIsFinished] = useState(false);
+  const [animationButtonIsFinished, setAnimationButtonIsFinished] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [finished, setFinished] = useState(false);
   const searchParams = useSearchParams();
@@ -60,6 +61,12 @@ export default function Discover({ onClickDiscover }: DiscoverProps) {
     void audioRef?.current?.play();
     setClicked(true);
     onClickDiscover?.();
+  };
+
+  const handleAnimationButtonIsFinished = (definition: string) => {
+    if(definition === "hidden") {
+      setAnimationButtonIsFinished(true);
+    }
   };
 
   return (
@@ -76,14 +83,18 @@ export default function Discover({ onClickDiscover }: DiscoverProps) {
             <Typewriter onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${name}` : ""},</Typewriter>
             <Typewriter variant={animationTitleIsFinished ? "visible" : "hidden"} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici ...</Typewriter>
           </motion.div>
-          <motion.button
-            className="tracking-[0.4em] border px-6 py-3 pb-2 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
-            onClick={handleClick}
-            initial={"hidden"}
-            variants={buttonVariants}
-            animate={animationSubtitleIsFinished && !clicked ? "visible" : "hidden"}>
-            <span>Découvrir</span>
-          </motion.button>
+          {!animationButtonIsFinished && <AnimatePresence>
+            <motion.button
+              className="tracking-[0.4em] border px-6 py-3 pb-2 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
+              onClick={handleClick}
+              initial={"hidden"}
+              variants={buttonVariants}
+              animate={animationSubtitleIsFinished && !clicked ? "visible" : "hidden"}
+              onAnimationComplete={handleAnimationButtonIsFinished}
+            >
+              <span>Découvrir</span>
+            </motion.button>
+          </AnimatePresence>}
         </motion.div>}
       </AnimatePresence>
       <audio ref={audioRef} src="/assets/audio/music.mp3" controls={false} preload={"auto"}/>
