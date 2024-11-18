@@ -15,19 +15,17 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Micka & Cécile ",
+  title: "Micka & Cécile 💍",
   description: "15.11.2025",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode}>) {
   return (
     <html lang="fr">
-    <head>
-      <link rel="icon" href="/assets/images/favicon.ico" sizes="any"/>
-    </head>
+    <link rel="icon" href="/assets/images/favicon.ico" sizes="any"/>
     <body className={`${josefinSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-      </body>
+    {children}
+    </body>
     </html>
   );
 }
