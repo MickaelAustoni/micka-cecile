@@ -78,7 +78,7 @@ export default function Discover({ onClickDiscover }: DiscoverProps) {
     <>
       <AnimatePresence>
         {!finished && <motion.div
-          className="inset-0 absolute z-50 flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)]"
+          className="p-6 inset-0 absolute z-50 flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)]"
           initial="base"
           animate={clicked && "next"}
           variants={pageVariants}

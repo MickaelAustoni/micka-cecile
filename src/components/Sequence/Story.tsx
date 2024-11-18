@@ -30,9 +30,9 @@ export default function Story({ onFinish, play = false }: StoryProps) {
   return (
     <AnimatePresence>
       {!isFinished && <>
-        <div className="inset-0 overflow-hidden absolute flex items-center justify-center flex-col bg-green">
+        <div className="inset-0 overflow-hidden absolute flex items-center justify-center flex-col bg-green p-6">
           {/* Text */}
-          <div className="flex flex-col text-center w-1/4 font-[family-name:var(--font-geist-mono)] z-20">
+          <div className="flex flex-col text-center max-w-96 font-[family-name:var(--font-geist-mono)] z-20">
             <Typewriter
               variant={play && !paragraph1IsFinished ? "visible" : "hidden"}
               delay={2}
