@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation'
 import Typewriter from "@/components/DataDisplay/Typewriter";
 import { motion, Variants, AnimatePresence } from 'motion/react';
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 
 interface DiscoverProps {
   onClickDiscover?: () => void;
@@ -75,7 +75,7 @@ export default function Discover({ onClickDiscover }: DiscoverProps) {
   };
 
   return (
-    <>
+    <Suspense>
       <AnimatePresence>
         {!finished && <motion.div
           className="p-6 inset-0 absolute z-50 flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)]"
@@ -103,6 +103,6 @@ export default function Discover({ onClickDiscover }: DiscoverProps) {
         </motion.div>}
       </AnimatePresence>
       <audio ref={audioRef} src="/assets/audio/music.mp3" controls={false} preload={"auto"}/>
-    </>
+    </Suspense>
   );
 }

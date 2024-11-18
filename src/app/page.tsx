@@ -2,7 +2,7 @@
 
 import Discover from "@/components/Sequence/Discover";
 import Story from "@/components/Sequence/Story";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import FollowMouseCursorPoint from "@/components/Utils/Utils/FollowMouseCursorPoint";
 import SaveTheDate from "@/components/Sequence/SaveTheDate";
 
@@ -11,7 +11,9 @@ export default function Home() {
 
   return (
     <main>
-      <Discover onClickDiscover={() => setStep("story")} />
+      <Suspense>
+        <Discover onClickDiscover={() => setStep("story")} />
+      </Suspense>
       <Story play={step === "story"} onFinish={() => setStep("saveTheDate")} />
       <SaveTheDate play={step === "saveTheDate"} />
       <FollowMouseCursorPoint />
