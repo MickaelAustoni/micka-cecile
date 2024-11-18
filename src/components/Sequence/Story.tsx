@@ -30,9 +30,9 @@ export default function Story({ onFinish, play = false }: StoryProps) {
   return (
     <AnimatePresence>
       {!isFinished && <>
-        <div
-          className="inset-0 overflow-hidden absolute z-10 flex items-center justify-center flex-col font-[family-name:var(--font-geist-mono)]">
-          <div className="flex flex-col text-center w-1/4">
+        <div className="inset-0 overflow-hidden absolute flex items-center justify-center flex-col bg-green">
+          {/* Text */}
+          <div className="flex flex-col text-center w-1/4 font-[family-name:var(--font-geist-mono)] z-20">
             <Typewriter
               variant={play && !paragraph1IsFinished ? "visible" : "hidden"}
               delay={2}
@@ -64,7 +64,7 @@ export default function Story({ onFinish, play = false }: StoryProps) {
           muted
           loop
           ref={videoRef}
-          className="fixed h-screen w-screen inset-0 object-cover z-0"
+          className="fixed h-screen w-screen inset-0 object-cover z-10"
           controls={false}
           preload="auto"
           src="/assets/movies/tree.mp4"

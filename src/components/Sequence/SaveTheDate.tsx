@@ -8,10 +8,9 @@ interface SaveTheDateProps {
 }
 
 export default function SaveTheDate({ play = false }: SaveTheDateProps) {
-
   return (
     <AnimatePresence>
-      {play && <div className="inset-0 overflow-hidden absolute justify-center items-center flex">
+      {play && <div className="inset-0 overflow-hidden absolute justify-center items-center flex bg-green">
         <Logo />
       </div>}
     </AnimatePresence>
