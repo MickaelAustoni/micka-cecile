@@ -4,17 +4,17 @@ import Discover from "@/components/Sequence/Discover";
 import Story from "@/components/Sequence/Story";
 import { useState } from "react";
 import FollowMouseCursorPoint from "@/components/Utils/Utils/FollowMouseCursorPoint";
-import Logo from "@/components/DataDisplay/Logo";
+import SaveTheDate from "@/components/Sequence/SaveTheDate";
 
 export default function Home() {
   const [step, setStep] = useState("discover");
 
   return (
     <main>
-      <Logo />
-      {/*<Discover onClickDiscover={() => setStep("story")} />*/}
-      {/*<Story play={step === "story"} />*/}
-      {/*<FollowMouseCursorPoint />*/}
+      <Discover onClickDiscover={() => setStep("story")} />
+      <Story play={step === "story"} onFinish={() => setStep("saveTheDate")} />
+      <SaveTheDate play={step === "saveTheDate"} />
+      <FollowMouseCursorPoint />
     </main>
   );
 }
