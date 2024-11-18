@@ -34,12 +34,17 @@ const wrapperTextVariants: Variants = {
 const buttonVariants: Variants = {
   hidden: {
     opacity: 0,
-    transform: "translateY(20px)"
+    transform: "translateY(20px)",
+    borderColor: "var(--green)",
   },
   visible: {
     opacity: 1,
     transform: "translateY(0)",
+    borderColor: "var(--white)",
     transition: {
+      borderColor: {
+        duration: 3,
+      },
       opacity: {
         duration: 1,
       }
