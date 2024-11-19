@@ -19,13 +19,13 @@ export const metadata: Metadata = {
   description: "15.11.2025",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode}>) {
+export default function RootLayout({children}: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="fr">
-    <link rel="icon" href="/assets/images/favicon.ico" sizes="any"/>
-    <body className={`${josefinSans.variable} ${geistMono.variable} antialiased`}>
-    {children}
-    </body>
+      <link rel="icon" href="/assets/images/favicon.ico" sizes="any"/>
+      <body className={`${josefinSans.variable} ${geistMono.variable} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

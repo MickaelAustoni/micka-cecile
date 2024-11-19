@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from "react";
+import { RefObject, useRef } from "react";
 import { useIsomorphicLayoutEffect } from "framer-motion";
 
 // MediaQueryList Event based useEventListener interface
