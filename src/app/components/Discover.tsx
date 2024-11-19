@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import Typewriter from "@/components/DataDisplay/Typewriter";
 import { motion, Variants, AnimatePresence } from 'motion/react';
 import { Suspense, useRef, useState } from "react";
+import ScaleCursor from "@/components/Utils/Utils/ScaleCursor";
 
 interface DiscoverProps {
   onClickDiscover?: () => void;
@@ -89,16 +90,18 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
             <Typewriter variant={animationTitleIsFinished ? "visible" : "hidden"} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici ...</Typewriter>
           </motion.div>
           {!animationButtonIsFinished && <AnimatePresence>
-            <motion.button
-              className="tracking-[0.4em] border px-6 py-3 pb-2 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
-              onClick={handleClick}
-              initial={"hidden"}
-              variants={buttonVariants}
-              animate={animationSubtitleIsFinished && !clicked ? "visible" : "hidden"}
-              onAnimationComplete={handleAnimationButtonIsFinished}
-            >
-              <span>Découvrir</span>
-            </motion.button>
+            <ScaleCursor>
+              <motion.button
+                className="tracking-[0.4em] border px-6 py-3 pb-2 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
+                onClick={handleClick}
+                initial={"hidden"}
+                variants={buttonVariants}
+                animate={animationSubtitleIsFinished && !clicked ? "visible" : "hidden"}
+                onAnimationComplete={handleAnimationButtonIsFinished}
+              >
+                <span>Découvrir</span>
+              </motion.button>
+            </ScaleCursor>
           </AnimatePresence>}
         </motion.div>}
       </AnimatePresence>
@@ -107,10 +110,12 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
   );
 }
 
-export default function Discover({ onClickDiscover }: DiscoverProps) {
+export default function Discover({
+  onClickDiscover
+}: DiscoverProps) {
   return (
     <Suspense>
-      <Content onClickDiscover={onClickDiscover} />
+      <Content onClickDiscover={onClickDiscover}/>
     </Suspense>
   );
 }

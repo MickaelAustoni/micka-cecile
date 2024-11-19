@@ -1,20 +1,23 @@
 "use client"
 
 import {  useState } from "react";
-import FollowMouseCursorPoint from "@/components/Utils/Utils/FollowMouseCursorPoint";
 import Discover from "@/app/components/Discover";
 import Story from "@/app/components/Story";
 import SaveTheDate from "@/app/components/SaveTheDate";
+import { FollowCursorProvider } from "@/Providers/FollowCursorProvider";
+import FollowMouseCursorHeart from "@/components/Utils/Utils/FollowMouseCursorHeart";
 
 export default function Home() {
   const [step, setStep] = useState("discover");
 
   return (
     <main>
-      <Discover onClickDiscover={() => setStep("story")} />
-      <Story play={step === "story"} onFinish={() => setStep("saveTheDate")} />
-      <SaveTheDate play={step === "saveTheDate"} />
-      <FollowMouseCursorPoint />
+      <FollowCursorProvider>
+        <Discover onClickDiscover={() => setStep("story")} />
+        <Story play={step === "story"} onFinish={() => setStep("saveTheDate")} />
+        <SaveTheDate play={step === "saveTheDate"} />
+        <FollowMouseCursorHeart />
+      </FollowCursorProvider>
     </main>
   );
 }
