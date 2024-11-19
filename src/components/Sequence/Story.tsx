@@ -68,7 +68,6 @@ export default function Story({ onFinish, play = false }: StoryProps) {
           className="fixed h-screen w-screen inset-0 object-cover z-10"
           controls={false}
           preload="auto"
-          src="/assets/movies/tree.mp4"
           initial="visible"
           variants={{
             visible: {
@@ -84,7 +83,11 @@ export default function Story({ onFinish, play = false }: StoryProps) {
           }}
           animate={paragraph3IsFinished ? "hidden" : "visible"}
           onAnimationComplete={handleFinish}
-        />
+        >
+          <source src="/assets/movies/tree-4k.mp4" media="(min-width: 1921px)"/>
+          <source src="/assets/movies/tree-mobile.mp4" media="(max-width: 767px)"/>
+          <source src="/assets/movies/tree.mp4"/>
+        </motion.video>
       </>}
     </AnimatePresence>
   );
