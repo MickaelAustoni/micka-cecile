@@ -63,6 +63,7 @@ export default function Story({ onFinish, play = false }: StoryProps) {
         <motion.video
           muted
           loop
+          playsInline
           ref={videoRef}
           className="fixed h-screen w-screen inset-0 object-cover z-10"
           controls={false}
