@@ -1,13 +1,21 @@
 import { useFollowCursor } from "@/Providers/FollowCursorProvider";
-import { ReactNode, useEffect } from "react";
+import { PropsWithChildren, useEffect } from "react";
 
-export default function ScaleCursor({ children }: { children: ReactNode }) {
+interface ScaleCursorProps  extends PropsWithChildren {
+  cleanupOnUnmount?: boolean;
+}
+
+export default function ScaleCursor({ children, cleanupOnUnmount }: ScaleCursorProps) {
   const { setIsHovered } = useFollowCursor();
 
   // Clean up the isHovered state when the component unmounts
   useEffect(() => {
-    return () => setIsHovered(false);
-  }, [setIsHovered]);
+    return () => {
+      if (cleanupOnUnmount) {
+        //setIsHovered(false);
+      }
+    };
+  }, [cleanupOnUnmount, setIsHovered]);
 
   return (
     <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
