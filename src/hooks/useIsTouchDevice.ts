@@ -8,12 +8,12 @@ const useIsTouchDevice = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(true);
 
   const checkIfTouchDevice = () => {
-
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
       setIsTouchDevice(true);
-    } else {
-      setIsTouchDevice(false);
+      return
     }
+
+    setIsTouchDevice(false);
   };
 
   useEventListener("touchstart", checkIfTouchDevice);

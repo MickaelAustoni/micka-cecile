@@ -10,10 +10,6 @@
   --green: #6d7569;
 }
 
-* {
-  cursor: none !important;
-}
-
 body {
   color: var(--foreground);
   background: var(--background);

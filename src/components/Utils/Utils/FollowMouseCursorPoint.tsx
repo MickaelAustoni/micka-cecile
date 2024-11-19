@@ -26,11 +26,11 @@ const styles: CSSProperties = {
 const FollowMouseCursorPoint = ({ size = 150, opacity = 1 }: FollowMouseCursorPointProps) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [touchPosition, setTouchPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const {scrollY} = useScroll();
-  const {x, y} = useFollowPointer();
+  const { scrollY } = useScroll();
+  const { x, y } = useFollowPointer();
   const isTouchDevice = useIsTouchDevice();
   const heartAnimationRef = useRef<LottieRefCurrentProps>(null);
-  const animationPosition = isTouchDevice ? touchPosition : {x, y: y - scrollY.get()};
+  const animationPosition = isTouchDevice ? touchPosition : { x, y: y - scrollY.get()};
 
   const handleTouchStart = (event: TouchEvent) => {
     const touch = event.touches[0];
