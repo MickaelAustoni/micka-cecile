@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useEventListener from "@/hooks/useEventListener";
+import { useIsomorphicLayoutEffect } from "framer-motion";
 
 /**
  * Hook to check if the device is a touch device
@@ -17,6 +18,11 @@ const useIsTouchDevice = () => {
   };
 
   useEventListener("touchstart", checkIfTouchDevice);
+  useEventListener("resize", checkIfTouchDevice);
+
+  useIsomorphicLayoutEffect(() => {
+    checkIfTouchDevice();
+  },[]);
 
   return isTouchDevice;
 };

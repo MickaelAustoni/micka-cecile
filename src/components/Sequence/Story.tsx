@@ -1,8 +1,9 @@
 "use client"
 
 import Typewriter from "@/components/DataDisplay/Typewriter";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from 'motion/react';
+import { useIsomorphicLayoutEffect } from "framer-motion";
 
 interface StoryProps {
   play?: boolean;
@@ -21,7 +22,7 @@ export default function Story({ onFinish, play = false }: StoryProps) {
     onFinish?.();
   }
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (play) {
       void videoRef.current?.play();
     }

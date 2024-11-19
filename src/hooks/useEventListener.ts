@@ -58,7 +58,7 @@ function useEventListener<
     savedHandler.current = handler;
   }, [handler]);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     // Define the listening target
     const targetElement: T | Window = element?.current ?? window;
 
