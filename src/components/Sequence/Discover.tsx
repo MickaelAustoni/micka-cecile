@@ -85,7 +85,7 @@ export default function Discover({ onClickDiscover }: DiscoverProps) {
           onAnimationComplete={() => setFinished(true)}
         >
           <motion.div className="flex flex-col text-center" variants={wrapperTextVariants} initial={"visible"} animate={clicked ? "hidden" : "visible"}>
-            <Typewriter onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${"xxx"}` : ""},</Typewriter>
+            <Typewriter onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${name}` : ""},</Typewriter>
             <Typewriter variant={animationTitleIsFinished ? "visible" : "hidden"} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici ...</Typewriter>
           </motion.div>
           {!animationButtonIsFinished && <AnimatePresence>
