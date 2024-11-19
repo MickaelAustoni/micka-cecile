@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { CSSProperties, useRef, useState } from "react";
 import { cubicBezier, motion, useScroll } from "framer-motion";
 import useFollowPointer from "@/hooks/useFollowPointer";
 import useIsTouchDevice from "@/hooks/useIsTouchDevice";
