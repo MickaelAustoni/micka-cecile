@@ -49,9 +49,9 @@ export default function Typewriter({children, onAnimationComplete, variant = "vi
         when: "beforeChildren",
       }}
     >
-      {arrayOfLetters.map((char: string, i: number) => (
-        <motion.span key={`${char}-${i}`} variants={letterVariants}>
-          {char}
+      {arrayOfLetters.map((letter: string, index: number) => (
+        <motion.span key={`${letter}-${index}`} variants={letterVariants}>
+          {letter}
         </motion.span>
       ))}
     </motion.span>

@@ -5,6 +5,7 @@ import Typewriter from "@/components/DataDisplay/Typewriter";
 import { motion, Variants, AnimatePresence } from 'motion/react';
 import { Suspense, useRef, useState } from "react";
 import ScaleCursor from "@/components/Utils/Utils/ScaleCursor";
+import Button from "@/components/Inputs/Button";
 
 interface DiscoverProps {
   onClickDiscover?: () => void;
@@ -32,21 +33,16 @@ const wrapperTextVariants: Variants = {
   }
 };
 
-const buttonVariants: Variants = {
+const buttonWrapperVariants: Variants = {
   hidden: {
     opacity: 0,
     transform: "translateY(20px)",
-    borderColor: "var(--green)",
   },
   visible: {
     opacity: 1,
     transform: "translateY(0)",
-    borderColor: "var(--white)",
     transition: {
-      borderColor: {
-        duration: 3,
-      },
-      opacity: {
+      transform: {
         duration: 1,
       }
     }
@@ -91,16 +87,14 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
           </motion.div>
           {!animationButtonIsFinished && <AnimatePresence>
             <ScaleCursor>
-              <motion.button
-                className="tracking-[0.4em] border px-6 py-3 pb-2 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
-                onClick={handleClick}
-                initial={"hidden"}
-                variants={buttonVariants}
+              <motion.div
+                initial="hidden"
+                variants={buttonWrapperVariants}
                 animate={animationSubtitleIsFinished && !clicked ? "visible" : "hidden"}
                 onAnimationComplete={handleAnimationButtonIsFinished}
               >
-                <span>Découvrir</span>
-              </motion.button>
+                <Button onClick={handleClick} variant={animationSubtitleIsFinished ? "visible" : "hidden"}>Découvrir</Button>
+              </motion.div>
             </ScaleCursor>
           </AnimatePresence>}
         </motion.div>}

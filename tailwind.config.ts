@@ -8,6 +8,8 @@ export default {
   ],
   theme: {
     colors: {
+      white:  "var(--white)",
+      black:  "var(--black)",
       green : "var(--green)",
     },
     extend: {
