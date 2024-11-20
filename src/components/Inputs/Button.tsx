@@ -92,10 +92,13 @@ export default function Button({ children, variant = "visible", onClick } : Butt
 
       {/* Left border */}
       <motion.span
-        className="absolute top-0 left-0 w-px bg-white"
+        className="absolute top-0 left-0  bg-white"
+        initial={{
+          width: 0.5,
+        }}
         variants={{
           hover: {
-            height: "50%",
+            width: 1,
             boxShadow: boxShadowHover,
           },
           visible:{
@@ -108,13 +111,14 @@ export default function Button({ children, variant = "visible", onClick } : Butt
 
       {/* Top border */}
       <motion.span
-        className="absolute top-0 left-0 right-0 h-px bg-white"
+        className="absolute top-0 left-0 right-0 bg-white"
         initial={{
-          width: "0%"
+          width: "0%",
+          height: 0.5,
         }}
         variants={{
           hover: {
-            width: "80%",
+            height: 1,
             boxShadow: boxShadowHover,
           },
           visible : {
@@ -127,11 +131,13 @@ export default function Button({ children, variant = "visible", onClick } : Butt
 
       {/* Right border */}
       <motion.span
-        className="absolute bottom-0 right-0 w-px bg-white"
+        className="absolute bottom-0 right-0 bg-white"
+        initial={{
+          width: 0.5,
+        }}
         variants={{
           hover: {
-            height: "50%",
-            boxShadow: boxShadowHover,
+            width: 1,
           },
           visible:{
             height: "100%",
@@ -143,13 +149,14 @@ export default function Button({ children, variant = "visible", onClick } : Butt
 
       {/* Bottom border */}
       <motion.span
-        className="absolute bottom-0 right-0 h-px bg-white"
+        className="absolute bottom-0 right-0 bg-white"
         initial={{
-          width: "0%"
+          width: "0%",
+          height: 0.5,
         }}
         variants={{
           hover: {
-            width: "80%",
+            height: 1,
             boxShadow: boxShadowHover,
           },
           visible : {
