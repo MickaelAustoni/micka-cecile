@@ -8,6 +8,7 @@ interface ButtonProps extends PropsWithChildren{
 }
 
 const boxShadow = "0px 0 20px 8px rgba(255, 255, 255, 0.1)";
+const boxShadowHover = "0px 0 20px 8px rgba(255, 255, 255, 0.3)";
 
 const lineHorizontalTransition: Transition = {
   width: {
@@ -56,9 +57,18 @@ export default function Button({ children, variant = "visible", onClick } : Butt
         visible: {
           opacity: 1,
         },
+        hover: {
+          scale: 1.1,
+          transition: {
+            type: "spring",
+            stiffness: 100,
+            damping: 10
+          },
+        }
       }}
       animate={variant}
       onClick={onClick}
+      whileHover="hover"
       className="relative tracking-[0.5em] px-7 py-4 pb-3 font-light uppercase font-[family-name:var(--font-josefin-sans)]">
       {/* Text */}
       <motion.div
@@ -83,13 +93,16 @@ export default function Button({ children, variant = "visible", onClick } : Butt
       {/* Left border */}
       <motion.span
         className="absolute top-0 left-0 w-px bg-white"
-        initial={{
-          height: "0%"
-        }}
-        animate={{
-          height: "100%",
-          boxShadow,
-          transition: lineVerticalTransition,
+        variants={{
+          hover: {
+            height: "50%",
+            boxShadow: boxShadowHover,
+          },
+          visible:{
+            height: "100%",
+            boxShadow,
+            transition: lineVerticalTransition,
+          }
         }}
       />
 
@@ -99,32 +112,51 @@ export default function Button({ children, variant = "visible", onClick } : Butt
         initial={{
           width: "0%"
         }}
-        animate={{
-          width: "100%",
-          boxShadow,
-          transition: lineHorizontalTransition,
+        variants={{
+          hover: {
+            width: "80%",
+            boxShadow: boxShadowHover,
+          },
+          visible : {
+            width: "100%",
+            boxShadow,
+            transition: lineHorizontalTransition,
+          }
         }}
       />
 
       {/* Right border */}
       <motion.span
         className="absolute bottom-0 right-0 w-px bg-white"
-        animate={{
-          height: "100%",
-          boxShadow,
-          transition: lineVerticalTransition,
+        variants={{
+          hover: {
+            height: "50%",
+            boxShadow: boxShadowHover,
+          },
+          visible:{
+            height: "100%",
+            boxShadow,
+            transition: lineVerticalTransition,
+          }
         }}
       />
+
       {/* Bottom border */}
       <motion.span
         className="absolute bottom-0 right-0 h-px bg-white"
         initial={{
           width: "0%"
         }}
-        animate={{
-          width: "100%",
-          boxShadow,
-          transition: lineHorizontalTransition,
+        variants={{
+          hover: {
+            width: "80%",
+            boxShadow: boxShadowHover,
+          },
+          visible : {
+            width: "100%",
+            boxShadow,
+            transition: lineHorizontalTransition,
+          }
         }}
       />
     </motion.button>
