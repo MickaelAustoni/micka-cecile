@@ -16,7 +16,7 @@ const lineHorizontalTransition: Transition = {
     ease: "easeInOut",
   },
   boxShadow: {
-    duration: 1.5,
+    duration: 1,
   },
 };
 
@@ -26,7 +26,7 @@ const lineVerticalTransition: Transition = {
     ease: "easeInOut",
   },
   boxShadow: {
-    duration: 1.5,
+    duration: 1,
   },
 };
 
@@ -56,14 +56,6 @@ export default function Button({ children, variant = "visible", onClick } : Butt
         },
         visible: {
           opacity: 1,
-        },
-        hover: {
-          scale: 1.1,
-          transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 10
-          },
         }
       }}
       animate={variant}
