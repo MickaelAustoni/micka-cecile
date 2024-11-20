@@ -14,8 +14,7 @@ export interface FollowMouseCursorHeartProps {
 }
 
 const styles: CSSProperties = {
-  borderRadius: "50%",
-  mixBlendMode: "difference",
+  mixBlendMode: "lighten",
   pointerEvents: "none",
   position: "fixed",
   userSelect: "none",
