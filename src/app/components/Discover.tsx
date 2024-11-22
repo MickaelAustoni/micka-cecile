@@ -13,7 +13,7 @@ interface DiscoverProps {
 
 const pageVariants: Variants = {
   base: {
-    backgroundColor: "var(--green)",
+    backgroundColor: "var(--black)",
   },
   next: {
     backgroundColor: "rgba(0, 0, 0, 0)",

@@ -7,16 +7,28 @@ interface ButtonProps extends PropsWithChildren{
   variant?: "visible" | "hidden";
 }
 
-const boxShadow = "0px 0 20px 8px rgba(255, 255, 255, 0.1)";
-const boxShadowHover = "0px 0 20px 8px rgba(255, 255, 255, 0.3)";
+const HALF_LINE_THICKNESS = 0.5;
+const LINE_THICKNESS = 0.5;
+
+const pulseAnimation = {
+  boxShadow: [
+    "0px 0 20px 8px rgba(255, 255, 255, 0.1)",
+    "0px 0 20px 8px rgba(255, 255, 255, 0.4)",
+    "0px 0 20px 8px rgba(255, 255, 255, 0.1)"
+  ],
+  transition: {
+    boxShadow: {
+      duration: 3,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
 
 const lineHorizontalTransition: Transition = {
   width: {
     duration: 1,
     ease: "easeInOut",
-  },
-  boxShadow: {
-    duration: 1,
   },
 };
 
@@ -24,9 +36,6 @@ const lineVerticalTransition: Transition = {
   height: {
     duration: 1,
     ease: "easeInOut",
-  },
-  boxShadow: {
-    duration: 1,
   },
 };
 
@@ -56,6 +65,13 @@ export default function Button({ children, variant = "visible", onClick } : Butt
         },
         visible: {
           opacity: 1,
+        },
+        hover: {
+          scale: 1.05,
+          transition: {
+            ease: "easeInOut",
+            duration: 0.3,
+          }
         }
       }}
       animate={variant}
@@ -84,18 +100,17 @@ export default function Button({ children, variant = "visible", onClick } : Butt
 
       {/* Left border */}
       <motion.span
-        className="absolute top-0 left-0  bg-white"
+        className="absolute top-0 left-0 bg-white"
         initial={{
-          width: 0.5,
+          width: HALF_LINE_THICKNESS,
         }}
+        animate={pulseAnimation}
         variants={{
           hover: {
-            width: 1,
-            boxShadow: boxShadowHover,
+            width: LINE_THICKNESS,
           },
           visible:{
             height: "100%",
-            boxShadow,
             transition: lineVerticalTransition,
           }
         }}
@@ -106,16 +121,15 @@ export default function Button({ children, variant = "visible", onClick } : Butt
         className="absolute top-0 left-0 right-0 bg-white"
         initial={{
           width: "0%",
-          height: 0.5,
+          height: HALF_LINE_THICKNESS,
         }}
+        animate={pulseAnimation}
         variants={{
           hover: {
-            height: 1,
-            boxShadow: boxShadowHover,
+            height: LINE_THICKNESS,
           },
           visible : {
             width: "100%",
-            boxShadow,
             transition: lineHorizontalTransition,
           }
         }}
@@ -125,15 +139,15 @@ export default function Button({ children, variant = "visible", onClick } : Butt
       <motion.span
         className="absolute bottom-0 right-0 bg-white"
         initial={{
-          width: 0.5,
+          width: HALF_LINE_THICKNESS,
         }}
+        animate={pulseAnimation}
         variants={{
           hover: {
-            width: 1,
+            width: LINE_THICKNESS,
           },
           visible:{
             height: "100%",
-            boxShadow,
             transition: lineVerticalTransition,
           }
         }}
@@ -144,16 +158,15 @@ export default function Button({ children, variant = "visible", onClick } : Butt
         className="absolute bottom-0 right-0 bg-white"
         initial={{
           width: "0%",
-          height: 0.5,
+          height: HALF_LINE_THICKNESS,
         }}
+        animate={pulseAnimation}
         variants={{
           hover: {
-            height: 1,
-            boxShadow: boxShadowHover,
+            height: LINE_THICKNESS,
           },
           visible : {
             width: "100%",
-            boxShadow,
             transition: lineHorizontalTransition,
           }
         }}
