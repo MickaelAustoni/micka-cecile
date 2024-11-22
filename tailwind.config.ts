@@ -11,6 +11,9 @@ export default {
       white:  "var(--white)",
       black:  "var(--black)",
       green : "var(--green)",
+      "green-secondary" : "var(--green-secondary)",
+      brown : "var(--brown)",
+      "brown-secondary" : "var(--brown-secondary)",
     },
     extend: {
       colors: {

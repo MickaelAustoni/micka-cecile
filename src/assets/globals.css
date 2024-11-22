@@ -7,12 +7,14 @@
   --white: #ffffff;
   --background: #000000;
   --foreground: #ededed;
-  --green: #6d7569;
+  --green: #6d7469;
+  --green-secondary: #8e998b;
+  --brown: #a67e4d;
+  --brown-secondary: #b39976;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-
 }
