@@ -33,13 +33,13 @@ const lineVerticalTransition: Transition = {
 const letterVariants: Variants = {
   hidden: {
     opacity: 0,
+    y: 8,
   },
   visible: {
     opacity: 1,
-    transition:{
-      opacity:{
-        duration: 1
-      }
+    y: 0,
+    transition: {
+      duration: 0.3,
     }
   }
 };
