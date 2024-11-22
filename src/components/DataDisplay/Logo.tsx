@@ -4,6 +4,7 @@ import { motion, Variants } from 'motion/react';
 
 interface LogoProps {
   color?: string;
+  onAnimationComplete?: () => void
 }
 
 const TEXT_VARIANTS: Variants = {
@@ -39,9 +40,9 @@ const TEXT_VARIANTS: Variants = {
   }
 };
 
-export default function Logo({color = "#fff"}: LogoProps) {
+export default function Logo({onAnimationComplete, color = "#fff"}: LogoProps) {
   return (
-    <motion.svg width="21.1667cm" height="21.1667cm" viewBox="0 0 600 600" fill="transparent" stroke={color} initial="hidden" animate="visible">
+    <motion.svg width="21.1667cm" height="21.1667cm" viewBox="0 0 600 600" fill="transparent" stroke={color} initial="hidden" animate="visible" onAnimationComplete={onAnimationComplete}>
       {/* m <3 c*/}
       <g>
         <motion.path

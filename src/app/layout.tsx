@@ -12,6 +12,7 @@ const geistMono = localFont({
   src: "../assets/fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+  preload: true,
 });
 
 export const metadata: Metadata = {
