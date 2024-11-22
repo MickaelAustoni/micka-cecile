@@ -11,30 +11,32 @@ export default function InvitationForm({ play = false }: InvitationFormProps) {
     <AnimatePresence>
       {play && (
         <motion.div
-          className="inset-0 overflow-hidden absolute justify-center items-center flex bg-white"
+          className="inset-0 z-[60] overflow-hidden absolute justify-center items-center flex bg-white"
           initial={{
             y: "100%",
-            rotateX: 30,
-            opacity: 0
+            rotateX: 45,
+            scale: 0.9,
+            opacity: 0,
+            transformPerspective: 2000,
+            transformOrigin: "center bottom"
           }}
           animate={{
             y: 0,
             rotateX: 0,
+            scale: 1,
             opacity: 1
           }}
           exit={{
             y: "100%",
-            rotateX: 30,
+            rotateX: 45,
+            scale: 0.9,
             opacity: 0
           }}
           transition={{
             type: "spring",
-            damping: 20,
-            stiffness: 100,
-            duration: 0.8
-          }}
-          style={{
-            perspective: "1000px"
+            damping: 25,
+            stiffness: 80,
+            duration: 1
           }}
         >
           aaa
