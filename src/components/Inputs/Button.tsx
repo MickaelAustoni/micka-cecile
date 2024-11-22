@@ -20,6 +20,7 @@ const pulseAnimation = (color = "255, 255, 255") => ({
   ],
   transition: {
     boxShadow: {
+      delay: 1,
       duration: 3,
       repeat: Infinity,
       ease: "easeInOut"
