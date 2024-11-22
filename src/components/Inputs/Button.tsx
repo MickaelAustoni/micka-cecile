@@ -6,16 +6,17 @@ interface ButtonProps extends PropsWithChildren{
   children?: string;
   variant?: "visible" | "hidden";
   color?: string;
+  boxShadowColor?: string
 }
 
 const HALF_LINE_THICKNESS = 0.5;
 const LINE_THICKNESS = 0.5;
 
-const pulseAnimation = (color: string) => ({
+const pulseAnimation = (color = "255, 255, 255") => ({
   boxShadow: [
-    "0px 0 20px 8px rgba(255, 255, 255, 0.0)",
-    "0px 0 20px 8px rgba(255, 255, 255, 0.05)",
-    "0px 0 20px 8px rgba(255, 255, 255, 0.0)"
+    `0px 0 20px 8px rgba(${color}, 0.0)`,
+    `0px 0 20px 8px rgba(${color}, 0.25)`,
+    `0px 0 20px 8px rgba(${color}, 0.0)`
   ],
   transition: {
     boxShadow: {
@@ -54,10 +55,8 @@ const letterVariants: Variants = {
   }
 };
 
-export default function Button({ children, onClick, color = "white", variant = "visible" } : ButtonProps) {
+export default function Button({ children, onClick, boxShadowColor, color = "white", variant = "visible" } : ButtonProps) {
   const childrenArray = children?.split("");
-
-  console.log(color)
 
   return (
     <motion.button
@@ -109,7 +108,7 @@ export default function Button({ children, onClick, color = "white", variant = "
         initial={{
           width: HALF_LINE_THICKNESS,
         }}
-        animate={pulseAnimation(color)}
+        animate={pulseAnimation(boxShadowColor)}
         variants={{
           hover: {
             width: LINE_THICKNESS,
@@ -129,7 +128,7 @@ export default function Button({ children, onClick, color = "white", variant = "
           width: "0%",
           height: HALF_LINE_THICKNESS,
         }}
-        animate={pulseAnimation(color)}
+        animate={pulseAnimation(boxShadowColor)}
         variants={{
           hover: {
             height: LINE_THICKNESS,
@@ -148,7 +147,7 @@ export default function Button({ children, onClick, color = "white", variant = "
         initial={{
           width: HALF_LINE_THICKNESS,
         }}
-        animate={pulseAnimation(color)}
+        animate={pulseAnimation(boxShadowColor)}
         variants={{
           hover: {
             width: LINE_THICKNESS,
@@ -168,7 +167,7 @@ export default function Button({ children, onClick, color = "white", variant = "
           width: "0%",
           height: HALF_LINE_THICKNESS,
         }}
-        animate={pulseAnimation(color)}
+        animate={pulseAnimation(boxShadowColor)}
         variants={{
           hover: {
             height: LINE_THICKNESS,

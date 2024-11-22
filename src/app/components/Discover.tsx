@@ -93,7 +93,7 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
                 animate={animationSubtitleIsFinished && !clicked ? "visible" : "hidden"}
                 onAnimationComplete={handleAnimationButtonIsFinished}
               >
-                <Button color="var(--brown)" onClick={handleClick} variant={animationSubtitleIsFinished ? "visible" : "hidden"}>Découvrir</Button>
+                <Button color="var(--brown)" boxShadowColor="166, 126, 77" onClick={handleClick} variant={animationSubtitleIsFinished ? "visible" : "hidden"}>Découvrir</Button>
               </motion.div>
             </ScaleCursor>
           </AnimatePresence>}
