@@ -13,7 +13,7 @@ interface DiscoverProps {
 
 const pageVariants: Variants = {
   base: {
-    backgroundColor: "var(--green-secondary)",
+    backgroundColor: "var(--green)",
   },
   next: {
     backgroundColor: "rgba(0, 0, 0, 0)",
@@ -82,8 +82,8 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
           onAnimationComplete={() => setFinished(true)}
         >
           <motion.div className="flex flex-col text-center" variants={wrapperTextVariants} initial={"visible"} animate={clicked ? "hidden" : "visible"}>
-            <Typewriter className="text-green" onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${name}` : ""},</Typewriter>
-            <Typewriter className="text-green" variant={animationTitleIsFinished ? "visible" : "hidden"} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici ...</Typewriter>
+            <Typewriter className="text-green-secondary" onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${name}` : ""},</Typewriter>
+            <Typewriter className="text-green-secondary" variant={animationTitleIsFinished ? "visible" : "hidden"} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici ...</Typewriter>
           </motion.div>
           {!animationButtonIsFinished && <AnimatePresence>
             <ScaleCursor>
@@ -93,7 +93,7 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
                 animate={animationSubtitleIsFinished && !clicked ? "visible" : "hidden"}
                 onAnimationComplete={handleAnimationButtonIsFinished}
               >
-                <Button color="var(--brown-secondary)" onClick={handleClick} variant={animationSubtitleIsFinished ? "visible" : "hidden"}>Découvrir</Button>
+                <Button color="var(--brown)" onClick={handleClick} variant={animationSubtitleIsFinished ? "visible" : "hidden"}>Découvrir</Button>
               </motion.div>
             </ScaleCursor>
           </AnimatePresence>}

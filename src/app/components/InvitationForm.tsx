@@ -36,7 +36,7 @@ export default function InvitationForm({ play = false }: InvitationFormProps) {
             type: "spring",
             damping: 25,
             stiffness: 80,
-            duration: 1
+            duration: 1,
           }}
         >
           <div className="container">
