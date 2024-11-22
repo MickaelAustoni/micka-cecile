@@ -7,10 +7,10 @@
   --white: #ffffff;
   --background: #000000;
   --foreground: #ededed;
-  --green: #6d7469;
-  --green-secondary: #8e998b;
-  --brown: #a67e4d;
-  --brown-secondary: #b39976;
+  --green: #b4beb6;
+  --green-secondary: #495845;
+  --brown: #b39976;
+  --brown-secondary: #a67e4d;
 }
 
 body {

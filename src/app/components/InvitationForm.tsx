@@ -39,7 +39,9 @@ export default function InvitationForm({ play = false }: InvitationFormProps) {
             duration: 1
           }}
         >
-          aaa
+          <div className="container">
+            FORM HERE
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
