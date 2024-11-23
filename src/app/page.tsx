@@ -12,14 +12,14 @@ export default function Home() {
   const [step, setStep] = useState("discover");
 
   return (
-    <main>
-      <FollowCursorProvider>
-        <Discover onClickDiscover={() => setStep("story")} />
-        <Story play={step === "story"} onFinish={() => setStep("saveTheDate")} />
-        <SaveTheDate play={step === "saveTheDate"} onFinish={() => setStep("invitationForm")} />
-        <InvitationForm play={step === "invitationForm"} />
-        <FollowMouseCursorHeart />
-      </FollowCursorProvider>
-    </main>
+    <FollowCursorProvider>
+      <main>
+        <Discover onClickDiscover={() => setStep("story")}/>
+        <Story play={step === "story"} onFinish={() => setStep("saveTheDate")}/>
+        <SaveTheDate play={step === "saveTheDate"} onFinish={() => setStep("invitationForm")} onFinishDelay={5}/>
+        <InvitationForm play={step === "invitationForm"} delay={2}/>
+      </main>
+      <FollowMouseCursorHeart/>
+    </FollowCursorProvider>
   );
 }
