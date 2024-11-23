@@ -9,8 +9,7 @@ interface ButtonProps extends PropsWithChildren{
   boxShadowColor?: string
 }
 
-const HALF_LINE_THICKNESS = 0.5;
-const LINE_THICKNESS = 0.5;
+const LINE_THICKNESS = 2;
 
 const pulseAnimation = (color = "255, 255, 255") => ({
   boxShadow: [
@@ -105,17 +104,15 @@ export default function Button({ children, onClick, boxShadowColor, color = "whi
       {/* Left border */}
       <motion.span
         className="absolute top-0 left-0 bg-white"
-        style={{ backgroundColor: color }}
         initial={{
-          width: HALF_LINE_THICKNESS,
+          backgroundColor: color,
+          width: 0,
         }}
         animate={pulseAnimation(boxShadowColor)}
         variants={{
-          hover: {
-            width: LINE_THICKNESS,
-          },
           visible:{
             height: "100%",
+            width: LINE_THICKNESS,
             transition: lineVerticalTransition,
           }
         }}
@@ -124,18 +121,16 @@ export default function Button({ children, onClick, boxShadowColor, color = "whi
       {/* Top border */}
       <motion.span
         className="absolute top-0 left-0 right-0 bg-white"
-        style={{ backgroundColor: color }}
         initial={{
+          backgroundColor: color,
           width: "0%",
-          height: HALF_LINE_THICKNESS,
+          height: 0,
         }}
         animate={pulseAnimation(boxShadowColor)}
         variants={{
-          hover: {
-            height: LINE_THICKNESS,
-          },
           visible : {
             width: "100%",
+            height: LINE_THICKNESS,
             transition: lineHorizontalTransition,
           }
         }}
@@ -144,17 +139,15 @@ export default function Button({ children, onClick, boxShadowColor, color = "whi
       {/* Right border */}
       <motion.span
         className="absolute bottom-0 right-0 bg-white"
-        style={{ backgroundColor: color }}
         initial={{
-          width: HALF_LINE_THICKNESS,
+          backgroundColor: color,
+          width: 0,
         }}
         animate={pulseAnimation(boxShadowColor)}
         variants={{
-          hover: {
-            width: LINE_THICKNESS,
-          },
           visible:{
             height: "100%",
+            width: LINE_THICKNESS,
             transition: lineVerticalTransition,
           }
         }}
@@ -163,18 +156,16 @@ export default function Button({ children, onClick, boxShadowColor, color = "whi
       {/* Bottom border */}
       <motion.span
         className="absolute bottom-0 right-0 bg-white"
-        style={{ backgroundColor: color }}
         initial={{
+          backgroundColor: color,
           width: "0%",
-          height: HALF_LINE_THICKNESS,
+          height: 0,
         }}
         animate={pulseAnimation(boxShadowColor)}
         variants={{
-          hover: {
-            height: LINE_THICKNESS,
-          },
           visible : {
             width: "100%",
+            height: LINE_THICKNESS,
             transition: lineHorizontalTransition,
           }
         }}
