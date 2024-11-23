@@ -45,10 +45,17 @@ export default function FollowMouseCursorHeart({ size = 150, opacity = 1 }: Foll
 
   useEventListener("touchstart", handleTouchStart);
   useEventListener("click", handleClick);
+  if(x === 0 && y === 0 && touchPosition.x === 0 && touchPosition.y === 0) {
+    return null;
+  }
 
   return (
     <motion.div
+      initial={{
+        opacity: 0,
+      }}
       animate={{
+        opacity: 1,
         x: animationPosition.x - size / 2,
         y: animationPosition.y - size / 2,
         scale: isHovered ? 2 : 1,
@@ -61,6 +68,9 @@ export default function FollowMouseCursorHeart({ size = 150, opacity = 1 }: Foll
           type: "spring",
           bounce: 0.25,
           damping: 8
+        },
+        opacity: {
+          duration: 0.5,
         }
       }}
       style={{
