@@ -3,7 +3,7 @@ import { cubicBezier, motion, useScroll } from "framer-motion";
 import useFollowPointer from "@/hooks/useFollowPointer";
 import useIsTouchDevice from "@/hooks/useIsTouchDevice";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import heartAnimation from "@/assets/animations/heart.json";
+import heartAnimation from "@/animations/heart.json";
 import useEventListener from "@/hooks/useEventListener";
 import { useFollowCursor } from "@/Providers/FollowCursorProvider"; // Adjust the path as needed
 
