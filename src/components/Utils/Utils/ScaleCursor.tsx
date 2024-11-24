@@ -12,7 +12,7 @@ export default function ScaleCursor({ children, cleanupOnUnmount }: ScaleCursorP
   useEffect(() => {
     return () => {
       if (cleanupOnUnmount) {
-        //setIsHovered(false);
+        setIsHovered(false);
       }
     };
   }, [cleanupOnUnmount, setIsHovered]);
