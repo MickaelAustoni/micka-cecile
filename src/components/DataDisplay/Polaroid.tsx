@@ -13,6 +13,7 @@ export default function Polaroid({ alt, width = 300, height = 450, ...props } : 
         fill
         sizes="(max-width: 767px) 100vw, 50vw"
         alt={alt}
+        objectFit="cover"
         {...props}
       />
     </div>

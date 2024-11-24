@@ -131,7 +131,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
                   className="absolute"
                   style={{transformOrigin: "center center"}}
                 >
-                  <Polaroid src="/assets/images/wedding.jpg" alt="Save the date" />
+                  <Polaroid src={`/assets/images/wedding-${index}.avif`} alt="Save the date" />
                 </motion.div>
               ))}
             </motion.div>
