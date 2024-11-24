@@ -3,6 +3,8 @@
 import { motion, Variants } from 'motion/react';
 
 interface LogoProps {
+  width?: string | number;
+  height?: string | number;
   color?: string;
   onAnimationComplete?: () => void
 }
@@ -43,9 +45,9 @@ const getTextVariant = (color = "rgba(255,255,255,1)") : Variants => {
   }
 }
 
-export default function Logo({onAnimationComplete, color = "#fff"}: LogoProps) {
+export default function Logo({ width, height, onAnimationComplete, color = "#fff" }: LogoProps) {
   return (
-    <motion.svg width="21.1667cm" height="21.1667cm" viewBox="0 0 600 600" fill="transparent" stroke={color} initial="hidden" animate="visible" onAnimationComplete={onAnimationComplete}>
+    <motion.svg width={width} height={height} viewBox="0 0 600 600" fill="transparent" initial="hidden" animate="visible" className="overflow-visible" stroke={color}>
       {/* m <3 c*/}
       <g>
         <motion.path
@@ -84,6 +86,35 @@ export default function Logo({onAnimationComplete, color = "#fff"}: LogoProps) {
           }}
           d="m419.2116,269.0882c.9295-2.238,3.0098-6.4973,1.5011-8.9202-1.2955-2.0806-5.0596-2.7394-7.239-1.963-2.9043,1.0348-5.0509,4.9259-6.5767,7.3383-2.1047,3.3277-3.9198,7.0892-4.0122,11.1056-.1708,7.4168,6.2129,9.0407,12.4524,7.1177,9.1485-2.8195,17.541-10.0892,24.855-16.0396,1.4865-1.2094-.6306-3.3041-2.1047-2.1047-4.1712,3.3935-8.4785,6.5999-12.9704,9.5574-4.1513,2.7332-8.8596,6.14-13.9989,6.4082-9.011.4702-4.2099-10.4963-1.651-14.5423,1.1693-1.8488,4.0501-7.4476,7.0074-6.028,2.9372,1.41.631,5.4389-.1333,7.2792-.734,1.7671,2.1448,2.5378,2.8702.7913h0Z"/>
       </g>
+
+      {/* Heart only */}
+      <g>
+        <motion.path
+          d="m302.927,280.4495c15.8195-12.3879,22.3187-18.6554,30.4105-37.0467,2.1821-4.9596,3.9335-10.274,3.6524-15.6852s-2.9366-10.9524-7.7307-13.4775c-2.9035-1.5292-6.3304-1.841-9.5857-1.4263-8.18,1.0419-15.5895,6.7961-18.6242,14.4634.6796-2.723-.9226-5.6048-3.181-7.2711s-4.7067-3.5014-7.4311-4.1751c-4.3136-1.0667-9.3523-.9833-13.4321.7776-2.581,1.114-4.6063,3.2531-6.1071,5.63-5.0757,8.0384-4.4574,18.7344-.3854,27.3249,4.0721,8.5905,11.1405,15.3895,18.6097,21.2708,14.0254,11.0438,2.0585,2.0354,13.8046,9.6152"
+          fill={color}
+          onAnimationComplete={onAnimationComplete}
+          initial={{
+            opacity: 0,
+            scale: 1,
+          }}
+          animate={{
+            opacity: 1,
+            scale: 20,
+          }}
+          transition={{
+            opacity: {
+              delay: 8,
+              duration: 0.5,
+            },
+            scale: {
+              ease: "easeInOut",
+              delay: 8,
+              duration: 1,
+            }
+          }}
+        />
+      </g>
+
       {/* Micka & Cécile */}
       <g>
         <motion.path
