@@ -17,7 +17,7 @@ export default function Home() {
         <Discover onClickDiscover={() => setStep("story")} />
         <Story play={step === "story"} onFinish={() => setStep("saveTheDate")} />
         <LogoAnimation play={step === "saveTheDate"} onFinish={() => setStep("invitationForm")} onFinishDelay={5} />
-        <SaveTheDate play={step === "invitationForm"} delay={2} />
+        <SaveTheDate play={step === "invitationForm"} />
       </main>
       <FollowMouseCursorHeart/>
     </FollowCursorProvider>
