@@ -1,6 +1,7 @@
 "use client"
 
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from "@/components/DataDisplay/Logo";
 
 interface InvitationFormProps {
   play?: boolean;
@@ -19,6 +20,9 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
               delay
             }}
           >
+            <div className="absolute left-0 top-0 p-6">
+              <Logo disableHeartEnding width={250} />
+            </div>
             <div className="container">
               FORM HERE
             </div>
