@@ -6,18 +6,13 @@ interface PolaroidProps extends  ImageProps {
   height?: number;
 }
 
-export default function Polaroid({ alt, width = 300, height = 500, ...props } : PolaroidProps) {
+export default function Polaroid({ alt, width = 300, height = 450, ...props } : PolaroidProps) {
   return (
-    <div className="border-8">
+    <div className="border-8 relative sepia" style={{width: `${width}px`, height: `${height}px`}}>
       <Image
-        priority
-        width={width}
-        height={height}
+        fill
+        sizes="(max-width: 767px) 100vw, 50vw"
         alt={alt}
-        style={{
-          width: '100%',
-          height: 'auto',
-        }}
         {...props}
       />
     </div>
