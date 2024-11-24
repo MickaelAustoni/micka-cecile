@@ -21,7 +21,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
             }}
           >
             <div className="absolute left-0 top-0 p-6">
-              <Logo disableHeartEnding width={250} />
+              <Logo disableHeartEnding shapeOnly width={250} />
             </div>
             <div className="container">
               FORM HERE
