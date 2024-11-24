@@ -30,25 +30,16 @@ export default function FollowMouseCursorHeart({ size = 150, opacity = 1 }: Foll
   const isTouchDevice = useIsTouchDevice();
   const heartAnimationRef = useRef<LottieRefCurrentProps>(null);
   const animationPosition = isTouchDevice ? touchPosition : { x, y: y - scrollY.get() };
+  const wrapperOpacity = (x === 0 && y === 0 && touchPosition.x === 0 && touchPosition.y === 0) || (isTouchDevice && !isAnimating) ? 0 : opacity;
 
-  const handleTouchStart = (event: TouchEvent) => {
-    const touch = event.touches[0];
-    setTouchPosition({ x: touch.clientX, y: touch.clientY });
+  const handleClick = ({ x, y }: MouseEvent) => {
+    setTouchPosition({ x, y });
     heartAnimationRef?.current?.goToAndPlay(50, true);
     setIsAnimating(true);
   };
 
-  const handleClick = () => {
-    setIsAnimating(true);
-    heartAnimationRef?.current?.goToAndPlay(50, true);
-  };
-
-  useEventListener("touchstart", handleTouchStart);
   useEventListener("click", handleClick);
 
-  if(x === 0 && y === 0 && touchPosition.x === 0 && touchPosition.y === 0) {
-    return null;
-  }
 
   return (
     <motion.div
@@ -58,8 +49,13 @@ export default function FollowMouseCursorHeart({ size = 150, opacity = 1 }: Foll
         scale: isHovered ? 2 : 1,
       }}
       transition={{
-        duration: 0.1,
         ease: cubicBezier(0.18, 0.89, 0.32, 1.28),
+        x: {
+          duration : isTouchDevice ? 0 : 0.1,
+        },
+        y: {
+          duration : isTouchDevice ? 0 : 0.1,
+        },
         scale : {
           duration: 0.3,
           type: "spring",
@@ -70,7 +66,7 @@ export default function FollowMouseCursorHeart({ size = 150, opacity = 1 }: Foll
       style={{
         ...styles,
         height: `${size}px`,
-        opacity: isTouchDevice && !isAnimating ? 0 : opacity,
+        opacity : wrapperOpacity,
         width: `${size}px`,
         pointerEvents: "none",
         left: 0,
