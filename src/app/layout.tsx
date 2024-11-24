@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Micka & Cécile 💍",
+  title: "Micka & Cécile",
   description: "15.11.2025",
 };
 
