@@ -46,7 +46,26 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
             }}
           >
             {/* Logo */}
-            {/*<Logo disableHeartEnding shapeOnly width={250} className="absolute left-1/2 top-6 -translate-x-1/2" />*/}
+            <motion.div
+              initial={{
+                opacity: 0
+              }}
+              animate={{
+                opacity: 1
+              }}
+              transition={{
+                duration: 1,
+                delay: 7.5
+              }}
+            >
+              <Logo
+                disableHeartEnding
+                disableAnimation
+                shapeOnly
+                width={250}
+                className="absolute left-1/2 top-6 -translate-x-1/2"
+              />
+            </motion.div>
 
             {/* Title */}
             <div className="container z-10">

@@ -57,7 +57,7 @@ export default function Typewriter({color, className, children, onAnimationCompl
 
     >
       {arrayOfLetters.map((letter: string, index: number) => (
-        <motion.span key={`${letter}-${index}`} variants={letterVariants}>
+        <motion.span key={`${letter}-${index}`} variants={letterVariants} className="drop-shadow-md">
           {letter}
         </motion.span>
       ))}
