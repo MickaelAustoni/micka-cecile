@@ -8,6 +8,7 @@ interface LogoProps {
   color?: string;
   onAnimationComplete?: () => void
   disableHeartEnding?: boolean;
+  className?: string;
 }
 
 const getTextVariant = (color = "rgba(255,255,255,1)") : Variants => {
@@ -46,9 +47,9 @@ const getTextVariant = (color = "rgba(255,255,255,1)") : Variants => {
   }
 }
 
-export default function Logo({ width, height, disableHeartEnding, onAnimationComplete, color = "#fff" }: LogoProps) {
+export default function Logo({ width, height, disableHeartEnding, onAnimationComplete, className, color = "#fff" }: LogoProps) {
   return (
-    <motion.svg width={width} height={height} viewBox="0 0 600 600" fill="transparent" initial="hidden" animate="visible" className="overflow-visible" stroke={color}>
+    <motion.svg width={width} height={height} stroke={color} viewBox="150 210 300 170" fill="transparent" initial="hidden" animate="visible" className={`overflow-visible ${className}`}>
       {/* m <3 c*/}
       <g>
         <motion.path
@@ -169,6 +170,7 @@ export default function Logo({ width, height, disableHeartEnding, onAnimationCom
           custom={15}
           d="m432.9726,330.2002v2.2h-8.9v5.3h8v2.2h-8v5.4h9.3v2.2h-11.7v-17.3h11.3Z"/>
       </g>
+
       {/* Date */}
       <g>
         <motion.path

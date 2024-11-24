@@ -24,9 +24,7 @@ export default function LogoAnimation({ onFinish, onFinishDelay = 2, play = fals
             }
           }}
         >
-          <div className="container">
-            <Logo onAnimationComplete={onFinish} color="var(--brown)"/>
-          </div>
+          <Logo onAnimationComplete={onFinish} color="var(--brown)" className="w-5/12" />
         </motion.section>
       )}
     </AnimatePresence>
