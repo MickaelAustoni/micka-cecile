@@ -1,12 +1,13 @@
 "use client";
 
-import { motion, Variants } from 'motion/react';
+import { AnimatePresence, motion, Variants } from 'motion/react';
 
 interface LogoProps {
   width?: string | number;
   height?: string | number;
   color?: string;
   onAnimationComplete?: () => void
+  disableHeartEnding?: boolean;
 }
 
 const getTextVariant = (color = "rgba(255,255,255,1)") : Variants => {
@@ -45,7 +46,7 @@ const getTextVariant = (color = "rgba(255,255,255,1)") : Variants => {
   }
 }
 
-export default function Logo({ width, height, onAnimationComplete, color = "#fff" }: LogoProps) {
+export default function Logo({ width, height, disableHeartEnding, onAnimationComplete, color = "#fff" }: LogoProps) {
   return (
     <motion.svg width={width} height={height} viewBox="0 0 600 600" fill="transparent" initial="hidden" animate="visible" className="overflow-visible" stroke={color}>
       {/* m <3 c*/}
@@ -88,32 +89,34 @@ export default function Logo({ width, height, onAnimationComplete, color = "#fff
       </g>
 
       {/* Heart only */}
-      <g>
-        <motion.path
-          d="m302.927,280.4495c15.8195-12.3879,22.3187-18.6554,30.4105-37.0467,2.1821-4.9596,3.9335-10.274,3.6524-15.6852s-2.9366-10.9524-7.7307-13.4775c-2.9035-1.5292-6.3304-1.841-9.5857-1.4263-8.18,1.0419-15.5895,6.7961-18.6242,14.4634.6796-2.723-.9226-5.6048-3.181-7.2711s-4.7067-3.5014-7.4311-4.1751c-4.3136-1.0667-9.3523-.9833-13.4321.7776-2.581,1.114-4.6063,3.2531-6.1071,5.63-5.0757,8.0384-4.4574,18.7344-.3854,27.3249,4.0721,8.5905,11.1405,15.3895,18.6097,21.2708,14.0254,11.0438,2.0585,2.0354,13.8046,9.6152"
-          fill={color}
-          onAnimationComplete={onAnimationComplete}
-          initial={{
-            opacity: 0,
-            scale: 1,
-          }}
-          animate={{
-            opacity: 1,
-            scale: 20,
-          }}
-          transition={{
-            opacity: {
-              delay: 8,
-              duration: 0.5,
-            },
-            scale: {
-              ease: "easeInOut",
-              delay: 8,
-              duration: 1,
-            }
-          }}
-        />
-      </g>
+      <AnimatePresence>
+        {!disableHeartEnding && <g>
+          <motion.path
+            d="m302.927,280.4495c15.8195-12.3879,22.3187-18.6554,30.4105-37.0467,2.1821-4.9596,3.9335-10.274,3.6524-15.6852s-2.9366-10.9524-7.7307-13.4775c-2.9035-1.5292-6.3304-1.841-9.5857-1.4263-8.18,1.0419-15.5895,6.7961-18.6242,14.4634.6796-2.723-.9226-5.6048-3.181-7.2711s-4.7067-3.5014-7.4311-4.1751c-4.3136-1.0667-9.3523-.9833-13.4321.7776-2.581,1.114-4.6063,3.2531-6.1071,5.63-5.0757,8.0384-4.4574,18.7344-.3854,27.3249,4.0721,8.5905,11.1405,15.3895,18.6097,21.2708,14.0254,11.0438,2.0585,2.0354,13.8046,9.6152"
+            fill={color}
+            onAnimationComplete={onAnimationComplete}
+            initial={{
+              opacity: 0,
+              scale: 1,
+            }}
+            animate={{
+              opacity: 1,
+              scale: 20,
+            }}
+            transition={{
+              opacity: {
+                delay: 8,
+                duration: 0.5,
+              },
+              scale: {
+                ease: "easeInOut",
+                delay: 8,
+                duration: 1,
+              }
+            }}
+          />
+        </g>}
+      </AnimatePresence>
 
       {/* Micka & Cécile */}
       <g>
