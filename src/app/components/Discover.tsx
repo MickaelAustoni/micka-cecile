@@ -75,7 +75,7 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
     <>
       <AnimatePresence>
         {!finished && <motion.div
-          className="p-6 inset-0 absolute z-50 flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)]"
+          className="p-6 inset-0 fixed z-50 flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)] overflow-hidden"
           initial="base"
           animate={clicked && "next"}
           variants={pageVariants}
