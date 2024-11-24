@@ -1,6 +1,6 @@
 "use client"
 
-import {  useState } from "react";
+import { useState } from "react";
 import Discover from "@/app/components/Discover";
 import Story from "@/app/components/Story";
 import LogoAnimation from "@/app/components/LogoAnimation";
