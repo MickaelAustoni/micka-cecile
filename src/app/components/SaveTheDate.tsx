@@ -1,33 +1,29 @@
 "use client"
 
-import { AnimatePresence, motion } from 'framer-motion';
-import Logo from "@/components/DataDisplay/Logo";
+import { motion, AnimatePresence } from 'framer-motion';
 
-interface SaveTheDateProps {
+interface InvitationFormProps {
   play?: boolean;
-  onFinish?: () => void;
-  onFinishDelay?: number;
+  delay?: number;
 }
 
-export default function SaveTheDate({ onFinish, onFinishDelay = 2, play = false }: SaveTheDateProps) {
+export default function SaveTheDate({ delay, play = false }: InvitationFormProps) {
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       {play && (
-        <motion.div
-          className="inset-0 overflow-hidden absolute justify-center items-center flex bg-green"
-          initial={{opacity: 1}}
-          exit={{
-            opacity: 0,
-            transition: {
-              delay: onFinishDelay,
-              duration: 2
-            }
-          }}
-        >
-          <div className="container">
-            <Logo onAnimationComplete={onFinish} color="var(--brown)"/>
-          </div>
-        </motion.div>
+        <div className="absolute inset-0 z-[60] overflow-hidden">
+          <motion.div
+            className="absolute inset-0 justify-center items-center flex bg-brown"
+            transition={{
+              duration: 1,
+              delay
+            }}
+          >
+            <div className="container">
+              FORM HERE
+            </div>
+          </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );
