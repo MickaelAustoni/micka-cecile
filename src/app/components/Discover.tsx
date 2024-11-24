@@ -74,7 +74,7 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
   return (
     <>
       <AnimatePresence>
-        {!finished && <motion.div
+        {!finished && <motion.section
           className="p-6 inset-0 fixed z-50 flex items-center justify-center flex-col space-y-7 font-[family-name:var(--font-geist-mono)] overflow-hidden"
           initial="base"
           animate={clicked && "next"}
@@ -97,7 +97,7 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
               </motion.div>
             </ScaleCursor>
           </AnimatePresence>}
-        </motion.div>}
+        </motion.section>}
       </AnimatePresence>
       <audio ref={audioRef} src="/assets/audio/music.mp3" controls={false} preload={"auto"}/>
     </>

@@ -11,7 +11,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
   return (
     <AnimatePresence>
       {play && (
-        <div className="absolute inset-0 z-[60] overflow-hidden">
+        <section className="absolute inset-0 z-[60] overflow-hidden">
           <motion.div
             className="absolute inset-0 justify-center items-center flex bg-brown"
             transition={{
@@ -23,7 +23,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
               FORM HERE
             </div>
           </motion.div>
-        </div>
+        </section>
       )}
     </AnimatePresence>
   );

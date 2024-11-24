@@ -13,7 +13,7 @@ export default function LogoAnimation({ onFinish, onFinishDelay = 2, play = fals
   return (
     <AnimatePresence mode="wait">
       {play && (
-        <motion.div
+        <motion.section
           className="inset-0 overflow-hidden absolute justify-center items-center flex bg-green"
           initial={{opacity: 1}}
           exit={{
@@ -27,7 +27,7 @@ export default function LogoAnimation({ onFinish, onFinishDelay = 2, play = fals
           <div className="container">
             <Logo onAnimationComplete={onFinish} color="var(--brown)"/>
           </div>
-        </motion.div>
+        </motion.section>
       )}
     </AnimatePresence>
   );

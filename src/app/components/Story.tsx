@@ -31,7 +31,7 @@ export default function Story({ onFinish, play = false }: StoryProps) {
   return (
     <AnimatePresence>
       {!isFinished && <>
-        <div className="inset-0 overflow-hidden absolute flex items-center justify-center flex-col bg-green p-6">
+        <section className="inset-0 overflow-hidden absolute flex items-center justify-center flex-col bg-green p-6">
           {/* Text */}
           <div className="flex flex-col text-center max-w-96 font-[family-name:var(--font-geist-mono)] z-20">
             <Typewriter
@@ -59,7 +59,7 @@ export default function Story({ onFinish, play = false }: StoryProps) {
               Aujourd’hui, il est temps de sceller notre promesse d’éternité.
             </Typewriter>
           </div>
-        </div>
+        </section>
         {/* Background video */}
         <motion.video
           muted
