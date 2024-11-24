@@ -10,6 +10,7 @@ interface LogoProps {
   disableHeartEnding?: boolean;
   shapeOnly?: boolean;
   className?: string;
+  disableAnimation?: boolean;
 }
 
 const getTextVariant = (color = "rgba(255,255,255,1)") : Variants => {
@@ -48,15 +49,26 @@ const getTextVariant = (color = "rgba(255,255,255,1)") : Variants => {
   }
 }
 
-export default function Logo({ width, height, disableHeartEnding, onAnimationComplete, className, shapeOnly, color = "#fff" }: LogoProps) {
+export default function Logo({ width, height, disableHeartEnding, disableAnimation, onAnimationComplete, className, shapeOnly, color = "#fff" }: LogoProps) {
   return (
-    <motion.svg width={width} height={height} stroke={color} viewBox="150 210 300 170" fill="transparent" initial="hidden" animate="visible" className={`overflow-visible ${className}`}>
+    <motion.svg
+      width={width}
+      height={height}
+      stroke={color}
+      viewBox="150 210 300 170"
+      fill="transparent"
+      initial="hidden"
+      animate="visible"
+      className={`overflow-visible ${className}`}
+    >
       {/* m <3 c*/}
       <g>
         <motion.path
           stroke={color}
           strokeWidth={3}
-          initial={{ pathLength: 0 }}
+          initial={{
+            pathLength: disableAnimation ? 0.480  : 0,
+          }}
           animate={{pathLength: 0.480 }}
           transition={{
             pathLength: {
@@ -67,7 +79,7 @@ export default function Logo({ width, height, disableHeartEnding, onAnimationCom
           d="m171.2563,277.6893c-4.1343,5.6827-6.2169,13.3503-7.8415,20.087-.8078,3.3497-4.1089,12.696-1.3351,15.6115.3308.3477.9813.5731,1.448.3827,4.33-1.766,6.4883-7.6657,8.5307-11.4818.7244-1.3535,4.8793-10.7593,7.028-8.302,1.0309,1.1789.0834,8.6902.0978,10.1924.0107,1.1103,1.2622,1.8785,2.2394,1.2851,2.1833-1.3257,6.094-7.8757,8.9098-6.964.3934.1274,1.5717,2.7969,2.0657,3.2799.7585.7416,1.6119,1.1971,2.5579,1.6481,2.1753,1.0371,3.9582,1.26,6.0031.0298,3.9362-2.3681,7.464-6.4386,10.9355-9.4544,1.4487-1.2586-.6641-3.3563-2.1047-2.1047-1.9442,1.689-3.8884,3.3781-5.8326,5.0671-1.0561.9175-3.0893,3.265-4.3744,3.8003-5.122,2.1338-4.6892-3.8851-7.8425-5.1378-4.6982-1.8663-8.7799,5.4195-11.8202,7.2655l2.2394,1.2851c-.031-3.2326,1.7395-12.6745-2.1296-14.5383-4.1107-1.9801-7.3788,5.286-8.8169,7.9205-1.7633,3.2301-3.3105,6.6317-5.3128,9.7212-.5713.9622-1.2402,1.8557-2.0067,2.6805.2448,1.7872.3908,1.6064.4382-.5422.508-2.0617.6118-4.4404,1.017-6.5568,1.5083-7.8786,3.7052-17.1141,8.4765-23.6723,1.1284-1.551-1.453-3.0379-2.5702-1.5023h0Z"/>
         <motion.path
           stroke={color}
-          initial={{ pathLength: 0 }}
+          initial={{ pathLength: disableAnimation ? 0.505 : 0 }}
           animate={{pathLength: 0.505 }}
           transition={{
             pathLength: {
@@ -79,7 +91,7 @@ export default function Logo({ width, height, disableHeartEnding, onAnimationCom
         <motion.path
           stroke={color}
           strokeWidth={3}
-          initial={{ pathLength: 0 }}
+          initial={{ pathLength: disableAnimation ? 0.480 : 0 }}
           animate={{pathLength: 0.480 }}
           transition={{
             pathLength: {
