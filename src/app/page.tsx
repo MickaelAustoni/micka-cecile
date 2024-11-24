@@ -14,10 +14,10 @@ export default function Home() {
   return (
     <FollowCursorProvider>
       <main>
-        <Discover onClickDiscover={() => setStep("story")}/>
-        <Story play={step === "story"} onFinish={() => setStep("saveTheDate")}/>
-        <SaveTheDate play={step === "saveTheDate"} onFinish={() => setStep("invitationForm")} onFinishDelay={5}/>
-        <InvitationForm play={step === "invitationForm"} delay={2}/>
+        <Discover onClickDiscover={() => setStep("story")} />
+        <Story play={step === "story"} onFinish={() => setStep("saveTheDate")} />
+        <SaveTheDate play={step === "saveTheDate"} onFinish={() => setStep("invitationForm")} onFinishDelay={5} />
+        <InvitationForm play={step === "invitationForm"} delay={2} />
       </main>
       <FollowMouseCursorHeart/>
     </FollowCursorProvider>
