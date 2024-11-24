@@ -15,7 +15,7 @@ export default function SaveTheDate({ onFinish, onFinishDelay = 2, play = false 
       {play && (
         <motion.div
           className="inset-0 overflow-hidden absolute justify-center items-center flex bg-green"
-          initial={{ opacity: 1 }}
+          initial={{opacity: 1}}
           exit={{
             opacity: 0,
             transition: {
@@ -24,7 +24,9 @@ export default function SaveTheDate({ onFinish, onFinishDelay = 2, play = false 
             }
           }}
         >
-          <Logo onAnimationComplete={onFinish} color="var(--brown)"/>
+          <div className="container">
+            <Logo onAnimationComplete={onFinish} color="var(--brown)"/>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
