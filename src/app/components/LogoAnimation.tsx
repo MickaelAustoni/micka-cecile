@@ -14,21 +14,17 @@ export default function LogoAnimation({ onFinish, onFinishDelay = 2, play = fals
   return (
     <>
       {/* Preload image of the next section */}
-      {play && (
-        <div className="hidden">
-          {[0, 1, 2].map((index) => (
-            <Image
-              key={index}
-              src={`/assets/images/wedding-${index}.avif`}
-              sizes="(max-width: 767px) 100vw, 50vw"
-              alt=""
-              width={300}
-              height={450}
-              priority
-            />
-          ))}
-        </div>
-      )}
+      {play && [0, 1, 2].map((index) => (
+        <Image
+          key={index}
+          src={`/assets/images/wedding-${index}.avif`}
+          sizes="(max-width: 767px) 100vw, 50vw"
+          alt=""
+          width={300}
+          height={450}
+          priority
+        />
+      ))}
       <AnimatePresence mode="wait">
         {play && (
           <motion.section
