@@ -23,10 +23,12 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="fr">
+    <head>
       <link rel="icon" href="/assets/images/favicon.ico" sizes="any"/>
-      <body className={`${josefinSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-      </body>
+    </head>
+    <body className={`${josefinSans.variable} ${geistMono.variable} antialiased`}>
+    {children}
+    </body>
     </html>
   );
 }
