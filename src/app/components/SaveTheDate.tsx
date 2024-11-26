@@ -137,26 +137,26 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
               animate="show"
             >
               <motion.label
-                className="flex items-center gap-3 cursor-pointer group"
+                className="flex items-center gap-3 cursor-pointer group text-sm md:text-base"
                 variants={formItemVariants}
               >
                 <input
                   type="radio"
                   name="presence"
-                  className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white transition-all duration-200 cursor-pointer"
+                  className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
                 />
-                <span className="group-hover:opacity-80 transition-opacity">Je serai présent(e) au mariage</span>
+                <span className="group-hover:opacity-80">Je serai présent(e) au mariage</span>
               </motion.label>
               <motion.label
-                className="flex items-center gap-3 cursor-pointer group"
+                className="flex items-center gap-3 cursor-pointer group text-sm md:text-base"
                 variants={formItemVariants}
               >
                 <input
                   type="radio"
                   name="presence"
-                  className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white transition-all duration-200 cursor-pointer"
+                  className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
                 />
-                <span className="group-hover:opacity-80 transition-opacity">Je ne pourrai venir au mariage</span>
+                <span className="group-hover:opacity-80">Je ne pourrai venir au mariage</span>
               </motion.label>
             </motion.div>
           </div>
