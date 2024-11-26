@@ -28,7 +28,7 @@ export default function LogoAnimation({ onFinish, onFinishDelay = 2, play = fals
       <AnimatePresence mode="wait">
         {play && (
           <motion.section
-            className="inset-0 overflow-hidden absolute justify-center items-center flex bg-green"
+            className="inset-0 overflow-hidden absolute justify-center items-center flex bg-green p-8"
             initial={{opacity: 1}}
             exit={{
               opacity: 0,
@@ -38,7 +38,7 @@ export default function LogoAnimation({ onFinish, onFinishDelay = 2, play = fals
               }
             }}
           >
-            <Logo onAnimationComplete={onFinish} color="var(--brown)" className="w-5/12" />
+            <Logo onAnimationComplete={onFinish} color="var(--brown)" className="max-w-xl" />
           </motion.section>
         )}
       </AnimatePresence>

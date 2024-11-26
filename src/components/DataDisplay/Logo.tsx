@@ -115,7 +115,7 @@ export default function Logo({ width, height, disableHeartEnding, disableAnimati
             }}
             animate={{
               opacity: 1,
-              scale: 20,
+              scale: 30,
             }}
             transition={{
               opacity: {
