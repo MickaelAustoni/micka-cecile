@@ -14,6 +14,18 @@ const DELAY_POLAROIDS_FADE_OUT = 5;
 const DELAY_TITLE = 5.2;
 const DELAY_SUBTITLE = 7;
 const DELAY_FORM = 9;
+const DELAY_LOGO = 11;
+
+const formItemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  }
+};
 
 export default function SaveTheDate({ delay, play = false }: InvitationFormProps) {
   const polaroidVariants = {
@@ -55,7 +67,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
             }}
             transition={{
               duration: 1,
-              delay: 7.5
+              delay: DELAY_LOGO
             }}
           >
             <Logo
@@ -111,35 +123,41 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
             {/* Form */}
             <motion.div
               className="absolute left-0 right-0 top-full mt-20 flex flex-col gap-4 items-center text-white"
-              initial={{
-                opacity: 0,
-                y: 50
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.3,
+                    delayChildren: delay ? delay + DELAY_FORM : DELAY_FORM,
+                  }
+                }
               }}
-              animate={{
-                opacity: 1,
-                y: 0
-              }}
-              transition={{
-                duration: 1,
-                delay: delay ? delay + DELAY_FORM : DELAY_FORM,
-              }}
+              initial="hidden"
+              animate="show"
             >
-              <label className="flex items-center gap-3 cursor-pointer group">
+              <motion.label
+                className="flex items-center gap-3 cursor-pointer group"
+                variants={formItemVariants}
+              >
                 <input
                   type="radio"
                   name="presence"
                   className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white transition-all duration-200 cursor-pointer"
                 />
                 <span className="group-hover:opacity-80 transition-opacity">Je serai présent(e) au mariage</span>
-              </label>
-              <label className="flex items-center gap-3 cursor-pointer group">
+              </motion.label>
+              <motion.label
+                className="flex items-center gap-3 cursor-pointer group"
+                variants={formItemVariants}
+              >
                 <input
                   type="radio"
                   name="presence"
                   className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white transition-all duration-200 cursor-pointer"
                 />
                 <span className="group-hover:opacity-80 transition-opacity">Je ne pourrai venir au mariage</span>
-              </label>
+              </motion.label>
             </motion.div>
           </div>
 
