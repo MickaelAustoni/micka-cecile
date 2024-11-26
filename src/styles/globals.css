@@ -5,7 +5,6 @@
 :root {
   --black: #000000;
   --white: #ffffff;
-  --background: #000000;
   --foreground: #ededed;
   --green: #495845;
   --green-secondary: #b4beb6;
@@ -15,7 +14,7 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: var(--green);
   font-family: var(--font-geist-mono);
 }
 
