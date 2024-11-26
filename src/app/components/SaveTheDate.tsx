@@ -22,7 +22,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
       rotate: -45,
     }),
     animate: (index: number) => ({
-      x: -200 + (index * 250), // Horizontal spacing
+      x: `calc(var(--polaroid-spacing) * (${index} - 1))`,
       y: -100 + (index * 100), // Vertical spacing
       rotate: -20 + (index * 10), // Rotation variation
       transition: {

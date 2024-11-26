@@ -10,6 +10,10 @@
   --green-secondary: #b4beb6;
   --brown: #a67e4d;
   --brown-secondary: #b39976;
+  --polaroid-spacing: 100px;
+  @media (min-width: 640px) {
+    --polaroid-spacing: 250px;
+  }
 }
 
 body {
