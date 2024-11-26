@@ -13,6 +13,7 @@ const INTERVAL_POLAROIDS = 1;
 const DELAY_POLAROIDS_FADE_OUT = 5;
 const DELAY_TITLE = 5.2;
 const DELAY_SUBTITLE = 7;
+const DELAY_FORM = 9;
 
 export default function SaveTheDate({ delay, play = false }: InvitationFormProps) {
   const polaroidVariants = {
@@ -66,7 +67,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
           </motion.div>
 
           {/* Title */}
-          <div className="container z-10">
+          <div className="container z-10 relative">
             <motion.h1
               className="text-center text-white drop-shadow-xl overflow-hidden text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
               initial={{opacity: 0}}
@@ -106,6 +107,40 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
             >
               15.11.2025
             </motion.div>
+
+            {/* Form */}
+            <motion.div
+              className="absolute left-0 right-0 top-full mt-20 flex flex-col gap-4 items-center text-white"
+              initial={{
+                opacity: 0,
+                y: 50
+              }}
+              animate={{
+                opacity: 1,
+                y: 0
+              }}
+              transition={{
+                duration: 1,
+                delay: delay ? delay + DELAY_FORM : DELAY_FORM,
+              }}
+            >
+              <label className="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="radio"
+                  name="presence"
+                  className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white transition-all duration-200 cursor-pointer"
+                />
+                <span className="group-hover:opacity-80 transition-opacity">Je serai présent(e) au mariage</span>
+              </label>
+              <label className="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="radio"
+                  name="presence"
+                  className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white transition-all duration-200 cursor-pointer"
+                />
+                <span className="group-hover:opacity-80 transition-opacity">Je ne pourrai venir au mariage</span>
+              </label>
+            </motion.div>
           </div>
 
           {/* Polaroids */}
@@ -129,7 +164,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
                 className="absolute"
                 style={{transformOrigin: "center center"}}
               >
-                <Polaroid priority src={`/assets/images/wedding-${index}.avif`} alt="Save the date" />
+                <Polaroid priority src={`/assets/images/wedding-${index}.avif`} alt="Save the date"/>
               </motion.div>
             ))}
           </motion.div>
