@@ -240,7 +240,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
               <motion.div
                 className="absolute left-0 right-0 top-full mt-20 flex flex-col gap-4 items-center text-white"
                 variants={{
-                  hidden: { opacity: 0 },
+                  hidden: {opacity: 0},
                   show: {
                     opacity: 1,
                     transition: {
@@ -308,50 +308,55 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
             </div>
 
             {/* Plus d'info */}
-            <motion.button
-              className="absolute bottom-5 text-white text-sm left-1/2 -translate-x-1/2 underline z-40"
-              initial={{
-                opacity: 0
-              }}
-              animate={{
-                opacity: 1
-              }}
+            <motion.div
+              initial={{opacity: 0}}
+              animate={{opacity: 1}}
               transition={{
                 delay: delay ? delay + DELAY_MORE_INFO : DELAY_MORE_INFO,
                 duration: 1
               }}
-              onClick={() => setMoreInfoIsOpen(true)}
             >
-              Plus d&#39;info
-            </motion.button>
-
-            {/* Polaroids */}
-            <motion.div
-              className="absolute flex justify-center items-center w-full h-full z-0"
-              animate={{
-                opacity: 0.2
-              }}
-              transition={{
-                delay: delay ? delay + DELAY_POLAROIDS_FADE_OUT : DELAY_POLAROIDS_FADE_OUT,
-                duration: 1
-              }}
-            >
-              {[0, 1, 2].map((index) => (
-                <motion.div
-                  key={index}
-                  custom={index}
-                  variants={polaroidVariants}
-                  initial="initial"
-                  animate="animate"
-                  className="absolute"
-                  style={{transformOrigin: "center center"}}
-                >
-                  <Polaroid priority src={`/assets/images/wedding-${index}.avif`} alt="Save the date"/>
-                </motion.div>
-              ))}
+              <motion.button
+                className="absolute bottom-0 text-white text-sm left-1/2 -translate-x-1/2 underline z-50 outline-none select-none p-6"
+                whileHover={{
+                  opacity: 0.4,
+                  transition: {
+                    duration: 0.2
+                  }
+                }}
+                onClick={() => setMoreInfoIsOpen(true)}
+              >
+                Plus d&#39;info
+              </motion.button>
             </motion.div>
+
+              {/* Polaroids */}
+              <motion.div
+                className="absolute flex justify-center items-center w-full h-full z-0"
+                animate={{
+                  opacity: 0.2
+                }}
+                transition={{
+                  delay: delay ? delay + DELAY_POLAROIDS_FADE_OUT : DELAY_POLAROIDS_FADE_OUT,
+                  duration: 1
+                }}
+              >
+                {[0, 1, 2].map((index) => (
+                  <motion.div
+                    key={index}
+                    custom={index}
+                    variants={polaroidVariants}
+                    initial="initial"
+                    animate="animate"
+                    className="absolute"
+                    style={{transformOrigin: "center center"}}
+                  >
+                    <Polaroid priority src={`/assets/images/wedding-${index}.avif`} alt="Save the date"/>
+                  </motion.div>
+                ))}
+              </motion.div>
           </motion.section>
-        )}
+          )}
       </AnimatePresence>
       <Modal open={moreInfoIsOpen} onClose={() => setMoreInfoIsOpen(false)}>
         <div className="container">
