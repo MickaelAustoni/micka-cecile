@@ -14,14 +14,15 @@ export interface FollowMouseCursorHeartProps {
 }
 
 const styles: CSSProperties = {
-  mixBlendMode: "lighten",
+  left: 0,
+  top: 0,
   pointerEvents: "none",
   position: "fixed",
   userSelect: "none",
-  zIndex: 10000,
+  zIndex: 10000
 };
 
-export default function FollowMouseCursorHeart({ size = 150, opacity = 1 }: FollowMouseCursorHeartProps) {
+export default function FollowMouseCursorHeart({ size = 150, opacity = 0.5 }: FollowMouseCursorHeartProps) {
   const [isAnimating, setIsAnimating] = useState(false);
   const [touchPosition, setTouchPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const { isHovered, setIsHovered } = useFollowCursor();
@@ -68,9 +69,7 @@ export default function FollowMouseCursorHeart({ size = 150, opacity = 1 }: Foll
         height: `${size}px`,
         opacity : wrapperOpacity,
         width: `${size}px`,
-        pointerEvents: "none",
-        left: 0,
-        top: 0,
+
       }}
     >
       <Lottie

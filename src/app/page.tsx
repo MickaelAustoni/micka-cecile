@@ -19,7 +19,7 @@ export default function Home() {
         <LogoAnimation play={step === "saveTheDate"} onFinish={() => setStep("invitationForm")} onFinishDelay={5} />
         <SaveTheDate play={step === "invitationForm"} />
       </main>
-      <FollowMouseCursorHeart/>
+      <FollowMouseCursorHeart />
     </FollowCursorProvider>
   );
 }
