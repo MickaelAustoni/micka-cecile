@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { updatePresence } from "@/app/actions/presence";
 
 const formItemVariants = {
   hidden: {opacity: 0, y: 20},
@@ -123,74 +124,81 @@ const Arrow = ({ isPresent }: { isPresent: boolean }) => (
 export default function PresenceForm({delay}: {delay?: number}) {
   const [presence, setPresence] = useState<boolean | null>(null);
 
+  const handleChange = async (newPresence: boolean) => {
+    setPresence(newPresence);
+    await updatePresence(newPresence, "Denmark");
+  };
+
   return (
-    <motion.div
-      className="absolute left-0 right-0 top-full mt-20 flex flex-col gap-4 items-center text-white"
-      variants={{
-        hidden: {opacity: 0},
-        show: {
-          opacity: 1,
-          transition: {
-            staggerChildren: 0.3,
-            delayChildren: delay,
+    <form className="relative">
+      <motion.div
+        className="absolute left-0 right-0 top-full mt-20 flex flex-col gap-4 items-center text-white"
+        variants={{
+          hidden: {opacity: 0},
+          show: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.3,
+              delayChildren: delay,
+            }
           }
-        }
-      }}
-      initial="hidden"
-      animate="show"
-    >
-      <motion.label
-        className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
-        variants={formItemVariants}
+        }}
+        initial="hidden"
+        animate="show"
       >
-        <input
-          type="radio"
-          name="presence"
-          checked={presence === true}
-          onChange={() => setPresence(true)}
-          className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
-        />
-        <span className="group-hover:opacity-80 select-none">Je serai présent(e) au mariage</span>
-        {presence && (
-          <>
-            <Arrow isPresent={true}/>
-            <motion.div
-              initial={{scale: 0}}
-              animate={{scale: 1}}
-              transition={{delay: 0.8}}
-              className="absolute left-20 -top-16"
-            >
-              <HappyFace/>
-            </motion.div>
-          </>
-        )}
-      </motion.label>
-      <motion.label
-        className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
-        variants={formItemVariants}
-      >
-        <input
-          type="radio"
-          name="presence"
-          checked={presence === false}
-          onChange={() => setPresence(false)}
-          className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
-        />
-        <span className="group-hover:opacity-80 select-none">Je ne pourrai venir au mariage</span>
-        {presence === false && (
-          <>
-            <Arrow isPresent={false}/>
-            <motion.div
-              initial={{scale: 0}}
-              animate={{scale: 1}}
-              transition={{delay: 0.8}}
-              className="absolute left-20 -bottom-16"
-            >
-              <SadFace/>
-            </motion.div>
-          </>
-        )}
-      </motion.label>
-    </motion.div>
+        <motion.label
+          className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
+          variants={formItemVariants}
+        >
+          <input
+            type="radio"
+            name="presence"
+            checked={presence === true}
+            onChange={() => handleChange(true)}
+            className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
+          />
+          <span className="group-hover:opacity-80 select-none">Je serai présent(e) au mariage</span>
+          {presence && (
+            <>
+              <Arrow isPresent={true}/>
+              <motion.div
+                initial={{scale: 0}}
+                animate={{scale: 1}}
+                transition={{delay: 0.8}}
+                className="absolute left-20 -top-16"
+              >
+                <HappyFace/>
+              </motion.div>
+            </>
+          )}
+        </motion.label>
+        <motion.label
+          className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
+          variants={formItemVariants}
+        >
+          <input
+            type="radio"
+            name="presence"
+            checked={presence === false}
+            onChange={() => handleChange(false)}
+            className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
+          />
+          <span className="group-hover:opacity-80 select-none">Je ne pourrai venir au mariage</span>
+          {presence === false && (
+            <>
+              <Arrow isPresent={false}/>
+              <motion.div
+                initial={{scale: 0}}
+                animate={{scale: 1}}
+                transition={{delay: 0.8}}
+                className="absolute left-20 -bottom-16"
+              >
+                <SadFace/>
+              </motion.div>
+            </>
+          )}
+        </motion.label>
+      </motion.div>
+    </form>
   )
 }

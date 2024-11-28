@@ -5,8 +5,8 @@ import Logo from "@/components/DataDisplay/Logo";
 import Polaroid from "@/components/DataDisplay/Polaroid";
 import { useState } from 'react';
 import Modal from "@/components/Feedback/Modal";
-import PresenceForm from "@/features/PresenceForm";
-import Info from "@/features/Info";
+import PresenceForm from "@/app/features/PresenceForm";
+import Info from "@/app/features/Info";
 
 interface InvitationFormProps {
   play?: boolean;
