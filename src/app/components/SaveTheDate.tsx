@@ -141,7 +141,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
                 }}
                 onClick={() => setMoreInfoIsOpen(true)}
               >
-                Plus d&#39;info
+                Plus d&#39;infos
               </motion.button>
             </motion.div>
 

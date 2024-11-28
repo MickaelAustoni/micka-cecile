@@ -160,7 +160,7 @@ export default function PresenceForm({delay}: {delay?: number}) {
             onChange={() => handleChange(true)}
             className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
           />
-          <span className="group-hover:opacity-80 select-none">Je serai présent(e) au mariage</span>
+          <span className="group-hover:opacity-80 select-none">Je serais présent(e) au mariage</span>
           {presence && (
             <>
               <Arrow isPresent={true}/>
@@ -186,7 +186,7 @@ export default function PresenceForm({delay}: {delay?: number}) {
             onChange={() => handleChange(false)}
             className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
           />
-          <span className="group-hover:opacity-80 select-none">Je ne pourrai venir au mariage</span>
+          <span className="group-hover:opacity-80 select-none">Je ne pourrais venir au mariage</span>
           {presence === false && (
             <>
               <Arrow isPresent={false}/>
