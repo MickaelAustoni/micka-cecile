@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { updatePresence } from "@/app/actions/presence";
+import { useSearchParams } from "next/navigation";
 
 const formItemVariants = {
   hidden: {opacity: 0, y: 20},
@@ -123,10 +124,12 @@ const Arrow = ({ isPresent }: { isPresent: boolean }) => (
 
 export default function PresenceForm({delay}: {delay?: number}) {
   const [presence, setPresence] = useState<boolean | null>(null);
+  const searchParams = useSearchParams();
 
   const handleChange = async (newPresence: boolean) => {
+    const name = searchParams.get("name") || "Anonymous";
     setPresence(newPresence);
-    await updatePresence(newPresence, "Denmark");
+    await updatePresence(newPresence, name);
   };
 
   return (
