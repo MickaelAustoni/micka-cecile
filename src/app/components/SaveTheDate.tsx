@@ -17,9 +17,10 @@ const INTERVAL_POLAROIDS = 1;
 const DELAY_POLAROIDS_FADE_OUT = 5;
 const DELAY_TITLE = 5.2;
 const DELAY_SUBTITLE = 7;
-const DELAY_FORM = 9;
-const DELAY_LOGO = 11;
-const DELAY_MORE_INFO = 10;
+const DELAY_INVITATION = 9;
+const DELAY_FORM = 12;
+const DELAY_MORE_INFO = 12.5;
+const DELAY_LOGO = 14;
 
 export default function SaveTheDate({ delay, play = false }: InvitationFormProps) {
   const [moreInfoIsOpen, setMoreInfoIsOpen] = useState(false);
@@ -118,7 +119,28 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
                 15.11.2025
               </motion.div>
 
-              {/* Form */}
+              {/* Invitation */}
+              <motion.p
+                className="absolute left-0 right-0 text-center text-white drop-shadow-md top-full max-w-lg mx-auto mt-8 text-sm sm:text-base"
+                initial={{
+                  opacity: 0,
+                  y: 50
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0
+                }}
+                transition={{
+                  duration: 1,
+                  delay: delay ? delay + DELAY_INVITATION : DELAY_INVITATION,
+                }}
+              >
+                L&#39;amour nous a réunis, et c&#39;est entourés de nos proches que nous souhaitons célébrer cette union. Votre présence rendrait ce jour encore plus magique.
+              </motion.p>
+            </div>
+
+            {/* Form */}
+            <div className="absolute left-0 right-0 bottom-28 z-20">
               <PresenceForm delay={DELAY_FORM} />
             </div>
 
