@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { updatePresence } from "@/app/actions/presence";
+import { useEffect, useState } from "react";
+import { getPresence, updatePresence } from "@/app/actions/presence";
 import { useSearchParams } from "next/navigation";
 
 const formItemVariants = {
@@ -123,14 +123,26 @@ const Arrow = ({ isPresent }: { isPresent: boolean }) => (
 );
 
 export default function PresenceForm({delay}: {delay?: number}) {
-  const [presence, setPresence] = useState<boolean | null>(null);
   const searchParams = useSearchParams();
+  const name = searchParams.get("name") || "Anonymous";
+  const [presence, setPresence] = useState<boolean | null>();
 
   const handleChange = async (newPresence: boolean) => {
-    const name = searchParams.get("name") || "Anonymous";
     setPresence(newPresence);
     await updatePresence(newPresence, name);
   };
+
+  // Get initial presence
+  useEffect(() => {
+    const fetchInitialPresence = async () => {
+      const response = await getPresence(name);
+      if (response.success) {
+        setPresence(response.presence);
+      }
+    };
+
+    void fetchInitialPresence();
+  }, [name]);
 
   return (
     <form className="relative">
