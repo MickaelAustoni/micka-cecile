@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { getPresence, updatePresence } from "@/app/actions/presence";
 import { useSearchParams } from "next/navigation";
+import ScaleCursor from "@/components/Utils/Utils/ScaleCursor";
 
 const formItemVariants = {
   hidden: {opacity: 0, y: 20},
@@ -161,58 +162,62 @@ export default function PresenceForm({delay}: {delay?: number}) {
         initial="hidden"
         animate="show"
       >
-        <motion.label
-          className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
-          variants={formItemVariants}
-        >
-          <input
-            type="radio"
-            name="presence"
-            checked={presence === true}
-            onChange={() => handleChange(true)}
-            className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
-          />
-          <span className="group-hover:opacity-80 select-none">Je serais présent(e) au mariage</span>
-          {presence && (
-            <>
-              <Arrow isPresent={true}/>
-              <motion.div
-                initial={{scale: 0}}
-                animate={{scale: 1}}
-                transition={{delay: 0.8}}
-                className="absolute left-20 -top-16"
-              >
-                <HappyFace/>
-              </motion.div>
-            </>
-          )}
-        </motion.label>
-        <motion.label
-          className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
-          variants={formItemVariants}
-        >
-          <input
-            type="radio"
-            name="presence"
-            checked={presence === false}
-            onChange={() => handleChange(false)}
-            className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
-          />
-          <span className="group-hover:opacity-80 select-none">Je ne pourrais venir au mariage</span>
-          {presence === false && (
-            <>
-              <Arrow isPresent={false}/>
-              <motion.div
-                initial={{scale: 0}}
-                animate={{scale: 1}}
-                transition={{delay: 0.8}}
-                className="absolute left-20 -bottom-16"
-              >
-                <SadFace/>
-              </motion.div>
-            </>
-          )}
-        </motion.label>
+        <ScaleCursor>
+          <motion.label
+            className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
+            variants={formItemVariants}
+          >
+            <input
+              type="radio"
+              name="presence"
+              checked={presence === true}
+              onChange={() => handleChange(true)}
+              className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
+            />
+            <span className="group-hover:opacity-80 select-none">Je serais présent(e) au mariage</span>
+            {presence && (
+              <>
+                <Arrow isPresent={true}/>
+                <motion.div
+                  initial={{scale: 0}}
+                  animate={{scale: 1}}
+                  transition={{delay: 0.8}}
+                  className="absolute left-20 -top-16"
+                >
+                  <HappyFace/>
+                </motion.div>
+              </>
+            )}
+          </motion.label>
+        </ScaleCursor>
+        <ScaleCursor>
+          <motion.label
+            className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
+            variants={formItemVariants}
+          >
+            <input
+              type="radio"
+              name="presence"
+              checked={presence === false}
+              onChange={() => handleChange(false)}
+              className="appearance-none w-8 h-8 border-2 border-white rounded-md checked:bg-white checked:border-white cursor-pointer"
+            />
+            <span className="group-hover:opacity-80 select-none">Je ne pourrais venir au mariage</span>
+            {presence === false && (
+              <>
+                <Arrow isPresent={false}/>
+                <motion.div
+                  initial={{scale: 0}}
+                  animate={{scale: 1}}
+                  transition={{delay: 0.8}}
+                  className="absolute left-20 -bottom-16"
+                >
+                  <SadFace/>
+                </motion.div>
+              </>
+            )}
+          </motion.label>
+        </ScaleCursor>
       </motion.div>
     </form>
   )

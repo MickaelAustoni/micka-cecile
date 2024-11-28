@@ -37,6 +37,11 @@ const buttonWrapperVariants: Variants = {
   hidden: {
     opacity: 0,
     transform: "translateY(20px)",
+    transition: {
+      transform: {
+        duration: 1,
+      }
+    }
   },
   visible: {
     opacity: 1,
@@ -86,7 +91,7 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
             <Typewriter className="text-green-secondary" variant={animationTitleIsFinished ? "visible" : "hidden"} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici ...</Typewriter>
           </motion.div>
           {!animationButtonIsFinished && <AnimatePresence>
-            <ScaleCursor>
+            <ScaleCursor cleanupOnUnmount>
               <motion.div
                 initial="hidden"
                 variants={buttonWrapperVariants}
