@@ -12,37 +12,38 @@ interface InvitationFormProps extends PropsWithChildren {
 const CloseButton = ({ onClose }: InvitationFormProps) => (
   <motion.button
     onClick={onClose}
-    className="absolute top-0 right-0 w-8 h-8 flex items-center justify-center text-black z-50 p-6 box-content"
+    className="absolute top-0 right-0 w-10 h-10 flex items-center justify-center text-black z-50 p-6 box-content"
     whileHover={{scale: 1.1}}
     whileTap={{scale: 0.9}}
   >
     <motion.svg
-      width="24"
-      height="24"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2.5"
+      strokeWidth="1.5"
       strokeLinecap="round"
+      style={{ strokeLinecap: "round", strokeLinejoin: "round" }}
     >
       <motion.path
-        d="M 5 5 C 5.5 5.5, 6 6, 8 8 C 11 11, 13 14, 18.5 19 C 19 19.5, 19.5 19, 19 18.5"
+        d="M 5 5 C 5.5 5.5, 7 7, 9 9 C 11 11, 13 13, 19 19"
         initial={{pathLength: 0, opacity: 0}}
         animate={{pathLength: 1, opacity: 1}}
         transition={{
-          duration: 0.6,
+          duration: 1,
           delay: 0.6,
-          ease: [0.16, 0.8, 0.3, 1]
+          ease: "easeInOut"
         }}
       />
       <motion.path
-        d="M 5 19 C 6 18, 8 16, 10 14 C 13 11, 15 8, 19 4.5 C 19.5 4, 19 4.5, 18.5 5"
+        d="M 5 19 C 7 17, 9 15, 12 12 C 15 9, 17 7, 19 5"
         initial={{pathLength: 0, opacity: 0}}
         animate={{pathLength: 1, opacity: 1}}
         transition={{
-          duration: 0.6,
+          duration: 1,
           delay: 0.9,
-          ease: [0.16, 0.8, 0.3, 1]
+          ease: "easeInOut"
         }}
       />
     </motion.svg>
