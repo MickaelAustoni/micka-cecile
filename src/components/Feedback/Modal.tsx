@@ -116,7 +116,7 @@ export default function Modal({ children, open, onClose }: InvitationFormProps) 
           >
             <CloseButton onClose={onClose}/>
             <motion.div
-              className="w-full h-full relative p-6"
+              className="w-full h-full relative p-6 overflow-auto"
               initial={{opacity: 0, scale: 0.95}}
               animate={{opacity: 1, scale: 1}}
               exit={{opacity: 0, scale: 0.95}}
