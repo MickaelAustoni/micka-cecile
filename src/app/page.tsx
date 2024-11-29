@@ -14,7 +14,7 @@ export default function Home({ searchParams }: { searchParams: Promise<{ name: s
   const { name } = use(searchParams);
 
   useEffect(() => {
-    setVisited(name).then();
+    void setVisited(name)
   }, [name]);
 
   return (
