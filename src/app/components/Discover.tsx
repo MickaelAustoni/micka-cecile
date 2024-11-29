@@ -6,6 +6,7 @@ import { motion, Variants, AnimatePresence } from 'motion/react';
 import { Suspense, useRef, useState } from "react";
 import ScaleCursor from "@/components/Utils/Utils/ScaleCursor";
 import Button from "@/components/Inputs/Button";
+import { setDiscovered } from "@/app/actions/discover";
 
 interface DiscoverProps {
   onClickDiscover?: () => void;
@@ -64,10 +65,11 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
   const name = searchParams.get("name");
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     void audioRef?.current?.play();
     setClicked(true);
     onClickDiscover?.();
+    await setDiscovered(name);
   };
 
   const handleAnimationButtonIsFinished = (definition: string) => {

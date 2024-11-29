@@ -1,15 +1,21 @@
 "use client"
 
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import Discover from "@/app/components/Discover";
 import Story from "@/app/components/Story";
 import LogoAnimation from "@/app/components/LogoAnimation";
 import { FollowCursorProvider } from "@/Providers/FollowCursorProvider";
 import FollowMouseCursorHeart from "@/components/Utils/Utils/FollowMouseCursorHeart";
 import SaveTheDate from "@/app/components/SaveTheDate";
+import { setVisited } from "@/app/actions/visited";
 
-export default function Home() {
+export default function Home({ searchParams }: { searchParams: Promise<{ name: string }> }) {
   const [step, setStep] = useState("discover");
+  const { name } = use(searchParams);
+
+  useEffect(() => {
+    setVisited(name).then();
+  }, [name]);
 
   return (
     <FollowCursorProvider>

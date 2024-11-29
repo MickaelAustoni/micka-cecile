@@ -7,7 +7,11 @@ const supabase = createClient(
   process.env.SUPABASE_API_KEY || ""
 );
 
-export async function getPresence(name: string) {
+export async function getPresence(name?: string | null) {
+  if (!name) {
+    return { success: false };
+  }
+
   try {
     const { data, error } = await supabase
       .from("users")
@@ -32,7 +36,11 @@ export async function getPresence(name: string) {
   }
 }
 
-export async function updatePresence(presence: boolean, name: string) {
+export async function updatePresence(presence: boolean, name?: string | null) {
+  if (!name) {
+    return { success: false };
+  }
+
   try {
     const { error } = await supabase
       .from("users")

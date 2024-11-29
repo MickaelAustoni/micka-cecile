@@ -21,10 +21,6 @@ export default function PresenceForm({delay}: {delay?: number}) {
   const [presence, setPresence] = useState<boolean | null>();
 
   const handleChange = async (newPresence: boolean) => {
-    if( !name ) {
-      return;
-    }
-
     setPresence(newPresence);
     await updatePresence(newPresence, name);
   };
@@ -37,7 +33,8 @@ export default function PresenceForm({delay}: {delay?: number}) {
 
     const fetchInitialPresence = async () => {
       const response = await getPresence(name);
-      if (response.success) {
+
+      if (response?.success) {
         setPresence(response.presence);
       }
     };
