@@ -17,16 +17,24 @@ const formItemVariants = {
 
 export default function PresenceForm({delay}: {delay?: number}) {
   const searchParams = useSearchParams();
-  const name = searchParams.get("name") || "Anonymous";
+  const name = searchParams.get("name");
   const [presence, setPresence] = useState<boolean | null>();
 
   const handleChange = async (newPresence: boolean) => {
+    if( !name ) {
+      return;
+    }
+
     setPresence(newPresence);
     await updatePresence(newPresence, name);
   };
 
   // Get initial presence
   useEffect(() => {
+    if( !name ) {
+      return;
+    }
+
     const fetchInitialPresence = async () => {
       const response = await getPresence(name);
       if (response.success) {
