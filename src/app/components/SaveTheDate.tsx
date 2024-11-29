@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Modal from "@/components/Feedback/Modal";
 import PresenceForm from "@/app/features/PresenceForm";
 import Info from "@/app/features/Info";
+import { useSearchParams } from "next/navigation";
 
 interface InvitationFormProps {
   play?: boolean;
@@ -23,6 +24,8 @@ const DELAY_MORE_INFO = 11.5;
 const DELAY_LOGO = 12;
 
 export default function SaveTheDate({ delay, play = false }: InvitationFormProps) {
+  const searchParams = useSearchParams();
+  const name = searchParams.get("name");
   const [moreInfoIsOpen, setMoreInfoIsOpen] = useState(false);
 
 
@@ -135,7 +138,7 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
                   delay: delay ? delay + DELAY_INVITATION : DELAY_INVITATION,
                 }}
               >
-                L&#39;amour nous a réunis, et c&#39;est entourés de nos proches que nous souhaitons célébrer cette union. Votre présence rendrait ce jour encore plus magique.
+                L&#39;amour nous a réunis, et c&#39;est entourés de nos proches que nous souhaitons célébrer cette union. {name ? `${name}, votre` : "Votre"} présence rendrait ce jour encore plus magique.
               </motion.p>
             </div>
 
