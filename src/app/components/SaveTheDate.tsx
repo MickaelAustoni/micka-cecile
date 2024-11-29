@@ -14,13 +14,13 @@ interface InvitationFormProps {
 }
 
 const INTERVAL_POLAROIDS = 1;
-const DELAY_POLAROIDS_FADE_OUT = 5;
-const DELAY_TITLE = 5.2;
-const DELAY_SUBTITLE = 7;
-const DELAY_INVITATION = 9;
-const DELAY_FORM = 12;
-const DELAY_MORE_INFO = 12.5;
-const DELAY_LOGO = 14;
+const DELAY_POLAROIDS_FADE_OUT = 4.3;
+const DELAY_TITLE = 5;
+const DELAY_SUBTITLE = 6.5;
+const DELAY_INVITATION = 10.5;
+const DELAY_FORM = 11;
+const DELAY_MORE_INFO = 11.5;
+const DELAY_LOGO = 12;
 
 export default function SaveTheDate({ delay, play = false }: InvitationFormProps) {
   const [moreInfoIsOpen, setMoreInfoIsOpen] = useState(false);

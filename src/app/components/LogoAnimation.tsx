@@ -19,6 +19,7 @@ export default function LogoAnimation({ onFinish, onFinishDelay = 2, play = fals
           key={index}
           src={`/assets/images/wedding-${index}.avif`}
           sizes="(max-width: 767px) 100vw, 50vw"
+          className="hidden"
           alt=""
           width={300}
           height={450}

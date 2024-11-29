@@ -119,7 +119,7 @@ export default function Logo({ width, height, disableHeartEnding, disableAnimati
             }}
             transition={{
               opacity: {
-                delay: 8,
+                delay: 8.1,
                 duration: 0.5,
               },
               scale: {
