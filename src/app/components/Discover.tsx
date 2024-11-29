@@ -109,9 +109,7 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
   );
 }
 
-export default function Discover({
-  onClickDiscover
-}: DiscoverProps) {
+export default function Discover({onClickDiscover}: DiscoverProps) {
   return (
     <Suspense>
       <Content onClickDiscover={onClickDiscover}/>

@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from "@/components/DataDisplay/Logo";
 import Polaroid from "@/components/DataDisplay/Polaroid";
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Modal from "@/components/Feedback/Modal";
 import PresenceForm from "@/app/features/PresenceForm";
 import Info from "@/app/features/Info";
@@ -23,7 +23,7 @@ const DELAY_FORM = 11;
 const DELAY_MORE_INFO = 11.5;
 const DELAY_LOGO = 12;
 
-export default function SaveTheDate({ delay, play = false }: InvitationFormProps) {
+const Content = ({ delay, play = false }: InvitationFormProps) => {
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
   const [moreInfoIsOpen, setMoreInfoIsOpen] = useState(false);
@@ -205,4 +205,12 @@ export default function SaveTheDate({ delay, play = false }: InvitationFormProps
       </Modal>
     </>
   );
+};
+
+export default function SaveTheDate({ delay, play = false }: InvitationFormProps) {
+  return (
+    <Suspense>
+      <Content delay={delay} play={play}/>
+    </Suspense>
+  )
 }
