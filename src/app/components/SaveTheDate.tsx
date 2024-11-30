@@ -21,7 +21,7 @@ const INTERVAL_POLAROIDS = 1;
 const DELAY_POLAROIDS_FADE_OUT = 4.3;
 const DELAY_TITLE = 5;
 const DELAY_SUBTITLE = 6.5;
-const DELAY_INVITATION = 2;
+const DELAY_INVITATION = 2.8;
 const DELAY_MORE_INFO = 0;
 
 const Content = ({delay, play = false}: InvitationFormProps) => {
