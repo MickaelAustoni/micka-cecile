@@ -47,6 +47,7 @@ export default function Typewriter({color, className, children, onAnimationCompl
       animate={variant}
       onAnimationComplete={onAnimationComplete}
       style={{
+        display: "block",
         color
       }}
       transition={{
