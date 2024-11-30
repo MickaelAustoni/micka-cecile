@@ -10,6 +10,7 @@ import Info from "@/app/features/Info";
 import { useSearchParams } from "next/navigation";
 import { setInfo } from "@/app/actions/info";
 import Typewriter from "@/components/DataDisplay/Typewriter";
+import ScaleCursor from "@/components/Utils/Utils/ScaleCursor";
 
 interface InvitationFormProps {
   play?: boolean;
@@ -160,21 +161,23 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
                 }}
                 onAnimationComplete={() => setInfoTextIsFinished(true)}
               >
-                <motion.button
-                  className="absolute bottom-0 text-white text-sm left-1/2 -translate-x-1/2 underline z-50 outline-none select-none p-6"
-                  whileHover={{
-                    opacity: 0.4,
-                    transition: {
-                      duration: 0.2
-                    }
-                  }}
-                  onClick={() => {
-                    setMoreInfoIsOpen(true)
-                    void setInfo(name);
-                  }}
-                >
-                  Plus d&#39;infos
-                </motion.button>
+                <ScaleCursor>
+                  <motion.button
+                    className="absolute bottom-0 text-white text-sm left-1/2 -translate-x-1/2 underline z-50 outline-none select-none p-6"
+                    whileHover={{
+                      opacity: 0.4,
+                      transition: {
+                        duration: 0.2
+                      }
+                    }}
+                    onClick={() => {
+                      setMoreInfoIsOpen(true)
+                      void setInfo(name);
+                    }}
+                  >
+                    Plus d&#39;infos
+                  </motion.button>
+                </ScaleCursor>
               </motion.div>}
             </AnimatePresence>
 
