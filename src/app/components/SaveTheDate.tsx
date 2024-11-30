@@ -130,8 +130,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
               </motion.div>
 
               {/* Invitation */}
-              <p
-                className="text-center text-white drop-shadow-md max-w-lg mx-auto mt-8 text-sm sm:text-base">
+              <p className="text-center text-white drop-shadow-md max-w-lg mx-auto mt-8 text-sm sm:text-base">
                 <Typewriter
                   delay={delay ? delay + DELAY_INVITATION : DELAY_INVITATION}
                   variant={subtitleTextIsFinished ? "visible" : "hidden"}
