@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
-    "d3-interpolate-path": "^2.3.0",
     "flubber": "^0.4.2",
     "lottie-react": "^2.4.0",
     "motion": "^11.12.0",
