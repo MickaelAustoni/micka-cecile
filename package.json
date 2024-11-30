@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
+    "@types/flubber": "^0.4.0",
     "flubber": "^0.4.2",
     "lottie-react": "^2.4.0",
     "motion": "^11.12.0",
