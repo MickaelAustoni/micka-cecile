@@ -25,7 +25,7 @@ const styles: CSSProperties = {
 export default function FollowMouseCursorHeart({ size = 150, opacity = 0.5 }: FollowMouseCursorHeartProps) {
   const [isAnimating, setIsAnimating] = useState(false);
   const [touchPosition, setTouchPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const { isHovered } = useFollowCursor();
+  const { isHovered, disableAnimation } = useFollowCursor();
   const { scrollY } = useScroll();
   const { x, y } = useFollowPointer();
   const isTouchDevice = useIsTouchDevice();
@@ -35,6 +35,11 @@ export default function FollowMouseCursorHeart({ size = 150, opacity = 0.5 }: Fo
 
   const handleClick = ({ x, y }: MouseEvent) => {
     setTouchPosition({ x, y });
+
+    if(disableAnimation) {
+      return;
+    }
+
     heartAnimationRef?.current?.goToAndPlay(50, true);
     setIsAnimating(true);
   };

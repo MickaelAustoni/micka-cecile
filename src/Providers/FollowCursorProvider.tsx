@@ -2,16 +2,19 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface FollowCursorProviderContextType {
   isHovered: boolean;
+  disableAnimation?: boolean;
   setIsHovered: (hovered: boolean) => void;
+  setDisableAnimation: (disableAnimation: boolean) => void;
 }
 
 const FollowCursorProviderContext = createContext<FollowCursorProviderContextType | undefined>(undefined);
 
 export const FollowCursorProvider = ({ children }: { children: ReactNode }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [disableAnimation, setDisableAnimation] = useState(false);
 
   return (
-    <FollowCursorProviderContext.Provider value={{ isHovered, setIsHovered }}>
+    <FollowCursorProviderContext.Provider value={{ isHovered, setIsHovered, disableAnimation, setDisableAnimation }}>
       {children}
     </FollowCursorProviderContext.Provider>
   );

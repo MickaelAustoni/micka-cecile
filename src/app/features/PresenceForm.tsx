@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import Typewriter from "@/components/DataDisplay/Typewriter";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { interpolate } from "flubber";
+import DisableCursorAnimation from "@/components/Utils/Utils/DisableCursorAnimation";
 
 interface MorphingCheckboxProps {
   checked: boolean;
@@ -35,29 +36,31 @@ const MorphingCheckbox = ({checked, onChange}: MorphingCheckboxProps) => {
   }, [checked, progress]);
 
   return (
-    <label className="relative w-8 h-8">
-      <input
-        type="radio"
-        name="presence"
-        checked={checked}
-        onChange={onChange}
-        className="absolute opacity-0 w-full h-full cursor-pointer"
-      />
-      <svg
-        viewBox="0 0 24 24"
-        className="absolute top-0 left-0 w-full h-full"
-      >
-        <motion.path
-          d={path}
-          fill={checked ? "white" : "transparent"}
-          stroke="white"
-          strokeWidth="2"
-          transition={{
-            fill: {duration: 0.2}  // Réduit pour plus de réactivité
-          }}
+    <DisableCursorAnimation>
+      <label className="relative w-8 h-8 cursor-pointer block">
+        <input
+          type="radio"
+          name="presence"
+          checked={checked}
+          onChange={onChange}
+          className="absolute opacity-0 w-full h-full cursor-pointer"
         />
-      </svg>
-    </label>
+        <svg
+          viewBox="0 0 24 24"
+          className="absolute top-0 left-0 w-full h-full"
+        >
+          <motion.path
+            d={path}
+            fill={checked ? "white" : "transparent"}
+            stroke="white"
+            strokeWidth="2"
+            transition={{
+              fill: {duration: 0.2}  // Réduit pour plus de réactivité
+            }}
+          />
+        </svg>
+      </label>
+    </DisableCursorAnimation>
   );
 };
 
