@@ -3,54 +3,57 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { PropsWithChildren } from "react";
 import useEventListener from "@/hooks/useEventListener";
+import ScaleCursor from "@/components/Utils/Utils/ScaleCursor";
 
 interface InvitationFormProps extends PropsWithChildren {
   open?: boolean;
   onClose?: () => void;
 }
 
-const CloseButton = ({ onClose }: InvitationFormProps) => (
-  <motion.button
-    onClick={onClose}
-    className="absolute top-0 right-0 w-10 h-10 flex items-center justify-center text-black z-50 p-6 box-content"
-    whileHover={{scale: 1.1}}
-    whileTap={{scale: 0.9}}
-  >
-    <motion.svg
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      style={{ strokeLinecap: "round", strokeLinejoin: "round" }}
+const CloseButton = ({onClose}: InvitationFormProps) => (
+  <ScaleCursor>
+    <motion.button
+      onClick={onClose}
+      className="absolute top-0 right-0 w-10 h-10 flex items-center justify-center text-black z-50 p-6 box-content"
+      whileHover={{scale: 1.1}}
+      whileTap={{scale: 0.9}}
     >
-      <motion.path
-        d="M 5 5 C 5.5 5.5, 7 7, 9 9 C 11 11, 13 13, 19 19"
-        initial={{pathLength: 0, opacity: 0}}
-        animate={{pathLength: 1, opacity: 1}}
-        transition={{
-          duration: 1,
-          delay: 0.6,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.path
-        d="M 5 19 C 7 17, 9 15, 12 12 C 15 9, 17 7, 19 5"
-        initial={{pathLength: 0, opacity: 0}}
-        animate={{pathLength: 1, opacity: 1}}
-        transition={{
-          duration: 1,
-          delay: 0.9,
-          ease: "easeInOut"
-        }}
-      />
-    </motion.svg>
-  </motion.button>
-)
+      <motion.svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        style={{strokeLinecap: "round", strokeLinejoin: "round"}}
+      >
+        <motion.path
+          d="M 5 5 C 5.5 5.5, 7 7, 9 9 C 11 11, 13 13, 19 19"
+          initial={{pathLength: 0, opacity: 0}}
+          animate={{pathLength: 1, opacity: 1}}
+          transition={{
+            duration: 1,
+            delay: 0.6,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.path
+          d="M 5 19 C 7 17, 9 15, 12 12 C 15 9, 17 7, 19 5"
+          initial={{pathLength: 0, opacity: 0}}
+          animate={{pathLength: 1, opacity: 1}}
+          transition={{
+            duration: 1,
+            delay: 0.9,
+            ease: "easeInOut"
+          }}
+        />
+      </motion.svg>
+    </motion.button>
+  </ScaleCursor>
+);
 
-export default function Modal({ children, open, onClose }: InvitationFormProps) {
+export default function Modal({children, open, onClose}: InvitationFormProps) {
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Escape") {
