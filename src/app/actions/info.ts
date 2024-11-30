@@ -7,7 +7,7 @@ const supabase = createClient(
   process.env.SUPABASE_API_KEY || ""
 );
 
-export async function setDiscovered(name?: string | null) {
+export async function setInfo(name?: string | null) {
   if (!name) {
     return { success: false };
   }
@@ -16,7 +16,7 @@ export async function setDiscovered(name?: string | null) {
     const { error } = await supabase
       .from("users")
       .upsert(
-        { name, discovered: true },
+        { name, info: true },
         { onConflict: 'name' } // Spécifie que "name" est la colonne pour gérer les conflits
       );
 

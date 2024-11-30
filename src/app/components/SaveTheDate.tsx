@@ -8,6 +8,7 @@ import Modal from "@/components/Feedback/Modal";
 import PresenceForm from "@/app/features/PresenceForm";
 import Info from "@/app/features/Info";
 import { useSearchParams } from "next/navigation";
+import { setInfo } from "@/app/actions/info";
 
 interface InvitationFormProps {
   play?: boolean;
@@ -164,7 +165,10 @@ const Content = ({ delay, play = false }: InvitationFormProps) => {
                     duration: 0.2
                   }
                 }}
-                onClick={() => setMoreInfoIsOpen(true)}
+                onClick={() => {
+                  setMoreInfoIsOpen(true)
+                  void setInfo(name);
+                }}
               >
                 Plus d&#39;infos
               </motion.button>
