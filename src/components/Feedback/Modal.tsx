@@ -72,15 +72,7 @@ export default function Modal({children, open, onClose}: InvitationFormProps) {
                transformStyle: "preserve-3d"
              }}>
           <motion.div
-            className="absolute bg-white"
-            style={{
-              top: '20px',
-              left: '20px',
-              right: '20px',
-              bottom: '0',
-              transformStyle: "preserve-3d",
-              transformOrigin: "center bottom",
-            }}
+            className="absolute bg-white top-2 left-2 right-2 sm:left-5 sm:right-5 sm:top-5 bottom-0 transform-style-preserve-3d transform-origin-center-bottom"
             initial={{
               y: "120%",
               rotateX: 65,
