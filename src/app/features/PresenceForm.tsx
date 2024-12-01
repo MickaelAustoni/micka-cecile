@@ -5,6 +5,7 @@ import Typewriter from "@/components/DataDisplay/Typewriter";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { interpolate } from "flubber";
 import DisableCursorAnimation from "@/components/Utils/Utils/DisableCursorAnimation";
+import { AnimatePresence } from "motion/react";
 
 interface MorphingCheckboxProps {
   checked: boolean;
@@ -83,13 +84,11 @@ const MorphingCheckbox = ({checked, onChange, isNegative}: MorphingCheckboxProps
 };
 
 const formItemVariants = {
-  hidden: {opacity: 0, y: 20},
+  hidden: {
+    opacity: 0,
+  },
   show: {
     opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5
-    }
   }
 };
 
@@ -125,11 +124,8 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
 
   return (
     <form className="relative flex flex-col space-y-3 items-center text-white">
-      <motion.label
-        className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
-        variants={formItemVariants}
-      >
-        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.6}}>
+      <label className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative">
+        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.2}}>
           <MorphingCheckbox
             checked={presence === true}
             onChange={() => handleChange(true)}
@@ -141,28 +137,23 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
         >
           Je serais présent(e) au mariage
         </Typewriter>
-      </motion.label>
+      </label>
 
-      {firstQuestionIsFinished && (
-        <motion.label
-          className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
-          variants={formItemVariants}
+      <label className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative">
+        <motion.div initial={{opacity: 0}} animate={firstQuestionIsFinished && {opacity: 1}} transition={{delay: 0.2}}>
+          <MorphingCheckbox
+            isNegative
+            checked={presence === false}
+            onChange={() => handleChange(false)}
+          />
+        </motion.div>
+        {firstQuestionIsFinished && <Typewriter
+          className="group-hover:opacity-80 select-none"
+          onAnimationComplete={onFinish}
         >
-          <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.6}}>
-            <MorphingCheckbox
-              isNegative
-              checked={presence === false}
-              onChange={() => handleChange(false)}
-            />
-          </motion.div>
-          <Typewriter
-            className="group-hover:opacity-80 select-none"
-            onAnimationComplete={onFinish}
-          >
-            Je ne pourrais venir au mariage
-          </Typewriter>
-        </motion.label>
-      )}
+          Je ne pourrais venir au mariage
+        </Typewriter>}
+      </label>
     </form>
   );
 }
