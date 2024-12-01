@@ -5,7 +5,6 @@ import Typewriter from "@/components/DataDisplay/Typewriter";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { interpolate } from "flubber";
 import DisableCursorAnimation from "@/components/Utils/Utils/DisableCursorAnimation";
-import { AnimatePresence } from "motion/react";
 
 interface MorphingCheckboxProps {
   checked: boolean;
