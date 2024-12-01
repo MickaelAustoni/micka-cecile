@@ -53,7 +53,7 @@ const MorphingCheckbox = ({checked, onChange, isNegative}: MorphingCheckboxProps
 
   return (
     <DisableCursorAnimation>
-      <label className="relative w-8 h-8 cursor-pointer block">
+      <div className="relative w-8 h-8 cursor-pointer block">
         <input
           type="radio"
           name="presence"
@@ -62,7 +62,7 @@ const MorphingCheckbox = ({checked, onChange, isNegative}: MorphingCheckboxProps
           className="absolute opacity-0 w-full h-full cursor-pointer"
         />
         <motion.div
-          style={{ clipPath }}
+          style={{clipPath}}
           className="absolute top-0 left-0 w-full h-full"
         >
           <svg viewBox="0 0 24 24" className="w-full h-full">
@@ -77,7 +77,7 @@ const MorphingCheckbox = ({checked, onChange, isNegative}: MorphingCheckboxProps
             />
           </svg>
         </motion.div>
-      </label>
+      </div>
     </DisableCursorAnimation>
   );
 };
@@ -129,10 +129,12 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
         className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
         variants={formItemVariants}
       >
-        <MorphingCheckbox
-          checked={presence === true}
-          onChange={() => handleChange(true)}
-        />
+        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.6}}>
+          <MorphingCheckbox
+            checked={presence === true}
+            onChange={() => handleChange(true)}
+          />
+        </motion.div>
         <Typewriter
           className="group-hover:opacity-80 select-none"
           onAnimationComplete={() => setFirstQuestionIsFinished(true)}
@@ -146,11 +148,13 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
           className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative"
           variants={formItemVariants}
         >
-          <MorphingCheckbox
-            isNegative
-            checked={presence === false}
-            onChange={() => handleChange(false)}
-          />
+          <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.6}}>
+            <MorphingCheckbox
+              isNegative
+              checked={presence === false}
+              onChange={() => handleChange(false)}
+            />
+          </motion.div>
           <Typewriter
             className="group-hover:opacity-80 select-none"
             onAnimationComplete={onFinish}
