@@ -82,15 +82,6 @@ const MorphingCheckbox = ({checked, onChange, isNegative}: MorphingCheckboxProps
   );
 };
 
-const formItemVariants = {
-  hidden: {
-    opacity: 0,
-  },
-  show: {
-    opacity: 1,
-  }
-};
-
 interface PresenceFormProps {
   onFinish?: () => void;
 }
