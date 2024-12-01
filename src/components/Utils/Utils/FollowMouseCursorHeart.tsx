@@ -1,11 +1,11 @@
 import { CSSProperties, useRef, useState } from "react";
-import { cubicBezier, motion, useScroll } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import useFollowPointer from "@/hooks/useFollowPointer";
 import useIsTouchDevice from "@/hooks/useIsTouchDevice";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import heartAnimation from "@/animations/heart.json";
 import useEventListener from "@/hooks/useEventListener";
-import { useFollowCursor } from "@/Providers/FollowCursorProvider"; // Adjust the path as needed
+import { useFollowCursor } from "@/Providers/FollowCursorProvider";
 
 export interface FollowMouseCursorHeartProps {
   size?: number;
@@ -49,12 +49,19 @@ export default function FollowMouseCursorHeart({size = 150, opacity = 0.5}: Foll
         scale: isHovered ? 2 : 1,
       }}
       transition={{
-        ease: cubicBezier(0.18, 0.89, 0.32, 1.28),
+        type: "spring",
+        damping: 25,
+        stiffness: 250,
+        mass: 0.5,
         x: {
-          duration: isTouchDevice ? 0 : 0.1,
+          duration: isTouchDevice ? 0 : 0.15,
+          type: "spring",
+          bounce: 0
         },
         y: {
-          duration: isTouchDevice ? 0 : 0.1,
+          duration: isTouchDevice ? 0 : 0.15,
+          type: "spring",
+          bounce: 0
         },
         scale: {
           duration: 0.3,
@@ -68,7 +75,6 @@ export default function FollowMouseCursorHeart({size = 150, opacity = 0.5}: Foll
         height: `${size}px`,
         opacity: wrapperOpacity,
         width: `${size}px`,
-
       }}
     >
       {!disableAnimation && <Lottie
@@ -85,4 +91,4 @@ export default function FollowMouseCursorHeart({size = 150, opacity = 0.5}: Foll
       />}
     </motion.div>
   );
-};
+}
