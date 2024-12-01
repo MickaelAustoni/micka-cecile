@@ -32,9 +32,7 @@ export default function Info() {
 
       <hr className="border-green-secondary"/>
 
-
-
-        {/* Plan d'accès */}
+      {/* Plan d'accès */}
       <section className="">
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-4">
