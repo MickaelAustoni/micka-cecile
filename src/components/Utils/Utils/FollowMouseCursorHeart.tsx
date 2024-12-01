@@ -22,24 +22,19 @@ const styles: CSSProperties = {
   zIndex: 10000
 };
 
-export default function FollowMouseCursorHeart({ size = 150, opacity = 0.5 }: FollowMouseCursorHeartProps) {
+export default function FollowMouseCursorHeart({size = 150, opacity = 0.5}: FollowMouseCursorHeartProps) {
   const [isAnimating, setIsAnimating] = useState(false);
-  const [touchPosition, setTouchPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const { isHovered, disableAnimation } = useFollowCursor();
-  const { scrollY } = useScroll();
-  const { x, y } = useFollowPointer();
+  const [touchPosition, setTouchPosition] = useState<{ x: number; y: number }>({x: 0, y: 0});
+  const {isHovered, disableAnimation} = useFollowCursor();
+  const {scrollY} = useScroll();
+  const {x, y} = useFollowPointer();
   const isTouchDevice = useIsTouchDevice();
   const heartAnimationRef = useRef<LottieRefCurrentProps>(null);
-  const animationPosition = isTouchDevice ? touchPosition : { x, y: y - scrollY.get() };
+  const animationPosition = isTouchDevice ? touchPosition : {x, y: y - scrollY.get()};
   const wrapperOpacity = (x === 0 && y === 0 && touchPosition.x === 0 && touchPosition.y === 0) || (isTouchDevice && !isAnimating) ? 0 : opacity;
 
-  const handleClick = ({ x, y }: MouseEvent) => {
-    setTouchPosition({ x, y });
-
-    if(disableAnimation) {
-      return;
-    }
-
+  const handleClick = ({x, y}: MouseEvent) => {
+    setTouchPosition({x, y});
     heartAnimationRef?.current?.goToAndPlay(50, true);
     setIsAnimating(true);
   };
@@ -56,12 +51,12 @@ export default function FollowMouseCursorHeart({ size = 150, opacity = 0.5 }: Fo
       transition={{
         ease: cubicBezier(0.18, 0.89, 0.32, 1.28),
         x: {
-          duration : isTouchDevice ? 0 : 0.1,
+          duration: isTouchDevice ? 0 : 0.1,
         },
         y: {
-          duration : isTouchDevice ? 0 : 0.1,
+          duration: isTouchDevice ? 0 : 0.1,
         },
-        scale : {
+        scale: {
           duration: 0.3,
           type: "spring",
           bounce: 0.25,
@@ -71,23 +66,23 @@ export default function FollowMouseCursorHeart({ size = 150, opacity = 0.5 }: Fo
       style={{
         ...styles,
         height: `${size}px`,
-        opacity : wrapperOpacity,
+        opacity: wrapperOpacity,
         width: `${size}px`,
 
       }}
     >
-      <Lottie
+      {!disableAnimation && <Lottie
         lottieRef={heartAnimationRef}
         key="heartAnimation"
         animationData={heartAnimation}
         loop={false}
         autoplay={false}
-        style={{ pointerEvents: "none" }}
+        style={{pointerEvents: "none"}}
         onComplete={() => {
           heartAnimationRef?.current?.goToAndStop(0, true);
           setIsAnimating(false);
         }}
-      />
+      />}
     </motion.div>
   );
 };
