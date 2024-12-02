@@ -9,6 +9,7 @@ interface TypewriterProps extends PropsWithChildren {
   staggerChildren?: number;
   onAnimationComplete?: () => void;
   variant?: "visible" | "hidden";
+  heightDuration?: number;
 }
 
 const sentenceVariants : Variants = {
@@ -36,7 +37,7 @@ const letterVariants: Variants = {
   }
 };
 
-export default function Typewriter({color, className, children, onAnimationComplete, variant = "visible", delay = 0, delayHidden = 0, staggerChildren = 0.04}: TypewriterProps) {
+export default function Typewriter({color, className, children, onAnimationComplete, heightDuration, variant = "visible", delay = 0, delayHidden = 0, staggerChildren = 0.04}: TypewriterProps) {
   const arrayOfLetters = Children.toArray(children).join("").split("");
 
   return (
@@ -54,6 +55,7 @@ export default function Typewriter({color, className, children, onAnimationCompl
         delay : variant === "visible" ? delay : delayHidden,
         staggerChildren,
         when: "beforeChildren",
+        ...heightDuration && { duration: heightDuration},
       }}
 
     >
