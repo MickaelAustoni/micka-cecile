@@ -7,6 +7,8 @@ import { Suspense, useRef, useState } from "react";
 import ScaleCursor from "@/components/Utils/Utils/ScaleCursor";
 import Button from "@/components/Inputs/Button";
 import { setDiscovered } from "@/app/actions/discover";
+import Lottie from "lottie-react";
+import soundAnimation from "@/animations/sound.json";
 
 interface DiscoverProps {
   onClickDiscover?: () => void;
@@ -55,10 +57,11 @@ const buttonWrapperVariants: Variants = {
   }
 };
 
-const Content = ({ onClickDiscover }: DiscoverProps) => {
+const Content = ({onClickDiscover}: DiscoverProps) => {
   const [animationTitleIsFinished, setAnimationTitleIsFinished] = useState(false);
   const [animationSubtitleIsFinished, setAnimationSubtitleIsFinished] = useState(false);
   const [animationButtonIsFinished, setAnimationButtonIsFinished] = useState(false);
+  const [animationButtonClickedIsFinished, setAnimationButtonClickedIsFinished] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [finished, setFinished] = useState(false);
   const searchParams = useSearchParams();
@@ -73,9 +76,12 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
   };
 
   const handleAnimationButtonIsFinished = (definition: string) => {
-    if(definition === "hidden") {
-      setAnimationButtonIsFinished(true);
+    if (definition === "hidden") {
+      setAnimationButtonClickedIsFinished(true);
+      return
     }
+
+    setAnimationButtonIsFinished(true);
   };
 
   return (
@@ -88,11 +94,17 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
           variants={pageVariants}
           onAnimationComplete={() => setFinished(true)}
         >
-          <motion.div className="flex flex-col text-center" variants={wrapperTextVariants} initial={"visible"} animate={clicked ? "hidden" : "visible"}>
-            <Typewriter className="text-green-secondary" onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${name}` : ""},</Typewriter>
-            <Typewriter className="text-green-secondary" variant={animationTitleIsFinished ? "visible" : "hidden"} onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout doux se cache ici ...</Typewriter>
+          {/* Text */}
+          <motion.div className="flex flex-col text-center" variants={wrapperTextVariants} initial={"visible"}
+                      animate={clicked ? "hidden" : "visible"}>
+            <Typewriter className="text-green-secondary"
+                        onAnimationComplete={() => setAnimationTitleIsFinished(true)}>Bonjour{name ? ` ${name}` : ""},</Typewriter>
+            <Typewriter className="text-green-secondary" variant={animationTitleIsFinished ? "visible" : "hidden"}
+                        onAnimationComplete={() => setAnimationSubtitleIsFinished(true)}>On dirait qu’un secret tout
+              doux se cache ici ...</Typewriter>
           </motion.div>
-          {!animationButtonIsFinished && <AnimatePresence>
+          {/* Button */}
+          {!animationButtonClickedIsFinished && <AnimatePresence>
             <ScaleCursor cleanupOnUnmount>
               <motion.div
                 initial="hidden"
@@ -100,10 +112,31 @@ const Content = ({ onClickDiscover }: DiscoverProps) => {
                 animate={animationSubtitleIsFinished && !clicked ? "visible" : "hidden"}
                 onAnimationComplete={handleAnimationButtonIsFinished}
               >
-                <Button color="var(--brown)" boxShadowColor="166, 126, 77" onClick={handleClick} variant={animationSubtitleIsFinished ? "visible" : "hidden"}>Découvrir</Button>
+                <Button color="var(--brown)" boxShadowColor="166, 126, 77" onClick={handleClick}
+                        variant={animationSubtitleIsFinished ? "visible" : "hidden"}>Découvrir</Button>
               </motion.div>
             </ScaleCursor>
           </AnimatePresence>}
+          {/* Sound */}
+          <AnimatePresence>
+            {!clicked && <motion.div
+              initial={{opacity: 0}}
+              animate={animationButtonIsFinished && {opacity: 1}}
+              exit={{opacity: 0, transition: {duration: 0.5}}}
+              transition={{duration: 2, delay: 0.5}}
+              key="soundAnimation"
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 w-48 z-50">
+              {animationButtonIsFinished && <Lottie
+                loop
+                autoplay
+                className="-mb-8"
+                animationData={soundAnimation}
+              />}
+              <p className="text-xs text-center">
+                Activez votre son pour une meilleure expérience
+              </p>
+            </motion.div>}
+          </AnimatePresence>
         </motion.section>}
       </AnimatePresence>
       <audio ref={audioRef} src="/assets/audio/music.mp3" controls={false} preload={"auto"}/>
