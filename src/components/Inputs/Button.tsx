@@ -1,4 +1,4 @@
-import { motion, Transition, Variants } from "motion/react";
+import { motion, Variants } from "motion/react";
 import { PropsWithChildren } from "react";
 
 interface ButtonProps extends PropsWithChildren{
