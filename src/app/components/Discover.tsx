@@ -132,9 +132,9 @@ const Content = ({onClickDiscover}: DiscoverProps) => {
                 className="-mb-8"
                 animationData={soundAnimation}
               />}
-              <p className="text-xs text-center">
+              <h6 className="text-xs text-center">
                 Activez votre son pour une meilleure expérience
-              </p>
+              </h6>
             </motion.div>}
           </AnimatePresence>
         </motion.section>}

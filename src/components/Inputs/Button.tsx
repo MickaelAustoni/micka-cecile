@@ -14,32 +14,18 @@ const LINE_THICKNESS = 2;
 const pulseAnimation = (color = "255, 255, 255") => ({
   boxShadow: [
     `0px 0 20px 8px rgba(${color}, 0.0)`,
-    `0px 0 20px 8px rgba(${color}, 0.25)`,
+    `0px 0 20px 8px rgba(${color}, 0.40)`,
     `0px 0 20px 8px rgba(${color}, 0.0)`
   ],
   transition: {
     boxShadow: {
-      delay: 1,
+      delay: 1.5, // Démarre après l'animation du tracé
       duration: 3,
       repeat: Infinity,
       ease: "easeInOut"
     }
   }
 });
-
-const lineHorizontalTransition: Transition = {
-  width: {
-    duration: 1,
-    ease: "easeInOut",
-  },
-};
-
-const lineVerticalTransition: Transition = {
-  height: {
-    duration: 1,
-    ease: "easeInOut",
-  },
-};
 
 const letterVariants: Variants = {
   hidden: {
@@ -51,6 +37,19 @@ const letterVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.3,
+    }
+  }
+};
+
+const borderVariants: Variants = {
+  hidden: {
+    pathLength: 0,
+  },
+  visible: {
+    pathLength: 1,
+    transition: {
+      duration: 1.5,
+      ease: "easeInOut",
     }
   }
 };
@@ -79,7 +78,8 @@ export default function Button({ children, onClick, boxShadowColor, color = "whi
       animate={variant}
       onClick={onClick}
       whileHover="hover"
-      className="relative tracking-[0.5em] px-7 py-4 pb-3 font-light uppercase font-[family-name:var(--font-josefin-sans)]">
+      className="relative tracking-[0.5em] px-7 py-4 pb-3 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
+    >
       {/* Text */}
       <motion.div
         initial="hidden"
@@ -101,75 +101,32 @@ export default function Button({ children, onClick, boxShadowColor, color = "whi
         ))}
       </motion.div>
 
-      {/* Left border */}
-      <motion.span
-        className="absolute top-0 left-0 bg-white"
-        initial={{
-          backgroundColor: color,
-          width: 0,
-        }}
+      {/* Animated Border */}
+      <motion.div
+        className="absolute inset-0"
         animate={pulseAnimation(boxShadowColor)}
-        variants={{
-          visible:{
-            height: "100%",
-            width: LINE_THICKNESS,
-            transition: lineVerticalTransition,
-          }
-        }}
-      />
-
-      {/* Top border */}
-      <motion.span
-        className="absolute top-0 left-0 right-0 bg-white"
-        initial={{
-          backgroundColor: color,
-          width: "0%",
-          height: 0,
-        }}
-        animate={pulseAnimation(boxShadowColor)}
-        variants={{
-          visible : {
-            width: "100%",
-            height: LINE_THICKNESS,
-            transition: lineHorizontalTransition,
-          }
-        }}
-      />
-
-      {/* Right border */}
-      <motion.span
-        className="absolute bottom-0 right-0 bg-white"
-        initial={{
-          backgroundColor: color,
-          width: 0,
-        }}
-        animate={pulseAnimation(boxShadowColor)}
-        variants={{
-          visible:{
-            height: "100%",
-            width: LINE_THICKNESS,
-            transition: lineVerticalTransition,
-          }
-        }}
-      />
-
-      {/* Bottom border */}
-      <motion.span
-        className="absolute bottom-0 right-0 bg-white"
-        initial={{
-          backgroundColor: color,
-          width: "0%",
-          height: 0,
-        }}
-        animate={pulseAnimation(boxShadowColor)}
-        variants={{
-          visible : {
-            width: "100%",
-            height: LINE_THICKNESS,
-            transition: lineHorizontalTransition,
-          }
-        }}
-      />
+      >
+        <motion.svg
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.rect
+            x={LINE_THICKNESS/2}
+            y={LINE_THICKNESS/2}
+            width="calc(100% - 2px)"
+            height="calc(100% - 2px)"
+            stroke={color}
+            strokeWidth={LINE_THICKNESS}
+            fill="none"
+            variants={borderVariants}
+            style={{
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+            }}
+          />
+        </motion.svg>
+      </motion.div>
     </motion.button>
   );
 }
