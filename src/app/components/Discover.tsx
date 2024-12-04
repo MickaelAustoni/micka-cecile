@@ -6,9 +6,9 @@ import { motion, Variants, AnimatePresence } from 'motion/react';
 import { Suspense, useRef, useState } from "react";
 import ScaleCursor from "@/components/Utils/Utils/ScaleCursor";
 import Button from "@/components/Inputs/Button";
-import { setDiscovered } from "@/app/actions/discover";
 import Lottie from "lottie-react";
 import soundAnimation from "@/animations/sound.json";
+import { setDiscovered } from "@/app/actions/users";
 
 interface DiscoverProps {
   onClickDiscover?: () => void;

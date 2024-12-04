@@ -1,11 +1,10 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { getPresence, updatePresence } from "@/app/actions/presence";
 import { useSearchParams } from "next/navigation";
 import Typewriter from "@/components/DataDisplay/Typewriter";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { interpolate } from "flubber";
 import DisableCursorAnimation from "@/components/Utils/Utils/DisableCursorAnimation";
-import { updatePeople } from "@/app/actions/people";
+import { getUser, updatePeople, updatePresence } from "@/app/actions/users";
 
 interface MorphingCheckboxProps {
   checked: boolean;
@@ -139,14 +138,16 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
       return;
     }
 
-    const fetchInitialPresence = async () => {
-      const response = await getPresence(name);
+    const fetchUser = async () => {
+      const response = await getUser(name);
+
       if (response?.success) {
-        setPresence(response.presence);
+        setPresence(response.data?.presence || null);
+        setPeople(response.data?.people ? String(response.data.people) : "");
       }
     };
 
-    void fetchInitialPresence();
+    void fetchUser();
   }, [name]);
 
   return (

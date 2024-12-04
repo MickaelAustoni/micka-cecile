@@ -8,9 +8,9 @@ import Modal from "@/components/Feedback/Modal";
 import PresenceForm from "@/app/features/PresenceForm";
 import Info from "@/app/features/Info";
 import { useSearchParams } from "next/navigation";
-import { setInfo } from "@/app/actions/info";
 import Typewriter from "@/components/DataDisplay/Typewriter";
 import ScaleCursor from "@/components/Utils/Utils/ScaleCursor";
+import { setInfo } from "@/app/actions/users";
 
 interface InvitationFormProps {
   play?: boolean;
@@ -145,13 +145,9 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
             </div>
 
             {/* Form */}
-            <AnimatePresence>
-              {invitationTextIsFinished &&
-                <div className="absolute left-0 right-0 bottom-28 flex items-center justify-center z-20">
-                  <PresenceForm onFinish={() => setFormTextIsFinished(true)}/>
-                </div>
-              }
-            </AnimatePresence>
+            <div className="absolute left-0 right-0 bottom-28 flex items-center justify-center z-20">
+              <PresenceForm onFinish={() => setFormTextIsFinished(true)}/>
+            </div>
 
             {/* Plus d'info */}
             <AnimatePresence>

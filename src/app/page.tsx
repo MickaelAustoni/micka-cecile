@@ -7,7 +7,7 @@ import LogoAnimation from "@/app/components/LogoAnimation";
 import { FollowCursorProvider } from "@/Providers/FollowCursorProvider";
 import FollowMouseCursorHeart from "@/components/Utils/Utils/FollowMouseCursorHeart";
 import SaveTheDate from "@/app/components/SaveTheDate";
-import { setVisited } from "@/app/actions/visited";
+import { setVisited } from "@/app/actions/users";
 
 export default function Home({ searchParams }: { searchParams: Promise<{ name: string }> }) {
   const [step, setStep] = useState("discover");
