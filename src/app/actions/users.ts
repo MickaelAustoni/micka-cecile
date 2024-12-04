@@ -8,7 +8,7 @@ type User = {
   info?: boolean;
   people?: number;
   presence?: boolean;
-  visited?: boolean;
+  visited?: number; // Changed from boolean to number
 }
 
 type ApiResponse<T = void> = {
@@ -79,7 +79,31 @@ export async function setInfo(name: string | null): Promise<ApiResponse> {
 }
 
 export async function setVisited(name: string | null): Promise<ApiResponse> {
-  return name ? updateUser(name, { visited: true }) : { success: false };
+  if (!name) {
+    return { success: false };
+  }
+
+  try {
+    // Fetch current user data
+    const { data: user, error: fetchError } = await supabase
+      .from("users")
+      .select("visited")
+      .eq("name", name)
+      .maybeSingle();
+
+    if (fetchError) {
+      return { success: false, error: fetchError };
+    }
+
+    // Calculate new visit count (start at 1 if no previous visits)
+    const newVisitCount = ((user?.visited ?? 0) + 1);
+
+    // Update the visit count
+    return updateUser(name, { visited: newVisitCount });
+
+  } catch (error) {
+    return { success: false, error };
+  }
 }
 
 export async function updatePeople(people: number, name: string | null): Promise<ApiResponse> {
