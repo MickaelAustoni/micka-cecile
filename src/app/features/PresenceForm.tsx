@@ -156,7 +156,7 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
 
   return (
     <form className="relative items-center text-white inline-block">
-      <div className="space-y-3">
+      <div className="space-y-3 [@media(max-height:700px)]:space-y-1">
         <label className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative">
           <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.2}}>
             <MorphingCheckbox
@@ -193,7 +193,7 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
       {presence === true &&
         <>
           <Arrow className="shrink-0 absolute left-6 bottom-full mb-4"/>
-          <label className="absolute left-16 ml-2 bottom-full mb-5 flex items-center space-x-2">
+          <label className="absolute left-16 ml-2 bottom-full mb-5 flex items-center space-x-2 text-sm md:text-base">
             <Typewriter>
               Combien serez-vous au total ?
             </Typewriter>

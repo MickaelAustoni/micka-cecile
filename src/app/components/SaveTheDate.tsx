@@ -87,7 +87,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
             </AnimatePresence>
 
             {/* Title */}
-            <div className="container z-10 relative">
+            <div className="container z-10 relative [@media(max-height:700px)]:-mt-20">
               <motion.h1
                 className="text-center text-white drop-shadow-xl overflow-hidden text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
                 initial={{opacity: 0}}
@@ -147,7 +147,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
             {/* Form */}
             <AnimatePresence>
               {invitationTextIsFinished &&
-                <div className="absolute left-0 right-0 bottom-28 flex items-center justify-center z-20">
+                <div className="absolute left-0 right-0 [@media(max-height:700px)]:bottom-16 [@media(min-height:700px)_and_(max-height:800px)]:bottom-20 bottom-28 flex items-center justify-center z-20">
                   <PresenceForm onFinish={() => setFormTextIsFinished(true)}/>
                 </div>
               }

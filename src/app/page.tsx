@@ -20,10 +20,7 @@ export default function Home({ searchParams }: { searchParams: Promise<{ name: s
   return (
     <FollowCursorProvider>
       <main>
-        <Discover onClickDiscover={() => setStep("story")} />
-        <Story play={step === "story"} onFinish={() => setStep("saveTheDate")} />
-        <LogoAnimation play={step === "saveTheDate"} onFinish={() => setStep("invitationForm")} onFinishDelay={5} />
-        <SaveTheDate play={step === "invitationForm"} />
+        <SaveTheDate play />
       </main>
       <FollowMouseCursorHeart />
     </FollowCursorProvider>
