@@ -129,8 +129,12 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
 
   const handleChangePeople = async ({target}: ChangeEvent<HTMLInputElement>) => {
     const {value} = target;
-    setPeople(value);
-    await updatePeople(Number(value), name);
+    const numericValue = value.replace(/\D/g, '');
+
+    setPeople(numericValue);
+    if (numericValue) {
+      await updatePeople(Number(numericValue), name);
+    }
   };
 
   useEffect(() => {
@@ -191,18 +195,18 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
           <Arrow className="shrink-0 absolute left-6 bottom-full mb-4"/>
           <label className="absolute left-16 ml-2 bottom-full mb-5 flex items-center space-x-2">
             <Typewriter>
-              Combien seriez-vous au total ?
+              Combien serez-vous au total ?
             </Typewriter>
             <motion.input
+              value={people}
+              onChange={handleChangePeople}
               initial={{opacity: 0}}
               animate={{opacity: 1}}
               transition={{delay: 1.5}}
+              maxLength={2}
+              inputMode="numeric"
               type="text"
-              min="1"
-              max="10"
               className="w-20 h-10 border-2 border-white bg-transparent outline-0 text-center text-white"
-              value={people}
-              onChange={handleChangePeople}
             />
           </label>
         </>
