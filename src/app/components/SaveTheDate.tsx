@@ -147,7 +147,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
             {/* Form */}
             <AnimatePresence>
               {invitationTextIsFinished &&
-                <div className="absolute left-0 right-0 bottom-28 z-20">
+                <div className="absolute left-0 right-0 bottom-28 flex items-center justify-center z-20">
                   <PresenceForm onFinish={() => setFormTextIsFinished(true)}/>
                 </div>
               }
