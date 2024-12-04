@@ -46,8 +46,8 @@ export async function updatePresence(presence: boolean, name?: string | null) {
       .from("users")
       .upsert(
         {
-          name: name,
-          presence: presence
+          name,
+          presence
         },
         {
           onConflict: "name"

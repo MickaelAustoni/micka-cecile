@@ -8,6 +8,7 @@ export default {
   ],
   theme: {
     colors: {
+      transparent: "transparent",
       white:  "var(--white)",
       black:  "var(--black)",
       green : "var(--green)",
