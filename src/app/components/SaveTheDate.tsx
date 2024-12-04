@@ -87,7 +87,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
             </AnimatePresence>
 
             {/* Title */}
-            <div className="container z-10 relative [@media(max-height:700px)]:-mt-20">
+            <div className="container z-10 relative">
               <motion.h1
                 className="text-center text-white drop-shadow-xl overflow-hidden text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
                 initial={{opacity: 0}}
@@ -131,7 +131,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
               </motion.div>
 
               {/* Invitation */}
-              <p className="text-center text-white drop-shadow-md max-w-lg mx-auto mt-8 text-sm sm:text-base">
+              <p className="text-center text-white drop-shadow-md max-w-lg mx-auto mt-8 text-sm sm:text-base [@media(max-height:740px)]:text-xs">
                 <Typewriter
                   delay={delay ? delay + DELAY_INVITATION : DELAY_INVITATION}
                   variant={subtitleTextIsFinished ? "visible" : "hidden"}
@@ -147,7 +147,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
             {/* Form */}
             <AnimatePresence>
               {invitationTextIsFinished &&
-                <div className="absolute left-0 right-0 [@media(max-height:700px)]:bottom-16 [@media(min-height:700px)_and_(max-height:800px)]:bottom-20 bottom-28 flex items-center justify-center z-20">
+                <div className="absolute left-0 right-0 [@media(max-height:640px)]:bottom-10 [@media(min-height:640px)_and_(max-height:658px)]:bottom-16 [@media(min-height:658px)_and_(max-height:800px)]:bottom-20 bottom-28 flex items-center justify-center z-20">
                   <PresenceForm onFinish={() => setFormTextIsFinished(true)}/>
                 </div>
               }
@@ -166,7 +166,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
               >
                 <ScaleCursor>
                   <motion.button
-                    className="absolute bottom-0 text-white text-sm left-1/2 -translate-x-1/2 underline z-50 outline-none select-none p-6"
+                    className="absolute bottom-0 text-white text-sm left-1/2 -translate-x-1/2 underline z-50 outline-none select-none p-6 [@media(max-height:640px)]:p-1"
                     whileHover={{
                       opacity: 0.4,
                       transition: {

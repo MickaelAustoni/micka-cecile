@@ -156,7 +156,7 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
 
   return (
     <form className="relative items-center text-white inline-block">
-      <div className="space-y-3 [@media(max-height:700px)]:space-y-1">
+      <div className="space-y-3 [@media(max-height:700px)]:space-y-1 min-w-72">
         <label className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative">
           <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.2}}>
             <MorphingCheckbox
@@ -165,7 +165,7 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
             />
           </motion.div>
           <Typewriter
-            className="group-hover:opacity-80 select-none"
+            className="group-hover:opacity-80 select-none [@media(max-height:740px)]:text-xs"
             onAnimationComplete={() => setFirstQuestionIsFinished(true)}
           >
             Je serais présent(e) au mariage
@@ -173,8 +173,7 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
         </label>
 
         <label className="flex items-center gap-3 cursor-pointer group text-sm md:text-base relative">
-          <motion.div initial={{opacity: 0}} animate={firstQuestionIsFinished && {opacity: 1}}
-                      transition={{delay: 0.2}}>
+          <motion.div initial={{opacity: 0}} animate={firstQuestionIsFinished && {opacity: 1}} transition={{delay: 0.2}}>
             <MorphingCheckbox
               isNegative
               checked={presence === false}
@@ -182,7 +181,7 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
             />
           </motion.div>
           {firstQuestionIsFinished && <Typewriter
-            className="group-hover:opacity-80 select-none"
+            className="group-hover:opacity-80 select-none [@media(max-height:740px)]:text-xs"
             onAnimationComplete={onFinish}
           >
             Je ne pourrais venir au mariage
@@ -192,22 +191,24 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
 
       {presence === true &&
         <>
-          <Arrow className="shrink-0 absolute left-6 bottom-full mb-4"/>
-          <label className="absolute left-16 ml-2 bottom-full mb-5 flex items-center space-x-2 text-sm md:text-base">
-            <Typewriter>
+          <Arrow className="shrink-0 absolute left-6 bottom-full mb-4 [@media(max-height:640px)]:mb-1"/>
+          <label className="absolute left-16 ml-2 bottom-full mb-5 [@media(max-height:640px)]:mb-1 flex items-center space-x-2 text-sm md:text-base">
+            <Typewriter className="[@media(max-height:740px)]:text-xs">
               Combien serez-vous au total ?
             </Typewriter>
-            <motion.input
-              value={people}
-              onChange={handleChangePeople}
-              initial={{opacity: 0}}
-              animate={{opacity: 1}}
-              transition={{delay: 1.5}}
-              maxLength={2}
-              inputMode="numeric"
-              type="text"
-              className="w-20 h-10 border-2 border-white bg-transparent outline-0 text-center text-white"
-            />
+            <DisableCursorAnimation>
+              <motion.input
+                value={people}
+                onChange={handleChangePeople}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{delay: 1.5}}
+                maxLength={2}
+                inputMode="numeric"
+                type="text"
+                className="w-20 h-10 border-2 border-white bg-transparent outline-0 text-center text-white"
+              />
+            </DisableCursorAnimation>
           </label>
         </>
       }
