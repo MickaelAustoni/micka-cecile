@@ -110,9 +110,10 @@ const MorphingCheckbox = ({checked, onChange, isNegative}: {
 
 interface PresenceFormProps {
   onFinish?: () => void;
+  play?: boolean;
 }
 
-export default function PresenceForm({onFinish}: PresenceFormProps) {
+export default function PresenceForm({play, onFinish}: PresenceFormProps) {
   const [presence, setPresence] = useState<boolean | null>(null);
   const [people, setPeople] = useState<string>("");
   const [firstQuestionIsFinished, setFirstQuestionIsFinished] = useState<boolean>(false);
@@ -156,41 +157,54 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
     <form className="relative items-center text-white inline-block">
       <div className="space-y-3 [@media(max-height:700px)]:space-y-1 min-w-72">
         <label className="flex items-center gap-3 cursor-pointer group relative">
-          <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.2}}>
+          <motion.div
+            initial={{opacity: 0}}
+            animate={play === undefined ? {opacity: 1} : play ? {opacity: 1} : {}}
+            transition={{delay: 0.2}}
+          >
             <MorphingCheckbox
               checked={presence === true}
               onChange={() => handleChangePresence(true)}
             />
           </motion.div>
           <Typewriter
-            className="group-hover:opacity-80 select-none "
+            className="group-hover:opacity-80 select-none"
             onAnimationComplete={() => setFirstQuestionIsFinished(true)}
+            initial={play === undefined ? undefined : play ? "visible" : "invisible"}
+            variant={play === undefined ? undefined : play ? "visible" : "invisible"}
           >
             {nameContainsAmpersand ? "Nous serons présents au mariage" : "Je serais présent(e) au mariage"}
           </Typewriter>
         </label>
 
         <label className="flex items-center gap-3 cursor-pointer group relative">
-          <motion.div initial={{opacity: 0}} animate={firstQuestionIsFinished && {opacity: 1}} transition={{delay: 0.2}}>
+          <motion.div
+            initial={{opacity: 0}}
+            animate={(play === undefined && firstQuestionIsFinished) || (play && firstQuestionIsFinished) ? {opacity: 1} : {}}
+            transition={{delay: 0.2}}
+          >
             <MorphingCheckbox
               isNegative
               checked={presence === false}
               onChange={() => handleChangePresence(false)}
             />
           </motion.div>
-          {firstQuestionIsFinished && <Typewriter
+          <Typewriter
             className="group-hover:opacity-80 select-none"
             onAnimationComplete={onFinish}
+            initial={firstQuestionIsFinished ? "visible" : "invisible"}
+            variant={firstQuestionIsFinished && (play === undefined || play) ? "visible" : "invisible"}
           >
             {nameContainsAmpersand ? "Nous ne pourrons venir au mariage" : "Je ne pourrais venir au mariage"}
-          </Typewriter>}
+          </Typewriter>
         </label>
       </div>
 
       {presence === true &&
         <>
           <Arrow className="shrink-0 absolute left-6 bottom-full mb-4 [@media(max-height:640px)]:mb-1"/>
-          <label className="absolute left-16 ml-2 bottom-full mb-5 [@media(max-height:640px)]:mb-1 flex items-center space-x-2">
+          <label
+            className="absolute left-16 ml-2 bottom-full mb-5 [@media(max-height:640px)]:mb-1 flex items-center space-x-2">
             <Typewriter>
               Combien serez-vous au total ?
             </Typewriter>
@@ -199,7 +213,7 @@ export default function PresenceForm({onFinish}: PresenceFormProps) {
                 value={people}
                 onChange={handleChangePeople}
                 initial={{opacity: 0}}
-                animate={{opacity: 1}}
+                animate={play ? {opacity: 1} : {}}
                 transition={{delay: 1.5}}
                 maxLength={2}
                 inputMode="numeric"

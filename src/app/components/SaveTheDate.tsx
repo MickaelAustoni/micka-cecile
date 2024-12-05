@@ -35,11 +35,11 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
   const nameContainsAmpersand = name?.includes("&");
 
   const getName = () => {
-    if(nameContainsAmpersand) {
+    if (nameContainsAmpersand) {
       return `${name}, votre`;
     }
 
-    if(name) {
+    if (name) {
       return `${name}, ta`
     }
 
@@ -70,107 +70,99 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
       <AnimatePresence>
         {play && (
           <motion.section
-            className="absolute inset-0 justify-center items-center flex bg-brown z-[60] p-6 overflow-hidden text-sm sm:text-base [@media(max-height:740px)]:text-xs"
+            className="absolute inset-0 items-center flex flex-col justify-between bg-brown z-[60] p-6 overflow-hidden text-sm sm:text-base [@media(max-height:740px)]:text-xs"
             transition={{
               duration: 1,
               delay
             }}
           >
             {/* Logo */}
-            <AnimatePresence>
-              {infoTextIsFinished && <motion.div
-                initial={{
-                  opacity: 0
-                }}
-                animate={{
-                  opacity: 1
-                }}
-                transition={{
-                  duration: 1,
-                }}
-              >
-                <Logo
-                  disableHeartEnding
-                  disableAnimation
-                  shapeOnly
-                  className="absolute left-1/2 top-6 -translate-x-1/2 max-w-xs"
-                />
-              </motion.div>}
-            </AnimatePresence>
+            <motion.div
+              initial={{opacity: 0}}
+              animate={infoTextIsFinished && {opacity: 1}}
+              transition={{duration: 1}}
+            >
+              <Logo
+                disableHeartEnding
+                disableAnimation
+                shapeOnly
+                className="w-full h-auto"
+              />
+            </motion.div>
 
-            {/* Title */}
-            <div className="container z-10 relative">
-              <motion.h1
-                className="text-center text-white drop-shadow-xl overflow-hidden text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
-                initial={{opacity: 0}}
-                animate={{opacity: 1}}
-                transition={{
-                  duration: 2,
-                  delay: delay ? delay + DELAY_TITLE : DELAY_TITLE,
-                }}
-              >
-                <motion.span
-                  initial={{y: 100}}
-                  animate={{y: 0}}
+            {/* Middle */}
+            <div>
+              {/* Title */}
+              <div className="container z-10 relative">
+                <motion.h1
+                  className="text-center text-white drop-shadow-xl overflow-hidden text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
+                  initial={{opacity: 0}}
+                  animate={{opacity: 1}}
                   transition={{
-                    duration: 2.5,
+                    duration: 2,
                     delay: delay ? delay + DELAY_TITLE : DELAY_TITLE,
-                    ease: [0.6, 0.01, 0.05, 0.95]
                   }}
-                  style={{display: 'inline-block'}}
                 >
-                  Save the date
-                </motion.span>
-              </motion.h1>
+                  <motion.span
+                    initial={{y: 100}}
+                    animate={{y: 0}}
+                    transition={{
+                      duration: 2.5,
+                      delay: delay ? delay + DELAY_TITLE : DELAY_TITLE,
+                      ease: [0.6, 0.01, 0.05, 0.95]
+                    }}
+                    style={{display: 'inline-block'}}
+                  >
+                    Save the date
+                  </motion.span>
+                </motion.h1>
 
-              {/* Date */}
-              <motion.div
-                className="text-center text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl drop-shadow-xl"
-                initial={{
-                  opacity: 0,
-                  y: 50
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0
-                }}
-                transition={{
-                  duration: 1,
-                  delay: delay ? delay + DELAY_SUBTITLE : DELAY_SUBTITLE,
-                }}
-                onAnimationComplete={() => setSubtitleTextIsFinished(true)}
-              >
-                15.11.2025
-              </motion.div>
-
-              {/* Invitation */}
-              <p className="text-center text-white drop-shadow-md max-w-lg mx-auto mt-8">
-                <Typewriter
-                  delay={delay ? delay + DELAY_INVITATION : DELAY_INVITATION}
-                  variant={subtitleTextIsFinished ? "visible" : "hidden"}
-                  onAnimationComplete={() => setInvitationTextIsFinished(true)}
-                  heightDuration={0.8}
+                {/* Date */}
+                <motion.div
+                  className="text-center text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl drop-shadow-xl"
+                  initial={{
+                    opacity: 0,
+                    y: 50
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: delay ? delay + DELAY_SUBTITLE : DELAY_SUBTITLE,
+                  }}
+                  onAnimationComplete={() => setSubtitleTextIsFinished(true)}
                 >
-                  L&#39;amour nous a réunis, et c&#39;est entourés de nos proches que nous souhaitons célébrer cette
-                  union. {getName()} présence rendrait ce jour encore plus magique.
-                </Typewriter>
-              </p>
+                  15.11.2025
+                </motion.div>
+
+                {/* Invitation */}
+                <p className="text-center text-white drop-shadow-md max-w-lg mx-auto mt-2 sm:mt-3 md:mt-4 lg:mt-6 xl:mt-8">
+                  <Typewriter
+                    delay={delay ? delay + DELAY_INVITATION : DELAY_INVITATION}
+                    variant={subtitleTextIsFinished ? "visible" : "hidden"}
+                    onAnimationComplete={() => setInvitationTextIsFinished(true)}
+                    heightDuration={0.8}
+                  >
+                    L&#39;amour nous a réunis, et c&#39;est entourés de nos proches que nous souhaitons célébrer cette
+                    union. {getName()} présence rendrait ce jour encore plus magique.
+                  </Typewriter>
+                </p>
+              </div>
             </div>
 
-            {/* Form */}
-            <AnimatePresence>
-              {invitationTextIsFinished &&
-                <div className="absolute left-0 right-0 [@media(max-height:640px)]:bottom-10 [@media(min-height:640px)_and_(max-height:658px)]:bottom-16 [@media(min-height:658px)_and_(max-height:800px)]:bottom-20 bottom-28 flex items-center justify-center z-20">
-                  <PresenceForm onFinish={() => setFormTextIsFinished(true)}/>
-                </div>
-              }
-            </AnimatePresence>
+            {/* Bottom */}
+            <div className="text-center relative z-20">
+              {/* Form */}
+              <div className="flex items-center justify-center mt-20">
+                <PresenceForm onFinish={() => setFormTextIsFinished(true)} play={invitationTextIsFinished}/>
+              </div>
 
-            {/* Plus d'info */}
-            <AnimatePresence>
-              {formTextIsFinished && <motion.div
+              {/* Plus d'info */}
+              <motion.div
                 initial={{opacity: 0}}
-                animate={{opacity: 1}}
+                animate={formTextIsFinished && {opacity: 1}}
                 transition={{
                   delay: delay ? delay + DELAY_MORE_INFO : DELAY_MORE_INFO,
                   duration: 1
@@ -179,7 +171,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
               >
                 <ScaleCursor>
                   <motion.button
-                    className="absolute bottom-0 text-white text-sm left-1/2 -translate-x-1/2 underline z-50 outline-none select-none p-5 [@media(max-height:640px)]:p-2"
+                    className="text-white text-sm underline z-50 outline-none select-none p-5 [@media(max-height:640px)]:p-2"
                     whileHover={{
                       opacity: 0.4,
                       transition: {
@@ -194,12 +186,12 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
                     Plus d&#39;infos
                   </motion.button>
                 </ScaleCursor>
-              </motion.div>}
-            </AnimatePresence>
+              </motion.div>
+            </div>
 
             {/* Polaroids */}
             <motion.div
-              className="absolute flex justify-center items-center w-full h-full z-0"
+              className="absolute flex justify-center items-center w-full h-full z-0 inset-0"
               animate={{
                 opacity: 0.2
               }}
