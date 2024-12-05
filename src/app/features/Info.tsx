@@ -69,7 +69,7 @@ export default function Info() {
             <p>Vous pouvez trouver un hébergement sur Airbnb à Montferrat ou dans les environs.
               Mais pas que…
               L’hôtel de la Bastide situé à deux pas de la salle polyvalente de Montferrat, peut être aussi une option !
-              Nous logerons à l’hôtel, la nuit suivant le mariage, selon le nombre de personnes étant intéressés, nous pouvons voir pour faire un tarif de groupe !</p>
+              La nuit suivant le mariage (après la fête) nous logerons à l’hôtel. Selon le nombre de personnes étant intéressés, nous pouvons voir pour faire un tarif de groupe. </p>
           </div>
         </div>
 

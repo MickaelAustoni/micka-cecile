@@ -78,7 +78,7 @@ export default function Button({ children, onClick, boxShadowColor, color = "whi
       animate={variant}
       onClick={onClick}
       whileHover="hover"
-      className="relative tracking-[0.5em] px-7 py-4 pb-3 font-light uppercase font-[family-name:var(--font-josefin-sans)]"
+      className="relative tracking-[0.5em] px-7 py-4 pb-3 font-light uppercase"
     >
       {/* Text */}
       <motion.div

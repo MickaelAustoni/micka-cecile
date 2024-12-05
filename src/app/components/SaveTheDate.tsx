@@ -32,7 +32,19 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
   const [infoTextIsFinished, setInfoTextIsFinished] = useState(false);
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
+  const nameContainsAmpersand = name?.includes("&");
 
+  const getName = () => {
+    if(nameContainsAmpersand) {
+      return `${name}, votre`;
+    }
+
+    if(name) {
+      return `${name}, ta`
+    }
+
+    return "Ta";
+  }
 
   const polaroidVariants = {
     initial: () => ({
@@ -58,7 +70,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
       <AnimatePresence>
         {play && (
           <motion.section
-            className="absolute inset-0 justify-center items-center flex bg-brown z-[60] p-6 overflow-hidden"
+            className="absolute inset-0 justify-center items-center flex bg-brown z-[60] p-6 overflow-hidden text-sm sm:text-base [@media(max-height:740px)]:text-xs"
             transition={{
               duration: 1,
               delay
@@ -131,7 +143,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
               </motion.div>
 
               {/* Invitation */}
-              <p className="text-center text-white drop-shadow-md max-w-lg mx-auto mt-8 text-sm sm:text-base [@media(max-height:740px)]:text-xs">
+              <p className="text-center text-white drop-shadow-md max-w-lg mx-auto mt-8">
                 <Typewriter
                   delay={delay ? delay + DELAY_INVITATION : DELAY_INVITATION}
                   variant={subtitleTextIsFinished ? "visible" : "hidden"}
@@ -139,7 +151,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
                   heightDuration={0.8}
                 >
                   L&#39;amour nous a réunis, et c&#39;est entourés de nos proches que nous souhaitons célébrer cette
-                  union. {name ? `${name}, votre` : "Votre"} présence rendrait ce jour encore plus magique.
+                  union. {getName()} présence rendrait ce jour encore plus magique.
                 </Typewriter>
               </p>
             </div>
@@ -166,7 +178,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
               >
                 <ScaleCursor>
                   <motion.button
-                    className="absolute bottom-0 text-white text-sm left-1/2 -translate-x-1/2 underline z-50 outline-none select-none p-6 [@media(max-height:640px)]:p-1"
+                    className="absolute bottom-0 text-white text-sm left-1/2 -translate-x-1/2 underline z-50 outline-none select-none p-5 [@media(max-height:640px)]:p-2"
                     whileHover={{
                       opacity: 0.4,
                       transition: {

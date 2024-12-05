@@ -22,6 +22,6 @@ body {
   font-family: var(--font-geist-mono);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, button {
   font-family: var(--font-josefin-sans);
 }
