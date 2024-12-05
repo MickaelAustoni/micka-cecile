@@ -86,7 +86,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
                 disableHeartEnding
                 disableAnimation
                 shapeOnly
-                className="w-full h-auto"
+                className="h-48 w-auto max-w-full"
               />
             </motion.div>
 
@@ -153,7 +153,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
             </div>
 
             {/* Bottom */}
-            <div className="text-center relative z-20 space-y-3">
+            <div className="text-center relative z-20 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 xl:space-y-8">
               {/* Form */}
               <div className="flex items-center justify-center mt-16">
                 <PresenceForm onFinish={() => setFormTextIsFinished(true)} play={invitationTextIsFinished}/>
