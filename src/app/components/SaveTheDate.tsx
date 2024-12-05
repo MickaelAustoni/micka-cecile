@@ -122,6 +122,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
                   Save the date
                 </motion.span>
               </motion.h1>
+
               {/* Date */}
               <motion.div
                 className="text-center text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl drop-shadow-xl"
