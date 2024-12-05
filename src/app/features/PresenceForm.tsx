@@ -6,12 +6,6 @@ import { interpolate } from "flubber";
 import DisableCursorAnimation from "@/components/Utils/Utils/DisableCursorAnimation";
 import { getUser, updatePeople, updatePresence } from "@/app/actions/users";
 
-interface MorphingCheckboxProps {
-  checked: boolean;
-  onChange: () => void;
-  isNegative?: boolean;
-}
-
 const Arrow = ({className}: { className?: string }) => (
   <motion.svg
     width="30"
@@ -40,8 +34,11 @@ const Arrow = ({className}: { className?: string }) => (
   </motion.svg>
 );
 
-
-const MorphingCheckbox = ({checked, onChange, isNegative}: MorphingCheckboxProps) => {
+const MorphingCheckbox = ({checked, onChange, isNegative}: {
+  checked: boolean;
+  onChange: () => void;
+  isNegative?: boolean;
+}) => {
   const progress = useMotionValue(0);
   const morphProgress = useMotionValue(0);
   const paths = {
