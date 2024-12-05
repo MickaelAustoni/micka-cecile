@@ -14,6 +14,10 @@ interface TypewriterProps extends PropsWithChildren {
 }
 
 const sentenceVariants : Variants = {
+  invisible: {
+    opacity: 0,
+    height: "auto"
+  },
   hidden: {
     opacity: 0,
     height: 0,
@@ -25,6 +29,9 @@ const sentenceVariants : Variants = {
 };
 
 const letterVariants: Variants = {
+  invisible: {
+    opacity: 0
+  },
   hidden: {
     opacity: 0
   },
