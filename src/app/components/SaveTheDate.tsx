@@ -153,9 +153,9 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
             </div>
 
             {/* Bottom */}
-            <div className="text-center relative z-20">
+            <div className="text-center relative z-20 space-y-3">
               {/* Form */}
-              <div className="flex items-center justify-center mt-20">
+              <div className="flex items-center justify-center mt-16">
                 <PresenceForm onFinish={() => setFormTextIsFinished(true)} play={invitationTextIsFinished}/>
               </div>
 
@@ -171,7 +171,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
               >
                 <ScaleCursor>
                   <motion.button
-                    className="text-white text-sm underline z-50 outline-none select-none p-5 [@media(max-height:640px)]:p-2"
+                    className="text-white text-sm underline z-50 outline-none select-none [@media(max-height:640px)]:p-2"
                     whileHover={{
                       opacity: 0.4,
                       transition: {
