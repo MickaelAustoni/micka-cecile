@@ -8,7 +8,8 @@ interface TypewriterProps extends PropsWithChildren {
   delayHidden?: number;
   staggerChildren?: number;
   onAnimationComplete?: () => void;
-  variant?: "visible" | "hidden";
+  variant?: "visible" | "hidden" | "invisible";
+  initial?: "visible" | "hidden" | "invisible";
   heightDuration?: number;
 }
 
@@ -37,14 +38,14 @@ const letterVariants: Variants = {
   }
 };
 
-export default function Typewriter({color, className, children, onAnimationComplete, heightDuration, variant = "visible", delay = 0, delayHidden = 0, staggerChildren = 0.04}: TypewriterProps) {
+export default function Typewriter({color, className, children, onAnimationComplete, heightDuration, initial = "hidden", variant = "visible", delay = 0, delayHidden = 0, staggerChildren = 0.04}: TypewriterProps) {
   const arrayOfLetters = Children.toArray(children).join("").split("");
 
   return (
     <motion.span
       className={className}
       variants={sentenceVariants}
-      initial="hidden"
+      initial={initial}
       animate={variant}
       onAnimationComplete={onAnimationComplete}
       style={{
