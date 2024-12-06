@@ -64,7 +64,7 @@ export default function Info() {
           </div>
 
           {/* Hébergements */}
-          <div className="flex flex-col justify-between space-y-6">
+          <div className="flex flex-col space-y-6">
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold">Hébergements</h2>
 
@@ -81,7 +81,7 @@ export default function Info() {
               <h2 className="text-2xl font-semibold">On compte sur vous !</h2>
               <p className="mb-8">Pour nous aider à organiser au mieux cette belle journée, merci de nous confirmer
                 votre
-                présence avant le <strong>18 février 2025</strong>.
+                présence avant le <strong>31 janvier 2025</strong>.
               </p>
             </div>
           </div>
