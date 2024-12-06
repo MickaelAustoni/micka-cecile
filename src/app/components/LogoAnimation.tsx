@@ -29,7 +29,7 @@ export default function LogoAnimation({ onFinish, onFinishDelay = 2, play = fals
       <AnimatePresence mode="wait">
         {play && (
           <motion.section
-            className="inset-0 overflow-hidden absolute justify-center items-center flex bg-green p-8"
+            className="inset-0 overflow-hidden fixed justify-center items-center flex bg-green p-8"
             initial={{opacity: 1}}
             exit={{
               opacity: 0,
