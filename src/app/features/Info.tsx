@@ -63,13 +63,27 @@ export default function Info() {
             </div>
           </div>
 
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold">Hébergements</h2>
+          {/* Hébergements */}
+          <div className="flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <h2 className="text-2xl font-semibold">Hébergements</h2>
 
-            <p>Vous pouvez trouver un hébergement sur Airbnb à Montferrat ou dans les environs.
-              Mais pas que…
-              L’hôtel de la Bastide situé à deux pas de la salle polyvalente de Montferrat, peut être aussi une option !
-              La nuit suivant le mariage (après la fête) nous logerons à l’hôtel. Selon le nombre de personnes étant intéressés, nous pouvons voir pour faire un tarif de groupe. </p>
+              <p>Vous pouvez trouver un hébergement sur Airbnb à Montferrat ou dans les environs.
+                Mais pas que…
+                L’hôtel de la Bastide situé à deux pas de la salle polyvalente de Montferrat, peut être aussi une option
+                !
+                La nuit suivant le mariage (après la fête) nous logerons à l’hôtel. Selon le nombre de personnes étant
+                intéressés, nous pouvons voir pour faire un tarif de groupe.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="text-2xl font-semibold">On compte sur vous !</h2>
+              <p className="mb-8">Pour nous aider à organiser au mieux cette belle journée, merci de nous confirmer
+                votre
+                présence avant le <strong>18 février 2025</strong>.
+              </p>
+            </div>
           </div>
         </div>
 

@@ -205,7 +205,7 @@ export default function PresenceForm({play, onFinish}: PresenceFormProps) {
           <Arrow className="shrink-0 absolute left-6 bottom-full mb-4 [@media(max-height:640px)]:mb-1"/>
           <label
             className="absolute left-16 ml-2 bottom-full mb-5 [@media(max-height:640px)]:mb-1 flex items-center space-x-2">
-            <Typewriter>
+            <Typewriter className="text-right">
               Combien serez-vous au total ?
             </Typewriter>
             <DisableCursorAnimation>
