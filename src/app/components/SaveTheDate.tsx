@@ -70,7 +70,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
       <AnimatePresence>
         {play && (
           <motion.section
-            className="absolute inset-0 items-center flex flex-col justify-between bg-brown z-[60] p-6 overflow-hidden text-sm sm:text-base [@media(max-height:740px)]:text-xs"
+            className="fixed inset-0 items-center flex flex-col justify-between bg-brown z-[60] p-6 overflow-hidden text-sm sm:text-base [@media(max-height:740px)]:text-xs"
             transition={{
               duration: 1,
               delay
@@ -138,7 +138,8 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
                 </motion.div>
 
                 {/* Invitation */}
-                <p className="text-center text-white drop-shadow-md max-w-lg mx-auto mt-2 sm:mt-3 md:mt-4 lg:mt-6 xl:mt-8">
+                <p
+                  className="text-center text-white drop-shadow-md max-w-lg mx-auto mt-2 sm:mt-3 md:mt-4 lg:mt-6 xl:mt-8">
                   <Typewriter
                     delay={delay ? delay + DELAY_INVITATION : DELAY_INVITATION}
                     variant={subtitleTextIsFinished ? "visible" : "hidden"}

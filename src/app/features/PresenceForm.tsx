@@ -155,7 +155,7 @@ export default function PresenceForm({play, onFinish}: PresenceFormProps) {
 
   return (
     <form className="relative items-center text-white inline-block">
-      <div className="space-y-3 [@media(max-height:700px)]:space-y-1 min-w-72">
+      <div className="space-y-2 [@media(max-height:700px)]:space-y-1 min-w-72">
         <label className="flex items-center gap-3 cursor-pointer group relative">
           <motion.div
             initial={{opacity: 0}}
