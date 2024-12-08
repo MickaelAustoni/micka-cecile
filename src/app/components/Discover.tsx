@@ -129,7 +129,7 @@ const Content = ({onClickDiscover}: DiscoverProps) => {
               {animationButtonIsFinished && <Lottie
                 loop
                 autoplay
-                className="-mb-8"
+                className="-mb-8 opacity-70"
                 animationData={soundAnimation}
               />}
               <h6 className="text-xs text-center text-green-secondary">
