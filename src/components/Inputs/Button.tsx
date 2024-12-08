@@ -86,7 +86,7 @@ export default function Button({ children, onClick, boxShadowColor, color = "whi
         animate="visible"
         transition={{
           staggerChildren: 0.07,
-          delayChildren: 0.4
+          delayChildren: 1.5
         }}
       >
         {childrenArray?.map((letter, index)=> (
