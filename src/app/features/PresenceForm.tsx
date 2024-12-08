@@ -200,7 +200,7 @@ export default function PresenceForm({play, onFinish}: PresenceFormProps) {
         </label>
       </div>
 
-      {presence === true &&
+      {presence && firstQuestionIsFinished &&
         <>
           <Arrow className="shrink-0 absolute left-6 bottom-full mb-4 [@media(max-height:640px)]:mb-1"/>
           <label
