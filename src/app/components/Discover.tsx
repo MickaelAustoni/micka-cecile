@@ -39,21 +39,9 @@ const wrapperTextVariants: Variants = {
 const buttonWrapperVariants: Variants = {
   hidden: {
     opacity: 0,
-    transform: "translateY(20px)",
-    transition: {
-      transform: {
-        duration: 1,
-      }
-    }
   },
   visible: {
     opacity: 1,
-    transform: "translateY(0)",
-    transition: {
-      transform: {
-        duration: 1,
-      }
-    }
   }
 };
 
