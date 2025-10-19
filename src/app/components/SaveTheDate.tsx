@@ -211,7 +211,7 @@ const Content = ({delay, play = false}: InvitationFormProps) => {
                   className="absolute"
                   style={{transformOrigin: "center center"}}
                 >
-                  <Polaroid priority src={`/assets/images/wedding-${index}.avif`} alt="Save the date"/>
+                  <Polaroid priority src={`/assets/images/wedding-${index}.jpg`} alt="Save the date"/>
                 </motion.div>
               ))}
             </motion.div>
