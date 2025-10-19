@@ -39,13 +39,13 @@ export default function Info() {
             <h2 className="text-2xl font-semibold">Déroulé & Plan d&#39;accès</h2>
 
             <div className="space-y-1">
-              <h3 className="font-medium">Cérémonie civile - 14h30</h3>
-              <p>Hôtel de ville</p>
-              <p>83720 Trans en Provence</p>
+              <h3 className="font-medium"><s>Cérémonie civile - 14h30</s></h3>
+              <p><s>Hôtel de ville</s></p>
+              <p><s>83720 Trans en Provence</s></p>
             </div>
 
             <div className="space-y-1">
-              <h3 className="font-medium">Cérémonie religieuse - 15h30</h3>
+              <h3 className="font-medium">Cérémonie religieuse - 15h00</h3>
               <p>Eglise Saint Victor</p>
               <p>83720 Trans en Provence</p>
             </div>
